@@ -1,0 +1,84 @@
+mat-toolbar {
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0;
+    z-index: 1000;
+  
+    .logo {
+      padding-left: 2em;
+    }
+  
+    .spacer {
+      flex: 1 1 auto;
+    }
+  
+    a {
+      color: #00838F;
+      margin-left: 1em;
+    }
+  
+    mat-icon {
+      cursor: pointer;
+      color: #28D146;
+    }
+  
+    button {
+      margin-left: 2em;
+    }
+  
+    .cart {
+      margin: 0 1em;
+      color: #00838F;
+    }
+  
+    .fa-whatsapp {
+      color: #075E54;
+      font-size: 1.2em;
+      cursor:pointer;
+      margin-left: 1em;
+    }
+  
+    .fa-moon-o,.fa-sun-o {
+      margin-left: 1em;
+    }
+  
+  }
+  
+  /* hide on mible */
+  .mobile-nav {
+      display: none;
+  }
+  
+  .fa-bars {
+      display: none;
+  }
+  
+  
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    .logo {
+      padding-left: 0;
+      margin-left: -2em;
+    }
+  
+    .mobile-nav {
+      display: flex;
+  
+    }
+  
+    .fa-bars {
+      display: block;
+    }
+  
+    .fa-whatsapp {
+      margin: 0 1em;
+    }
+  
+    .view-on-desktop {
+      display: none;
+    }
+    .fa-moon-o,.fa-sun-o {
+      margin-right: 1em;
+    }
+  }
+  
