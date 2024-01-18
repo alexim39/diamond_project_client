@@ -39,6 +39,7 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
     <span class="spacer"></span>
 
+    <a class="view-on-desktop" color="primary" mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
     <a class="view-on-desktop" color="primary" mat-stroked-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About Us</a>
     <a class="view-on-desktop" color="accent" mat-stroked-button routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a>
     
@@ -57,6 +58,7 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
 
     <mat-toolbar-row class="mobile-nav" id="mobile-nav" *ngIf="showMobileNav">
+      <a mat-button routerLink="/">Home</a>
       <a mat-stroked-button routerLink="about-us">About Us</a>
       <a mat-stroked-button routerLink="get-started">Get Started</a>
       
