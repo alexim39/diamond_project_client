@@ -26,7 +26,7 @@ import {MatInputModule} from '@angular/material/input';
 
           <button mat-flat-button color="accent" disabled>Subscribe</button>
           <br>
-          <button mat-raised-button (click)="lunchWhatsAppGroup()" disabled> <span class="fa fa-whatsapp"></span> WhatsApp Us</button>
+          <!-- <button mat-raised-button (click)="lunchWhatsAppGroup()" disabled> <span class="fa fa-whatsapp"></span> WhatsApp Us</button> -->
 
           <div id="social-media">
             <a href="#" class="fa fa-facebook" title="Facebook"></a>
