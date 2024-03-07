@@ -22,7 +22,7 @@ import { FooterIntroComponent } from './footer.intro.component';
     </article>
 
     <aside>
-      <div class="courtesy">© 2023 Diamond Project Online. All Rights Reserved</div>
+      <div class="courtesy">© {{ currentYear }} Diamond Project Online. All Rights Reserved</div>
       <div class="policies">
         <a href="#">T&C</a>
         <a href="#">Privacy</a>
@@ -99,4 +99,11 @@ import { FooterIntroComponent } from './footer.intro.component';
 
 `]
 })
-export class FooterComponent {}
+export class FooterComponent {
+  currentYear: number;
+
+  constructor() {
+    this.currentYear = new Date().getFullYear();
+  }
+  
+}
