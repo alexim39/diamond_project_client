@@ -71,7 +71,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
           Swal.fire({
             position: "top-end",
             icon: 'success',
-            text: 'Your survey has been submitted',
+            text: 'Thank you for completing the survey form. Your responses have been submitted, and we will be in touch with you soon',
             showConfirmButton: false,
             timer: 4000
           });
@@ -88,7 +88,10 @@ export class GetStartedComponent implements OnInit, OnDestroy {
           });
         })
       )
+    } else {
+     this.isSpinning = false;
     }
+    
   }
 
   // Helper method to mark all form controls as touched
