@@ -73,7 +73,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
             icon: 'success',
             text: 'Thank you for completing the survey form. Your responses have been submitted, and we will be in touch with you soon',
             showConfirmButton: false,
-            timer: 4000
+            timer: 10000
           });
           this.isSpinning = false;
           this.router.navigateByUrl('get-started/testimonials');
