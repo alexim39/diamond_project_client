@@ -36,18 +36,18 @@ export interface Video {
   <section class="head">
 
   <article>
-      <h2>Diamond Project - Getting Involved</h2>
+      <h2>Diamond Project - Basic Business Principles</h2>
       <!-- <h3>{{course.subTitle}}</h3> -->
-      <p>See more videos of members testimonials and how they got to where they are in Diamond Project</p>
+      <p>View a video that gives a concise summary of the fundamental principles guiding the operations of the Diamond Project</p>
     </article>
   </section>
 
    <section class="breadcrumb-wrapper">
       <div class="breadcrumb">
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a> &gt;
-          <a routerLink="/get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a> &gt;
-          <a routerLink="/get-started/testimonials" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Testimonials</a> &gt;
-          <a routerLink="/get-started/connected-economy" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Connected Economy</a> &gt;
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a> &gt;
+          <a routerLink="/get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a> &gt;
+          <!-- <a routerLink="/get-started/testimonials" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Testimonials</a> &gt; -->
+          <a routerLink="/get-started/connected-economy" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Connected Economy</a> &gt;
           <span>getting involved</span>
       </div>
    </section>
@@ -97,7 +97,8 @@ export interface Video {
   `,
   styles: [`
 .head {
-  background: #00838F;
+  //background: #00838F;
+  background: #004d40;
   article {
     color: white;
     padding: 2em 1em 2em 8em;
@@ -334,6 +335,11 @@ export class GettingInvolvedComponent implements OnInit {
 
   onPrevious(): void {
     this.router.navigateByUrl('get-started/connected-economy');
+  }
+
+  // scroll to top when clicked
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   openVideoModal(video: Video): void {

@@ -30,30 +30,30 @@ import { MatIconModule } from '@angular/material/icon';
   `,
   styles: [`
     .about-training {
-        padding: 4em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-top: 1px solid #eee;
-        .text-content {
-          text-align: center;
-          h1 {
-            color: #00838F;
-            font-size: 3em;
-          }
+      padding: 4em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid #eee;
+      .text-content {
+        text-align: center;
+        h1 {
+          //color: #00838F;
+          color: #004d40;
+          font-size: 3em;
+        }
 
-          p {
-            text-align: justify;
-            font-family: system-ui;
-            width: 70em;
-          }
+        p {
+          text-align: justify;
+          font-family: system-ui;
+          width: 70em;
         }
       }
+    }
 
 
 /* Extra small devices (phones, 750px and down) */
 @media only screen and (max-width: 750px) {
-
 .about-training {
     padding: 1em;
     .text-content {

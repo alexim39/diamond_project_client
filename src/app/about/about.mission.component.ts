@@ -70,7 +70,7 @@ import {MatCardModule} from '@angular/material/card';
         display: flex;
         justify-content: space-evenly;
 
-        box-shadow: 10px 10px 20px black, 0 20px 55px #00838F, 0 0 15px #ffab40 ;
+        box-shadow: 10px 10px 20px black, 0 20px 55px #00838F, 0 0 15px #004d40 ;
 
         .mission, .vision {
           p {
@@ -89,7 +89,7 @@ import {MatCardModule} from '@angular/material/card';
         text-align: justify;
         margin-left: 3em;
 
-        box-shadow: 10px 10px 20px black, 0 20px 55px #00838F, 0 0 15px #ffab40 ;
+        box-shadow: 10px 10px 20px black, 0 20px 55px #00838F, 0 0 15px #004d40 ;
 
         ul {
           li {

@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
       <!-- <small>Use our flexible learning path, adjust your learning to suit your time  — all in one place. Open a free account in minutes and learn any time.</small> -->
 
       <!-- <a mat-flat-button color="accent" href="tel:+2349130311019">JOIN US NOW</a> -->
-      <a mat-flat-button color="accent" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">JOIN US NOW</a>
+      <a mat-flat-button color="accent" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">JOIN US NOW</a>
     </aside>
   `,
   styles: [`
@@ -75,7 +75,10 @@ export class WhyWeExistComponent implements OnInit{
 
   ngOnInit(): void {  }
 
-
+  // scroll to top when clicked
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   ngOnDestroy() {
     // unsubscribe list

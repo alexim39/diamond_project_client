@@ -16,7 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         <article>
           <strong>Diamond Project</strong>
           <p>
-            <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About Us</a>
+            <a routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Us</a>
           </p>
           <p> Main Office: <br>  15 Agudama Street D-line Port Harcourt, Rivers State Nigeria.</p>
         </article>
@@ -30,7 +30,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
           <strong>Phone</strong>
           <p> +234 816 008 6326, <br>  080 8038 6208<br>
         </p>
-
         </article> -->
 
       </section>
@@ -60,5 +59,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class FooterContactComponent {
   lunchWhatsAppGroup() {
     window.open('https://wa.me/message/BQ4PN6TYXNE5D1', '_blank');
+  }
+
+  // scroll to top when clicked
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

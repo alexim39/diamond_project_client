@@ -34,16 +34,18 @@ export interface Video {
   <section class="head">
 
   <article>
-      <h2>Diamond Project Testimonials</h2>
+      <h2>Hear Direct from Others Who Achieved Financial Freedom</h2>
       <!-- <h3>{{course.subTitle}}</h3> -->
-      <p>See videos of members testimonials and how they got started with Diamond Project</p>
+      <p>Don't just take our word for it. 
+        These real people finally broke through and left the rat race behind by following our proven financial freedom training. Hear their stories in their own words
+      </p>
     </article>
   </section>
 
    <section class="breadcrumb-wrapper">
       <div class="breadcrumb">
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a> &gt;
-          <a routerLink="/get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a> &gt;
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a> &gt;
+          <!-- <a routerLink="/get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a> &gt; -->
           <span>testimonials</span>
       </div>
    </section>
@@ -68,10 +70,10 @@ export interface Video {
         </div>
       </div>
 
-      <div class="next-view">
+      <!-- <div class="next-view">
         <button mat-raised-button color="accent" class="back" (click)="onPrevious()"><i class="fa fa-angle-double-left"></i> Previous</button>
         <button mat-raised-button color="primary" (click)="onNext()">Get Connected Now <i class="fa fa-angle-double-right"></i></button>
-      </div>
+      </div> -->
 
     </article>
 
@@ -97,5 +99,10 @@ export class TestimonialsComponent {
       data: video,
       width: '700px',
     });
+  }
+
+  // scroll to top when clicked
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

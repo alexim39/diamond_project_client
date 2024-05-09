@@ -57,6 +57,11 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     });
   }
 
+   // scroll to top when clicked
+   scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   onSubmit(): void {
     this.isSpinning = true;
 
@@ -76,7 +81,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
             timer: 10000
           });
           this.isSpinning = false;
-          this.router.navigateByUrl('get-started/testimonials');
+          this.router.navigateByUrl('get-started/connected-economy');
         }, error => {
           this.isSpinning = false;
           Swal.fire({

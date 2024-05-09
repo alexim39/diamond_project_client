@@ -33,15 +33,21 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
 
    <mat-toolbar class="nav">
-    <mat-toolbar-row>
+    <mat-toolbar-row class="desktop-nav">
 
     <span class="logo"><async-logo></async-logo></span>
 
     <span class="spacer"></span>
 
-    <a class="view-on-desktop" color="primary" mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-    <a class="view-on-desktop" color="primary" mat-stroked-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About Us</a>
-    <a class="view-on-desktop" color="accent" mat-stroked-button routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a>
+    <a class="view-on-desktop" color="primary" mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a>
+    <a class="view-on-desktop" color="primary" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Us</a>
+    <a class="view-on-desktop" color="primary" mat-button routerLink="testimonials" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Testimonials</a>
+    <a class="view-on-desktop" color="primary" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Packages</a>
+    <a class="view-on-desktop" color="primary" mat-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a>
+    <a class="view-on-desktop" color="primary" mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
+    <!-- <a class="view-on-desktop" color="primary" mat-button [matMenuTriggerFor]="signup">Sign Up <i class="fa fa-angle-double-down"></i></a> -->
+    <!-- <a class="view-on-desktop" color="accent" mat-stroked-button routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a> -->
+    <a class="view-on-desktop" color="primary" mat-raised-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A One-On-One</a>
     
 
 
@@ -58,9 +64,16 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
 
     <mat-toolbar-row class="mobile-nav" id="mobile-nav" *ngIf="showMobileNav">
-      <a mat-button routerLink="/">Home</a>
-      <a mat-stroked-button routerLink="about-us">About Us</a>
-      <a mat-stroked-button routerLink="get-started">Get Started</a>
+      <a mat-button routerLink="/" (click)="scrollToTop()">Home</a>
+      <a mat-button routerLink="about-us" (click)="scrollToTop()">About Us</a>
+      <a mat-button routerLink="testimonials" (click)="scrollToTop()">Testimonial</a>
+      <a mat-button routerLink="about-us" (click)="scrollToTop()">Packages</a>
+      <a mat-button routerLink="#" (click)="scrollToTop()">Blogs</a>
+      <!-- <a mat-stroked-button routerLink="get-started">Get Started</a> -->
+      <a mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
+      <!-- <a mat-button [matMenuTriggerFor]="signup">Sign Up <i class="fa fa-angle-double-down"></i></a> -->
+      <a color="primary" mat-raised-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A 1:1</a>
+
       
       <span class="spacer"></span>
 
@@ -68,6 +81,29 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
 
    </mat-toolbar>
+
+
+
+
+
+   <!-- Sign Up - Authentication -->
+   <!-- <mat-menu #signup="matMenu">
+      <button mat-menu-item>Register</button>
+      <button mat-menu-item>Login</button>
+    </mat-menu> -->
+
+   <!-- Support -->
+   <mat-menu #support="matMenu">
+      <!-- <button mat-menu-item>Contact Us</button> -->
+      <a mat-menu-item routerLink="faq" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">FAQs</a>
+    </mat-menu>
+
+   <!-- Services & Pricing -->
+   <!-- <mat-menu #services="matMenu">
+      <button mat-menu-item>Services</button>
+      <button mat-menu-item>Testimonials</button>
+      <button mat-menu-item>Packages</button>
+    </mat-menu> -->
 
   `,
   styleUrls: [`nav.component.scss`]
@@ -100,6 +136,11 @@ export class NavComponent implements OnInit, OnDestroy {
 
     const currentTheme = this.themeTogglerService.getTheme();
     this.themeTogglerService.setTheme(currentTheme);
+  }
+
+   // scroll to top when clicked
+   scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 

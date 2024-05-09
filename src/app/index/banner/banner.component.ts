@@ -34,7 +34,7 @@ import { CommonModule } from '@angular/common';
 
             <div class="btn">
               <!-- <a id="get-account" mat-raised-button href="tel:+2349130311019">GIVE US A CALL NOW</a> -->
-              <a id="book-now" mat-raised-button color="accent" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">GET STARTED</a>
+              <a id="book-now" mat-raised-button color="accent" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">GET STARTED</a>
             </div>
           </article>
 
@@ -61,6 +61,11 @@ export class BannerComponent implements OnInit, OnDestroy  {
     window.open('https://wa.me/message/BQ4PN6TYXNE5D1', '_blank');
   }
 
+   // scroll to top when clicked
+   scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
   ngOnDestroy(): void {
     // unsubscribe list
     this.subscriptions.forEach(subscription => {
