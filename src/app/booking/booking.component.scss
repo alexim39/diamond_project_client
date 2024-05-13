@@ -18,7 +18,15 @@
         font-family: 'Courier New', monospace;
         font-size: 14px;
         line-height: 1.5em;
+       
       }
+      ul {
+        li {
+         font-family: 'Courier New', monospace;
+         font-size: 14px;
+         line-height: 2em;
+        } 
+     }
       a {
         color: white;
         text-decoration: underline;
@@ -85,6 +93,11 @@
         p {
           width: 90%;
         }
+        ul {
+            li {
+             width: 90%;
+            } 
+         }
       }
   }
   

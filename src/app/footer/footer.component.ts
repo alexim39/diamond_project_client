@@ -22,7 +22,7 @@ import { FooterIntroComponent } from './footer.intro.component';
     </article>
 
     <aside>
-      <div class="courtesy">© {{ currentYear }} Diamond Project Online. All Rights Reserved</div>
+      <div class="courtesy">© {{ currentYear }} Diamond Project (Online). All Rights Reserved</div>
       <div class="policies">
         <a href="#">T&C</a>
         <a href="#">Privacy</a>
@@ -35,7 +35,8 @@ import { FooterIntroComponent } from './footer.intro.component';
   `,
   styles: [`
     footer {
-      background: #0e0e2c;
+      background: #050111;
+     // background: #0e0e2c;
       text-align: center;
       
       article {

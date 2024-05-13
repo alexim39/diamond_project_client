@@ -39,15 +39,16 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
     <span class="spacer"></span>
 
-    <a class="view-on-desktop" color="primary" mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a>
-    <a class="view-on-desktop" color="primary" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Us</a>
-    <a class="view-on-desktop" color="primary" mat-button routerLink="testimonials" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Testimonials</a>
-    <a class="view-on-desktop" color="primary" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Packages</a>
-    <a class="view-on-desktop" color="primary" mat-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a>
-    <a class="view-on-desktop" color="primary" mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
-    <!-- <a class="view-on-desktop" color="primary" mat-button [matMenuTriggerFor]="signup">Sign Up <i class="fa fa-angle-double-down"></i></a> -->
-    <!-- <a class="view-on-desktop" color="accent" mat-stroked-button routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a> -->
-    <a class="view-on-desktop" color="primary" mat-raised-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A One-On-One</a>
+    <a class="view-on-desktop" mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a>
+    <a class="view-on-desktop" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Us</a>
+    <a class="view-on-desktop" mat-button routerLink="testimonials" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Testimonials</a>
+    <a class="view-on-desktop" mat-button routerLink="packages" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Packages</a>
+    <!-- <a class="view-on-desktop" mat-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a> -->
+    <a class="view-on-desktop" mat-button [matMenuTriggerFor]="resources">Resources <i class="fa fa-angle-double-down"></i></a>
+    <a class="view-on-desktop" mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
+    <!-- <a class="view-on-desktop" mat-button [matMenuTriggerFor]="signup">Sign Up <i class="fa fa-angle-double-down"></i></a> -->
+    <!-- <a class="view-on-desktop" mat-stroked-button routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a> -->
+    <a class="view-on-desktop" color="primary" mat-raised-button routerLink="one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A One-On-One</a>
     
 
 
@@ -67,12 +68,13 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
       <a mat-button routerLink="/" (click)="scrollToTop()">Home</a>
       <a mat-button routerLink="about-us" (click)="scrollToTop()">About Us</a>
       <a mat-button routerLink="testimonials" (click)="scrollToTop()">Testimonial</a>
-      <a mat-button routerLink="about-us" (click)="scrollToTop()">Packages</a>
-      <a mat-button routerLink="#" (click)="scrollToTop()">Blogs</a>
+      <a mat-button routerLink="packages" (click)="scrollToTop()">Packages</a>
+      <!-- <a mat-button routerLink="#" (click)="scrollToTop()">Blogs</a> -->
       <!-- <a mat-stroked-button routerLink="get-started">Get Started</a> -->
+      <a mat-button [matMenuTriggerFor]="resources">Resources <i class="fa fa-angle-double-down"></i></a>
       <a mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
       <!-- <a mat-button [matMenuTriggerFor]="signup">Sign Up <i class="fa fa-angle-double-down"></i></a> -->
-      <a color="primary" mat-raised-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A 1:1</a>
+      <a color="primary" mat-raised-button routerLink="one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A 1:1</a>
 
       
       <span class="spacer"></span>
@@ -98,12 +100,12 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
       <a mat-menu-item routerLink="faq" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">FAQs</a>
     </mat-menu>
 
-   <!-- Services & Pricing -->
-   <!-- <mat-menu #services="matMenu">
-      <button mat-menu-item>Services</button>
-      <button mat-menu-item>Testimonials</button>
-      <button mat-menu-item>Packages</button>
-    </mat-menu> -->
+   <!-- resources -->
+   <mat-menu #resources="matMenu">
+      <a mat-menu-item>Blogs</a>
+      <a mat-menu-item>eBooks</a>
+      <a mat-menu-item>Video links</a>
+    </mat-menu>
 
   `,
   styleUrls: [`nav.component.scss`]

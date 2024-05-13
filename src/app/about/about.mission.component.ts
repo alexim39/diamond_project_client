@@ -41,12 +41,13 @@ import {MatCardModule} from '@angular/material/card';
 
         <mat-card class="core-values">
           <mat-card-content>
-            <h1>Our Core Values</h1>
+            <h1>Our Core Pillars</h1>
 
             <ul>
-              <li><strong>Innovation:</strong> We embrace creativity and stay ahead of the curve, consistently seeking new ways to deliver cutting-edge trainings that drive progress.</li>
-              <li><strong>Integrity:</strong> We operate with honesty, transparency, and ethical principles, fostering trust with our partners, and team members.</li>
-              <li><strong>Excellence:</strong> We uphold the highest standards of quality in every aspect of our training, consistently delivering excellence in every training we provide.</li>
+              <li><div><strong>Mentorship & Capacity Building:</strong> </div>Cultivate your skills and expand your horizons through expert guidance and tailored training programs. Our mentors are industry leaders committed to nurturing your potential and igniting your path to success.</li>
+              <li><div><strong>Discipline, Regimentation & Stoicism:</strong></div> Harness the power of discipline and stoic principles to fortify your mindset and conquer challenges with unwavering resolve. Our structured approach instills resilience, perseverance, and a steadfast commitment to excellence.</li>
+              <li><div><strong>Health Optimization:</strong> </div>Elevate your well-being with comprehensive health optimization strategies. From personalized nutrition plans to targeted supplementation and lifestyle modifications, we empower you to thrive physically, mentally, and emotionally.</li>
+              <li><div><strong>Financial Leverage Mastery:</strong></div> Gain a profound understanding of leverage and unlock the keys to financial abundance. Learn how to strategically amplify your resources, maximize returns, and build sustainable wealth through innovative financial leverage systems.</li>
             </ul>
           </mat-card-content>
         </mat-card>
@@ -60,7 +61,7 @@ import {MatCardModule} from '@angular/material/card';
       flex-direction: row;
       padding: 2em;
       h1 {
-        color: #ffab40;
+        color: #050111;
       }
 
       .mision-vision {
@@ -70,7 +71,7 @@ import {MatCardModule} from '@angular/material/card';
         display: flex;
         justify-content: space-evenly;
 
-        box-shadow: 10px 10px 20px black, 0 20px 55px #00838F, 0 0 15px #004d40 ;
+        box-shadow: 10px 10px 20px black, 0 20px 55px #050111, 0 0 15px #050111 ;
 
         .mission, .vision {
           p {
@@ -89,13 +90,13 @@ import {MatCardModule} from '@angular/material/card';
         text-align: justify;
         margin-left: 3em;
 
-        box-shadow: 10px 10px 20px black, 0 20px 55px #00838F, 0 0 15px #004d40 ;
+        box-shadow: 10px 10px 20px black, 0 20px 55px #050111, 0 0 15px #050111 ;
 
         ul {
           li {
              padding-top: 2em;
              strong {
-              color: #00838F;
+              color: #ffab40;
               /* color: #ffab40; */
              }
           }

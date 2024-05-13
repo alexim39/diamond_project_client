@@ -72,17 +72,21 @@ export interface Video {
         </div>
       </div>
 
-      <p class="infor">
-      Embark on a transformative journey towards success by becoming a valued partner of the Diamond Project. Your path to financial prosperity and innovation begins here. </p>
-      <p class="infor">
-      By joining us, you not only step into a community of like-minded individuals but also unlock unparalleled opportunities for growth and collaboration. </p>
-      <p class="infor">
-      The Diamond Project is more than just a venture; it's a dynamic ecosystem where your aspirations thrive. </p>
-      <p class="infor">
-      If you're ready to redefine your future, click the button below to become a member and gain access to exclusive information that will pave the way for your success. </p>
-      <p class="infor">
-      Your journey to excellence starts now. Click below to be a part of something extraordinary!
-      </p>
+      <div  class="infor">
+        <p >
+        Embark on a transformative journey towards success by becoming a valued partner of the Diamond Project. Your path to financial prosperity and innovation begins here. </p>
+        <p >
+        By joining us, you not only step into a community of like-minded individuals but also unlock unparalleled opportunities for growth and collaboration. </p>
+        <p >
+        The Diamond Project is more than just a venture; it's a dynamic ecosystem where your aspirations thrive. </p>
+        <p >
+        If you're ready to redefine your future, click the button below to become a member and gain access to exclusive information that will pave the way for your success. </p>
+        <p>
+        Your journey to excellence starts now. Click below to be a part of something extraordinary!
+        </p>
+      </div>
+
+      
 
       <div class="next-view">
         <button mat-raised-button color="accent" class="back" (click)="onPrevious()"><i class="fa fa-angle-double-left"></i> Previous</button>
@@ -98,7 +102,7 @@ export interface Video {
   styles: [`
 .head {
   //background: #00838F;
-  background: #004d40;
+  background: #050111;
   article {
     color: white;
     padding: 2em 1em 2em 8em;
@@ -143,10 +147,14 @@ export interface Video {
         line-height: 1.5em;
       }
       .infor {
-        text-align: justify;
-        font-family: monospace;
-        font-weight: bold;
-        color: gray;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p {
+          width: 60%;
+        }
       }
       .next-view {
         margin-top: 2em;
@@ -277,6 +285,15 @@ iframe {
           order: 1;
         }
     }
+    .infor {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p {
+          width: 100%;
+        }
+    }
   }
 }
 }
@@ -302,6 +319,15 @@ iframe {
           } */
         }
       }
+      .infor {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p {
+          width: 80%;
+        }
+    }
     }
   }
   

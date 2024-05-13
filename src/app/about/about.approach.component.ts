@@ -74,7 +74,7 @@ import { AboutStoryComponent } from './about.story.component';
   `,
   styles: [`
     .training-approach {
-      background-color: #004d40;
+      background-color: #050111;
       //background-color: #00838F;
       display: flex;
       flex-direction: row;

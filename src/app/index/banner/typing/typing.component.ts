@@ -18,6 +18,7 @@ declare const $: any;
         font-size: 1em;
         font-weight: bold;
         padding: 0 1em;
+        color: white;
       }
     }
 

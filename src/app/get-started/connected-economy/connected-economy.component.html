@@ -40,10 +40,10 @@
           <mat-label>Choose your country</mat-label>
           <mat-select required [(ngModel)]="selectedCountry" name="selectedCountry" #countrySelect="ngModel">
             <mat-option value=""></mat-option>
+            <mat-option value="Nigeria">Nigeria</mat-option>
             <mat-option value="Ghana">Ghana</mat-option>
             <mat-option value="Kenya">Kenya</mat-option>
-            <mat-option value="Nigeria">Nigeria</mat-option>
-            <mat-option value="Zambia">Zambia</mat-option>
+            <!-- <mat-option value="Zambia">Zambia</mat-option> -->
           </mat-select>
           <mat-error *ngIf="countrySelect.invalid && countrySelect.touched">
             Country is required

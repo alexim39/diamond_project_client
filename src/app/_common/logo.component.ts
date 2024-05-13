@@ -8,7 +8,10 @@ import { RouterModule } from '@angular/router';
   imports: [MatIconModule, RouterModule],
   template: `
     <a [routerLink]="['/']" [style.color]="color">
-      <span><!-- <mat-icon [style.margin-top]="marginTop">sync</mat-icon> -->Diamond Project Online</span>
+      <span><!-- <mat-icon [style.margin-top]="marginTop">sync</mat-icon> -->
+        <img src="./assets/img/logo.PNG">
+        Diamond Project (Online)
+      </span>
     </a>
   `,
   styles: [`
@@ -23,11 +26,17 @@ import { RouterModule } from '@angular/router';
         mat-icon {
           margin-right: -1px;
         }
+        img {
+          width: 1.5em;
+          height: 1.5em;
+          border-radius: 10%;
+          margin-right: 1px;
+        }
       }
     }
   `]
 })
 export class LogoComponent {
-  @Input() color = '#006064';
-  @Input() marginTop = '6px';
+  @Input() color = '#050111';
+  @Input() marginTop = '0';
 }

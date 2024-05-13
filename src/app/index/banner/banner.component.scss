@@ -7,7 +7,7 @@ section {
       background-size:cover;
       width: 100%;
       aside {
-        background-image: linear-gradient(to left, rgba(9, 146, 173, 0.8) 26.48%, rgba(4, 75, 85, 0.8) 73.52%);
+        background-image: linear-gradient(to left, rgba(7, 3, 18, 0.7) 26.48%, rgba(124, 94, 36, 0.3) 73.52%);
         min-height: 770px;
         text-align: center;
         position: relative;
@@ -29,9 +29,10 @@ section {
           align-items: center;
           justify-content: center;
           h1 {
-            color: white;
-            font-size: 2.5em;
+            color: black;
+            font-size: 1.5em;
             font-family: Vadana;
+            width: 70%;
             em {
               font-size: 0.5em;
             }
@@ -62,7 +63,7 @@ section {
       aside {
         article {
           h1 {
-            font-size: 1.5em;
+            font-size: 1.1em;
             padding: 0 0.4em;
           }
         }
