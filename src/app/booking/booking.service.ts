@@ -7,8 +7,8 @@ import { BookingFormData } from './booking.interface';
 @Injectable()
 export class BookingService {
   // Define API
-  //api = 'https://diamondprojectapi-y6u04o8b.b4a.run/';
-  api = 'http://localhost:3000';
+  api = 'https://diamondprojectapi-y6u04o8b.b4a.run/';
+  //api = 'http://localhost:3000';
   constructor(private http: HttpClient) {}
   /*========================================
     CRUD Methods for consuming RESTful API

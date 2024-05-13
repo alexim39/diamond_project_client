@@ -79,12 +79,12 @@ export class BookingComponent implements OnInit, OnDestroy {
           Swal.fire({
             position: "top-end",
             icon: 'success',
-            text: 'Thank you for booking a session. We hope to meet with you at your booked date.',
+            text: 'Thank you for booking a session with us. We hope to meet with you at your booked date and time.',
             showConfirmButton: false,
             timer: 10000
           });
           this.isSpinning = false;
-          this.router.navigateByUrl('get-started/connected-economy');
+          //this.router.navigateByUrl('get-started/connected-economy');
         }, (error: Error) => {
           this.isSpinning = false;
           Swal.fire({
