@@ -161,7 +161,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="bookinForm.get('referral')?.value === 'Referral'">
-            <mat-label>Referral Code</mat-label>
+            <mat-label>Referral Names</mat-label>
             <input matInput formControlName="referralCode">
             <mat-error *ngIf="bookinForm.get('referralCode')?.hasError('required') ">
             Code is required

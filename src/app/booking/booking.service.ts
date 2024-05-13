@@ -37,7 +37,7 @@ export class BookingService {
   }
 
 
-  // user submit survey
+  // user submit booking
   submit(formData: BookingFormData): Observable<BookingFormData> {
     //console.log('form record', formData);
     return this.http
