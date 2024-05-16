@@ -29,12 +29,12 @@ import {MatInputModule} from '@angular/material/input';
           <!-- <button mat-raised-button (click)="lunchWhatsAppGroup()" disabled> <span class="fa fa-whatsapp"></span> WhatsApp Us</button> -->
 
           <div id="social-media">
-            <a href="#" class="fa fa-facebook" title="Facebook"></a>
-            <a href="#" class="fa fa-twitter" title="Twitter"></a>
-            <!-- <a href="#" class="fa fa-google" title="Google"></a> -->
-            <a href="#" class="fa fa-linkedin" title="Linkedin"></a>
-            <a href="#" class="fa fa-youtube" title="Youtube"></a>
-            <a href="#" class="fa fa-instagram" title="Instagram"></a>
+            <a href="https://www.facebook.com/diamondcampaign/" class="fa fa-facebook" title="Facebook" target="_blank"></a>
+            <a href="#" class="fa fa-twitter" title="Twitter" target="_blank"></a>
+            <!-- <a href="#" class="fa fa-google" title="Google" target="_blank"></a> -->
+            <a href="https://www.linkedin.com/company/labuena-vida-project/?originalSubdomain=ng" class="fa fa-linkedin" title="Linkedin" target="_blank"></a>
+            <a href="#" class="fa fa-youtube" title="Youtube" target="_blank"></a>
+            <a href="#" class="fa fa-instagram" title="Instagram" target="_blank"></a>
           </div>
         </article>
 

@@ -39,7 +39,7 @@ export class SurveyService {
 
   // user submit survey
   submit(formData: SurveyFormData): Observable<SurveyFormData> {
-    //console.log('form record', formData);
+    console.log('form record', formData);
     return this.http
       .post<SurveyFormData>(this.api + '/survey/submit', formData)
       .pipe(retry(1), catchError(this.handleError));

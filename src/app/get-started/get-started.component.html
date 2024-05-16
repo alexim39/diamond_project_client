@@ -25,7 +25,7 @@
         <form [formGroup]="surveyForm" (submit)="onSubmit()">
   
           <mat-form-field appearance="outline">
-            <mat-label>Do you ever feel the need to be more than your current situation? </mat-label>
+            <mat-label>Do you feel like you could be doing more? </mat-label>
             <mat-select formControlName="doYouFeelNeedForChange">
               <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -37,7 +37,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline">
-            <mat-label>Are you currently employed, self-employed, or unemployed? </mat-label>
+            <mat-label>What's your work situation? </mat-label>
             <mat-select formControlName="employedStatus">
               <mat-option value="employed">Employed</mat-option>
               <mat-option value="self-employed">Self-employed</mat-option>
@@ -49,7 +49,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline">
-            <mat-label>Are you interested in earning additional income alongside your current activities? </mat-label>
+            <mat-label>Looking to make some extra cash? </mat-label>
             <mat-select formControlName="interestedInEarningAdditionaIcome">
             <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -61,7 +61,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline">
-            <mat-label>Do you believe that receiving additional training and mentoring can improve your income and life outcomes? </mat-label>
+            <mat-label>Can more skills help you reach your goals? </mat-label>
             <mat-select formControlName="doYouBelieveInTraining">
               <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -85,7 +85,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline">
-            <mat-label>If a session were offered to help you become a better version of yourself, would you attend? </mat-label>
+            <mat-label>Would you be interested in a session to unlock your potential?</mat-label>
             <mat-select formControlName="ifSessionIsSet">
               <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -98,7 +98,7 @@
   
           <div class="form-wrapper">
             <mat-form-field appearance="outline">
-              <mat-label>May we have the most suitable phone number to contact you?</mat-label>
+              <mat-label>What's the best number to reach you on?</mat-label>
               <input matInput type="tel" formControlName="phoneNumber" maxlength="22">
               <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('required') ">
                 Your phone number is required
@@ -108,7 +108,7 @@
               </mat-error> -->
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>May we have the most suitable email to contact you?</mat-label>
+              <mat-label>What's your best email address?</mat-label>
               <input matInput type="email" formControlName="email">
             </mat-form-field>
           </div>
@@ -122,13 +122,44 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Surname</mat-label>
+              <mat-label>Surname (Lastname)</mat-label>
               <input matInput formControlName="surname">
               <mat-error *ngIf="surveyForm.get('surname')?.hasError('required') ">
                 Surname is required
               </mat-error>
             </mat-form-field>
           </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>How Did You Hear About Us?</mat-label>
+            <mat-select formControlName="referral">
+            <mat-option value="Search Engine">Search Engine (Google, Bing, etc.)</mat-option>
+              <mat-option value="Social Media">Social Media (Facebook, Twitter, Instagram, etc.)</mat-option>
+              <mat-option value="YouTube">YouTube</mat-option>
+              <mat-option value="Podcast">Podcast</mat-option>
+              <mat-option value="Referral">Referral from a Member/Friend/Family</mat-option>
+              <mat-option value="Online Advertisement">Online Advertisement</mat-option>
+              <mat-option value="Blog/Article">Blog/Article</mat-option>
+              <mat-option value="Mobile App">Mobile App</mat-option>
+              <mat-option value="Direct Mail/Email Marketing">Direct Mail/Email Marketing</mat-option>
+              <mat-option value="Attended a Live Event/Seminar">Attended a Live Event/Seminar</mat-option>
+              <mat-option value="Radio">Radio</mat-option>
+              <mat-option value="TV/Cable Advertisement">TV/Cable Advertisement</mat-option>
+              <mat-option value="Magazine/Newspaper">Magazine/Newspaper</mat-option>
+              <mat-option value="cant say">Can't say</mat-option>
+            </mat-select>
+            <mat-error *ngIf="surveyForm.get('referral')?.hasError('required') ">
+            This answer is required
+              </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="surveyForm.get('referral')?.value === 'Referral'">
+            <mat-label>Referral Names</mat-label>
+            <input matInput formControlName="referralCode">
+            <mat-error *ngIf="surveyForm.get('referralCode')?.hasError('required') ">
+            Code is required
+            </mat-error>
+        </mat-form-field>
 
           <mat-progress-bar mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar><br>
   

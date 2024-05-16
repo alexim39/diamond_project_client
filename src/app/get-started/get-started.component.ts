@@ -34,7 +34,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   isSpinning = false;
 
-  constructor(
+  constructor (
     private router: Router,
     private fb: FormBuilder,
     private surveyService: SurveyService,
@@ -54,6 +54,8 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       email: ['', [Validators.email]],
       name: ['', Validators.required],
       surname: ['', Validators.required],
+      referralCode: ['',],
+      referral: ['', Validators.required],
     });
   }
 
