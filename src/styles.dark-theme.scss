@@ -159,10 +159,22 @@ body {
         }
     }
 
-    /* .payment, .course-report{
+    .side-menu {
         background-color: var(--background-color);
         color: var(--text-color);
-    } */
+        ul {
+            li {
+                a {
+                    
+                    color: var(--text-color);
+                }
+                a:hover, a:active {
+                    background-color: var(--background-color);
+                    color: #ffab40;
+                }
+            }
+        }
+    }
    
 }
 

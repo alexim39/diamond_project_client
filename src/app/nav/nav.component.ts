@@ -102,9 +102,9 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
    <!-- resources -->
    <mat-menu #resources="matMenu">
-      <a mat-menu-item>Blogs</a>
-      <a mat-menu-item>eBooks</a>
-      <a mat-menu-item>Video links</a>
+      <a mat-menu-item routerLink="blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a>
+      <a mat-menu-item routerLink="ebooks" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">eBooks</a>
+      <a mat-menu-item routerLink="videos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Videos</a>
     </mat-menu>
 
   `,

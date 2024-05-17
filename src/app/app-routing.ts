@@ -12,6 +12,9 @@ export const routes: Routes = [
   { path: 'one-on-one-booking', loadComponent: () => import('./booking/booking.component').then(c => c.BookingComponent) },
   //{ path: 'booking', loadChildren: () => import('./portal/booking/booking-routes').then(c => c.BookingListRoutes) },
   { path: 'get-started', loadChildren: () => import('./get-started/get-started-routes').then(r => r.getStartedRoutes) },
+  { path: 'videos', loadChildren: () => import('./resources/videos/videos-routes').then(r => r.videosRoutes) },
+  { path: 'blogs', loadChildren: () => import('./resources/blogs/blogs-routes').then(r => r.blogsRoutes) },
+  { path: 'ebooks', loadChildren: () => import('./resources/ebooks/ebooks-routes').then(r => r.ebooksRoutes) },
 
   // should be the last path on routes
   {path: '**', component: PageNotFoundComponent}
