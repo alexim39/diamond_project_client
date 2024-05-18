@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationStart, NavigationEnd } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -19,15 +19,17 @@ import { BreadcrumbComponent } from '../_common/breadcrumb.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
 import { LoadingSpinnerComponent } from '../_common/spinner.compnent';
 import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
   selector: 'async-nav',
   standalone: true,
   providers: [],
-  imports: [MatToolbarModule, BreadcrumbComponent, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, HttpClientModule],
+  imports: [MatToolbarModule, BreadcrumbComponent, MatProgressBarModule, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, HttpClientModule],
   template: `
-  <async-loading-spinner *ngIf="loadingSpinnerService.isShowing()"></async-loading-spinner>
+  <!-- <async-loading-spinner *ngIf="loadingSpinnerService.isShowing()"></async-loading-spinner> -->
+
+  
   <!-- THIS IS A TEMPORARY NOTIFICATION BANNER - FOR TRAILING EVENT -->
   <!-- <async-notification-banner></async-notification-banner> -->
 
@@ -84,6 +86,10 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 
    </mat-toolbar>
 
+   <div *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  </div>
+
 
 
 
@@ -119,12 +125,22 @@ export class NavComponent implements OnInit, OnDestroy {
 
   authenticated = false;
 
+  isLoading: boolean = false; // Flag for loading state
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private themeTogglerService: ThemeTogglerService,
     public loadingSpinnerService: LoadingSpinnerService
-  ) { }
+  ) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.isLoading = true; // Set loading to true on navigation start
+      } else if (event instanceof NavigationEnd) {
+        this.isLoading = false; // Set loading to false on navigation end
+      }
+    });
+   }
 
   ngOnInit() {
     // listern to auth event emitter to check if user is signed in or not
