@@ -52,7 +52,7 @@ export class TypingComponent implements AfterViewInit {
   @ViewChild("blinkElement") blinkElement!: ElementRef;
   @Input() wordArray: string[] = [
     " We get you trained to be financially free.    ",
-    " We help you unlock the secrete skills of financially autonomy.     ",
+    " We help you unlock the secrete skills of financial autonomy.     ",
     " We provide you with the training to achieve financial independence.     ",
     //" BonnyRide, the no. 1 cab service in Bonny Island.     ",
     //" Get links to helpful  academic resources.     ",
