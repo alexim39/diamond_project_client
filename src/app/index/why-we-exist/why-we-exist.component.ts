@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -69,9 +68,7 @@ export class WhyWeExistComponent implements OnInit{
   // init subscriptions list
   subscriptions: Subscription[] = [];
 
-  constructor(
-    public dialog: MatDialog,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {  }
 

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { TypingComponent } from './typing/typing.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
@@ -51,9 +50,7 @@ export class BannerComponent implements OnInit, OnDestroy  {
   posterSource: string = 'assets/img/bck1.png';
   videoSource: string = 'assets/vid/bck1.mp4';
 
-  constructor(
-    public dialog: MatDialog,
-  ) {}
+  constructor() {}
 
 
   ngOnInit(): void {}

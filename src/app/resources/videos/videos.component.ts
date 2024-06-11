@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
-import { MatDialog } from '@angular/material/dialog';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { videos } from './videos';
 import { CommonModule } from '@angular/common';
 
@@ -29,7 +28,7 @@ export class VideosComponent {
   videos: Video[] = videos;
   selectedCategory: string = '';
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor() {}
 
    // scroll to top when clicked
    scrollToTop() {

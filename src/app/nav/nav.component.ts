@@ -26,9 +26,6 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
   standalone: true,
   providers: [],
   imports: [MatToolbarModule, BreadcrumbComponent, MatProgressBarModule, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, 
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
 ],
   template: `
   <!-- <async-loading-spinner *ngIf="loadingSpinnerService.isShowing()"></async-loading-spinner> -->
