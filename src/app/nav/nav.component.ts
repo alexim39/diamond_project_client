@@ -13,7 +13,7 @@ declare const $: any;
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotificationBannerComponent } from './notification-banner/notification-banner.component';
 import { Emitters } from '../_common/emitters/emitters';
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { BreadcrumbComponent } from '../_common/breadcrumb.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
@@ -25,7 +25,11 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
   selector: 'async-nav',
   standalone: true,
   providers: [],
-  imports: [MatToolbarModule, BreadcrumbComponent, MatProgressBarModule, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, HttpClientModule],
+  imports: [MatToolbarModule, BreadcrumbComponent, MatProgressBarModule, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, 
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+],
   template: `
   <!-- <async-loading-spinner *ngIf="loadingSpinnerService.isShowing()"></async-loading-spinner> -->
 
