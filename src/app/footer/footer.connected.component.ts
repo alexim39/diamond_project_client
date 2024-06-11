@@ -18,13 +18,9 @@ import {MatInputModule} from '@angular/material/input';
         <p>Keep up to date with industry insights and latest news</p>
 
         <article>
-          <mat-form-field appearance="outline" [color]="'accent'">
-            <mat-label>Outline form field</mat-label>
-            <input matInput placeholder="Email address" disabled>
-            <!-- <mat-hint>Hint</mat-hint> -->
-          </mat-form-field>
-
-          <button mat-flat-button color="accent" disabled>Subscribe</button>
+          <input type="email" style="height: 2.5em;" placeholder="Enter your email to stay abreast">
+          <br>
+          <button mat-flat-button>Subscribe</button>
           <br>
           <!-- <button mat-raised-button (click)="lunchWhatsAppGroup()" disabled> <span class="fa fa-whatsapp"></span> WhatsApp Us</button> -->
 
