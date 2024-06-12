@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 import { BookingService } from './booking.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
 
 /**
  * @title Booking component
@@ -35,12 +36,22 @@ export class BookingComponent implements OnInit, OnDestroy {
   isSpinning = false;
 
   minDate = new Date(); // Today's date
+  userDevice = '';
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private bookingService: BookingService,
-  ) { }
+    private platform: Platform
+  ) {
+    if (this.platform.ANDROID || this.platform.IOS) {
+      //console.log('User is using a mobile device.');
+      this.userDevice = 'mobile'
+    } else {
+      //console.log('User is using a desktop device.');
+      this.userDevice = 'desktop'
+    }
+  }
 
   ngOnInit(): void {
     this.bookinForm = this.fb.group({
@@ -56,6 +67,7 @@ export class BookingComponent implements OnInit, OnDestroy {
       email: ['', [Validators.email]],
       name: ['', Validators.required],
       surname: ['', Validators.required],
+      userDevice: this.userDevice
     });
   }
 

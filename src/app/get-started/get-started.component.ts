@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 import { SurveyService } from './get-started.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
 
 /**
  * @title Survey form for getting started
@@ -33,12 +34,22 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   surveyForm: FormGroup = new FormGroup({}); // Assigning a default value
   subscriptions: Subscription[] = [];
   isSpinning = false;
+  userDevice = '';
 
   constructor (
     private router: Router,
     private fb: FormBuilder,
     private surveyService: SurveyService,
-  ) { }
+    private platform: Platform
+  ) {
+    if (this.platform.ANDROID || this.platform.IOS) {
+      //console.log('User is using a mobile device.');
+      this.userDevice = 'mobile'
+    } else {
+      //console.log('User is using a desktop device.');
+      this.userDevice = 'desktop'
+    }
+  }
 
   ngOnInit(): void {
     this.surveyForm = this.fb.group({
@@ -56,6 +67,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       surname: ['', Validators.required],
       referralCode: ['',],
       referral: ['', Validators.required],
+      userDevice: this.userDevice
     });
   }
 
