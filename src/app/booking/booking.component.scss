@@ -71,11 +71,15 @@
             justify-content: center;
             text-align: center;
             button {
-              width: 40%;
+              width: 50%;
             }
           }
         }
       }
+  }
+  
+  mat-progress-bar {
+    margin-bottom: 1em;
   }
   
   /* Extra small devices (phones, 600px and down) */

@@ -104,6 +104,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
    <!-- Support -->
    <mat-menu #support="matMenu">
       <!-- <button mat-menu-item>Contact Us</button> -->
+      <a mat-menu-item routerLink="contacts" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Contacts</a>
       <a mat-menu-item routerLink="faq" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">FAQs</a>
     </mat-menu>
 

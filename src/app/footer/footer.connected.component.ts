@@ -1,36 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { FooterService } from './footer.services';
+import Swal from 'sweetalert2';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'async-footer-connected',
   standalone: true,
-  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule],
+  providers: [FooterService],
+  imports: [MatToolbarModule, CommonModule, RouterModule, MatProgressBarModule, ReactiveFormsModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule],
   template: `
       <section>
         <h2>Stay Connected</h2>
 
-        <p>Keep up to date with industry insights and latest news</p>
+        <p>Keep up to date with our business insights and latest news</p>
+
+        <mat-progress-bar color="accent" mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar>
+
 
         <article>
-          <input type="email" style="height: 2.5em;" placeholder="Enter your email to stay abreast">
-          <br>
-          <button mat-flat-button>Subscribe</button>
-          <br>
+          <div class="form-container">
+            <form [formGroup]="subscribeForm" (submit)="onSubmit()">
+              <input matInput type="email" placeholder="Enter your email to stay abreast" formControlName="email">
+              <button [disabled]="subscribeForm.invalid">Go</button>
+
+            </form> 
+          </div>
+          
+
           <!-- <button mat-raised-button (click)="lunchWhatsAppGroup()" disabled> <span class="fa fa-whatsapp"></span> WhatsApp Us</button> -->
 
           <div id="social-media">
             <a href="https://www.facebook.com/diamondcampaign/" class="fa fa-facebook" title="Facebook" target="_blank"></a>
-            <a href="#" class="fa fa-twitter" title="Twitter" target="_blank"></a>
+            <!-- <a href="#" class="fa fa-twitter" title="Twitter" target="_blank"></a> -->
             <!-- <a href="#" class="fa fa-google" title="Google" target="_blank"></a> -->
             <a href="https://www.linkedin.com/company/labuena-vida-project/?originalSubdomain=ng" class="fa fa-linkedin" title="Linkedin" target="_blank"></a>
-            <a href="#" class="fa fa-youtube" title="Youtube" target="_blank"></a>
-            <a href="#" class="fa fa-instagram" title="Instagram" target="_blank"></a>
+            <!-- <a href="#" class="fa fa-youtube" title="Youtube" target="_blank"></a> -->
+            <!-- <a href="#" class="fa fa-instagram" title="Instagram" target="_blank"></a> -->
           </div>
         </article>
 
@@ -49,6 +63,29 @@ import {MatInputModule} from '@angular/material/input';
         display: flex;
         flex-direction: column;
         color: white;
+        .form-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          form {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            input {
+              height: 2.5em;
+              border: none;
+              flex: 1; /* Allow the input to grow and take up remaining space */
+            }
+            button {
+              height: 3em;
+              //padding: 1em;
+              cursor: pointer;
+
+            }
+           
+          }
+        }
+        
 
         #social-media {
           display: flex;
@@ -114,11 +151,78 @@ import {MatInputModule} from '@angular/material/input';
       }
     }
 
-
+  /* iPads/tablet (portrait and landscape) */
+  @media only screen and (min-device-width: 601px) and (max-device-width: 1024px) {
+    section {
+      article {
+        .form-container {
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          form {
+          width: 40%;
+        }
+        }
+      }
+    }
+  }
 
   `]
 })
-export class FooterConnectedComponent {
+export class FooterConnectedComponent implements OnInit {
+  subscribeForm!: FormGroup;
+  isSpinning = false;
+
+  constructor(private fb: FormBuilder,  private footerService: FooterService,) {}
+
+  ngOnInit(): void {
+    this.subscribeForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  onSubmit() {
+    this.isSpinning = true;
+
+    // Mark all form controls as touched to trigger the display of error messages
+    this.markAllAsTouched();
+
+    if (this.subscribeForm.valid) {
+      const email = this.subscribeForm.value.email;      
+
+      this.footerService.submit(email).subscribe((res: any) => {
+        Swal.fire({
+          position: "top-end",
+          icon: 'success',
+          text: 'Thank you for subscribing to our email list. We promise not to spam your inbox',
+          showConfirmButton: false,
+          timer: 10000
+        });
+        this.isSpinning = false;
+      }, (error: Error) => {
+        Swal.fire({
+          position: "top-end",
+          icon: 'info',
+          text: 'Server error occured, please try again',
+          showConfirmButton: false,
+          timer: 4000
+        });
+        this.isSpinning = false;
+      })
+
+    }else {
+      this.isSpinning = false;
+     }
+  }
+
+
+  // Helper method to mark all form controls as touched
+  private markAllAsTouched() {
+    Object.keys(this.subscribeForm.controls).forEach(controlName => {
+      this.subscribeForm.get(controlName)?.markAsTouched();
+    });
+  }
+
   lunchWhatsAppGroup() {
     window.open('https://wa.me/message/I5F2NKYKO7JNB1', '_blank');
   }

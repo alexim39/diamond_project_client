@@ -11,26 +11,27 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { BookingFormData } from './booking.interface';
+import { ContactFormData } from './contacts.interface';
 import { Subscription } from 'rxjs';
-import { BookingService } from './booking.service';
+import { ContactService } from './contacts.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 
+
 /**
- * @title Booking component
+ * @title Customer feedback
  */
 @Component({
-  selector: 'async-booking',
-  templateUrl: 'booking.component.html',
-  styleUrls: ['booking.component.scss'],
+  selector: 'async-contacts',
   standalone: true,
-  providers: [BookingService],
+  providers: [ContactService],
   imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+  templateUrl: "contacts.component.html",
+  styleUrls: ['contacts.component.scss']
 })
-export class BookingComponent implements OnInit, OnDestroy {
+export class ContactComponent implements OnInit, OnDestroy {
 
-  bookinForm: FormGroup = new FormGroup({}); // Assigning a default value
+  contactForm: FormGroup = new FormGroup({}); // Assigning a default value
   subscriptions: Subscription[] = [];
   isSpinning = false;
 
@@ -39,21 +40,14 @@ export class BookingComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private bookingService: BookingService,
+    private contactService: ContactService,
   ) { }
 
   ngOnInit(): void {
-    this.bookinForm = this.fb.group({
-      reason: ['', Validators.required],
-      description: ['',],
-      referralCode: ['',],
-      consultDate: ['', Validators.required],
-      consultTime: ['', Validators.required],
-      contactMethod: ['', Validators.required],
-      referral: ['', Validators.required],
-      phone: ['', Validators.required],
-      //phoneNumber: ['', Validators.required, Validators.pattern('0\\d{10}')],
-      email: ['', [Validators.email]],
+    this.contactForm = this.fb.group({
+      subject: ['', Validators.required],
+      message: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
       name: ['', Validators.required],
       surname: ['', Validators.required],
     });
@@ -70,15 +64,15 @@ export class BookingComponent implements OnInit, OnDestroy {
     // Mark all form controls as touched to trigger the display of error messages
     this.markAllAsTouched();
 
-    if (this.bookinForm.valid) {
+    if (this.contactForm.valid) {
       // Send the form value to your Node.js backend
-     const formData: BookingFormData = this.bookinForm.value;
+     const formData: ContactFormData = this.contactForm.value;
       this.subscriptions.push(
-        this.bookingService.submit(formData).subscribe((res: any) => {
+        this.contactService.submit(formData).subscribe((res: any) => {
           Swal.fire({
             position: "top-end",
             icon: 'success',
-            text: 'Thank you for booking a session with us. We hope to meet with you at your booked date and time',
+            text: 'Thank you for reaching out to us. We will respond to your message within the next few hours',
             showConfirmButton: false,
             timer: 10000
           });
@@ -103,8 +97,8 @@ export class BookingComponent implements OnInit, OnDestroy {
 
   // Helper method to mark all form controls as touched
   private markAllAsTouched() {
-    Object.keys(this.bookinForm.controls).forEach(controlName => {
-      this.bookinForm.get(controlName)?.markAsTouched();
+    Object.keys(this.contactForm.controls).forEach(controlName => {
+      this.contactForm.get(controlName)?.markAsTouched();
     });
   }
 
