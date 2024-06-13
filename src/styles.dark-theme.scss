@@ -114,22 +114,6 @@ body {
     }
 
 
-    /* .course-details-outcome {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        article {
-            p {
-                background-color: var(--background-color);
-                color: var(--text-color);
-            }
-        }
-    } */
-
-    /* .banner, .banner-media, .banner-price, .banner-program, .all-courses-progress-cards {
-        background-color: var(--background-color);
-        color: var(--text-color); 
-    } */
-
     .page_404 {
         background-color: var(--background-color);
         color: var(--text-color);
@@ -174,6 +158,11 @@ body {
                 }
             }
         }
+    }
+
+    .legal {
+        background-color: var(--intro-course-background);
+        color: var(--text-color);
     }
    
 }

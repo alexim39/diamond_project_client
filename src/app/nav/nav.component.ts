@@ -108,8 +108,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
    <!-- resources -->
    <mat-menu #resources="matMenu">
-      <a mat-menu-item routerLink="blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a>
-      <a mat-menu-item routerLink="ebooks" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">eBooks</a>
+      <!-- <a mat-menu-item routerLink="blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a>
+      <a mat-menu-item routerLink="ebooks" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">eBooks</a> -->
       <a mat-menu-item routerLink="videos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Videos</a>
     </mat-menu>
 
@@ -159,6 +159,9 @@ export class NavComponent implements OnInit, OnDestroy {
    // scroll to top when clicked
    scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // close menu for mobile view
+    this.toggleMobileNav();
   }
 
 

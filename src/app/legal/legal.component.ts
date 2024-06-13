@@ -41,7 +41,8 @@ import { RouterModule } from '@angular/router';
       .legal-menu {
         flex: 20%;
         width: 100%;
-        margin-right: 2em;
+        padding-right: 2em;
+        border-right: 1px solid #ccc;
         mat-list {
           mat-list-item {
             a {
@@ -60,8 +61,18 @@ import { RouterModule } from '@angular/router';
       }
       .legal-content {
         flex: 80%;
+        padding-left: 1em;
       }
     }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    .legal {
+      display: flex;
+      flex-direction: column;
+      padding: 0 1em;
+    }
+  }
   `]
 })
 export class LegalComponent { }
