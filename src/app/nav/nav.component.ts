@@ -28,8 +28,6 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
   imports: [MatToolbarModule, BreadcrumbComponent, MatProgressBarModule, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, 
 ],
   template: `
-  <!-- <async-loading-spinner *ngIf="loadingSpinnerService.isShowing()"></async-loading-spinner> -->
-
   
   <!-- THIS IS A TEMPORARY NOTIFICATION BANNER - FOR TRAILING EVENT -->
   <!-- <async-notification-banner></async-notification-banner> -->

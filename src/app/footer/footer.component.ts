@@ -24,10 +24,10 @@ import { FooterIntroComponent } from './footer.intro.component';
     <aside>
       <div class="courtesy">© {{ currentYear }} Diamond Project (Online). All Rights Reserved</div>
       <div class="policies">
-        <a href="#">T&C</a>
-        <a href="#">Privacy</a>
-        <a href="#">Cookies</a>
-        <a href="#">Security</a>
+        <a routerLink="legal/terms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">T&C</a>
+        <a routerLink="legal/privacy" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Privacy</a>
+        <a routerLink="legal/cookies" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Cookies</a>
+        <!-- <a routerLink="terms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Security</a> -->
       </div>
     </aside>
     
@@ -105,6 +105,11 @@ export class FooterComponent {
 
   constructor() {
     this.currentYear = new Date().getFullYear();
+  }
+
+  // scroll to top when clicked
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
 }

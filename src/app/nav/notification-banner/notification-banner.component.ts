@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #00838F;
+        background-color: #050111;
         color: white;
         font-family: ui-rounded;
         padding-left: 1em;
