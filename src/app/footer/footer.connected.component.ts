@@ -190,7 +190,7 @@ export class FooterConnectedComponent implements OnInit {
     if (this.subscribeForm.valid) {
       const email = this.subscribeForm.value.email;      
 
-      this.footerService.submit(email).subscribe((res: any) => {
+      this.footerService.submit({email}).subscribe((res: any) => {
         Swal.fire({
           position: "top-end",
           icon: 'success',

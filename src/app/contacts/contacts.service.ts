@@ -37,11 +37,11 @@ export class ContactService {
   }
 
 
-  // user submit booking
+  // user submit contact
   submit(formData: ContactFormData): Observable<ContactFormData> {
     //console.log('form record', formData);
     return this.http
-      .post<ContactFormData>(this.api + '/booking/submit', formData)
+      .post<ContactFormData>(this.api + '/contact/submit', formData)
       .pipe(retry(1), catchError(this.handleError));
   }
 

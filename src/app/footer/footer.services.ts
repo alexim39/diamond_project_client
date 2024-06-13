@@ -3,6 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
+export interface emailSubscriptionInterface {
+  email: string;
+}
+
 @Injectable()
 export class FooterService {
   // Define API
@@ -37,10 +41,10 @@ export class FooterService {
 
 
   // user submit 
-  submit(formData: string): Observable<string> {
-    console.log('form record', formData);
+  submit(emailObject: emailSubscriptionInterface): Observable<emailSubscriptionInterface> {
+    //console.log('form record', emailObject);
     return this.http
-      .post<string>(this.api + '/booking/submit', formData)
+      .post<emailSubscriptionInterface>(this.api + '/emailSubscription/subscribe', emailObject)
       .pipe(retry(1), catchError(this.handleError));
   }
 

@@ -72,7 +72,7 @@ export class ConnectedEconomyComponent {
   }
 
   onPrevious(): void {
-    this.router.navigateByUrl('get-started/testimonials');
+    this.router.navigateByUrl('get-started');
   }
 
   openVideoModal(video: Video): void {
