@@ -1,15 +1,14 @@
-import {Component} from '@angular/core';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { Component } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { AboutStoryComponent } from './about.story.component';
 
 /** @title Async training approach page */
 @Component({
   selector: 'async-about-approach',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule,MatIconModule, MatSelectModule, AboutStoryComponent],
+  imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
   template: `
 
       <div class="training-approach">
@@ -132,4 +131,4 @@ import { AboutStoryComponent } from './about.story.component';
 }
   `],
 })
-export class AboutApproachComponent {}
+export class AboutApproachComponent { }

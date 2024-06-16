@@ -8,17 +8,8 @@ import { NavComponent } from './nav/nav.component';
   imports: [ RouterModule, FooterComponent, NavComponent],
   template: `
     <div id="container">
-
-      
-
       <async-nav id="nav"></async-nav>
-
-      <!-- <async-navbar></async-navbar> -->
-
-      <router-outlet id="outlet">
-        <!-- <async-home></async-home> -->
-      </router-outlet>
-
+      <router-outlet id="outlet"></router-outlet>
       <async-footer id="footer"></async-footer>
     </div>
   `,

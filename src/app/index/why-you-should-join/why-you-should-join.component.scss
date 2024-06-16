@@ -1,0 +1,88 @@
+.training-approach {
+    background-color: #03010f;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 3em;
+    align-items: center;
+    color: white;
+    h1 {
+        margin-bottom: 2em;
+    }
+    section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      .approach-card {
+
+        .title {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-content: center;
+          h1 {
+              font-size: 1.5em;
+              margin-top: -0.2em;
+              font-family: system-ui;
+          }
+          mat-icon {
+              transform: scale(2);
+              margin-right: 1em;
+          }
+        }
+
+        .content {
+          font-size: 1em;
+          padding-left: 3em;
+          margin-top: -2em;
+
+          p {
+            line-height: 2em;
+            //text-align: justify;
+          }
+        }
+      }
+    }
+
+    .call-to-action {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p {
+            font-size: 1.5em;
+            width: 30em;
+            color: #ffab40;
+
+        }
+        button {
+            background-color: #075E54;
+            color: white;
+        }
+    }
+
+
+  }
+
+
+/* Extra small devices (phones, 1500px and down) */
+@media only screen and (max-width: 1500px) {
+.training-approach {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .approach-card {
+            margin-top: 2em;
+        }
+    }
+    .call-to-action {
+        p {
+            width: auto;
+        }
+    }
+}
+}

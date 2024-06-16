@@ -10,16 +10,18 @@ import { BannerComponent } from './banner/banner.component';
 import { WhyWeExistComponent } from './why-we-exist/why-we-exist.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
+import { AboutWhyYouShouldJoinComponent } from './why-you-should-join/why-you-should-join.component';
 
 
 @Component({
   selector: 'async-index',
   standalone: true,
-  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, BannerComponent, WhyWeExistComponent, TestimonialsComponent],
+  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, BannerComponent, WhyWeExistComponent, TestimonialsComponent,  AboutWhyYouShouldJoinComponent],
   template: `
     
     <async-index-banner></async-index-banner>
     <async-index-why-we-exist></async-index-why-we-exist>
+    <async-why-you-should-join></async-why-you-should-join>
     <async-index-testimonials></async-index-testimonials>
   `,
   styles: [`
