@@ -62,15 +62,19 @@ import { MatButtonModule } from '@angular/material/button';
             <div class="content">
                 <p>
                 The mentorship and training we offer provide ongoing support for your business, ensuring that you remain on course and achieve both your financial and personal growth objectives.
-           </p>
+                </p>
             </div>
             </div>
         </section>
 
         <section class="call-to-action">
             <p>
-                Use the button below to join our WhatsApp group, where we showcase our business every Sunday evening at 8:30 PM (your local time zone).
+                Use the button below to join our WhatsApp group, where we show you our business every Sunday evening at 7:00 PM (your local time zone).
             </p>
+
+            <div class="down-arrow">
+                <mat-icon>arrow_downward</mat-icon>
+            </div>
 
             <button mat-raised-button (click)="lunchWhatsAppGroup()"> <span class="fa fa-whatsapp"></span> WhatsApp Group</button> 
         </section>
@@ -84,7 +88,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class AboutWhyYouShouldJoinComponent {
 
     lunchWhatsAppGroup() {
-        window.open('https://wa.me/message/I5F2NKYKO7JNB1', '_blank');
+        window.open('https://chat.whatsapp.com/EO6Xl6zsDwwA9yZrcVUwP2', '_blank');
     }
 
  }

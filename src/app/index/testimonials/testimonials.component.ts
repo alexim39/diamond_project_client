@@ -55,11 +55,11 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
     },
     {
       quote: "The Diamond Project has had a profound impact on my life. The mentorship program has provided me with invaluable guidance and support, helping me navigate my personal and professional journey. The financial leverage systems have taught me about financial planning and investments, enabling me to build a strong financial foundation. I am grateful for the Diamond Project and the positive changes it has brought to my life.",
-      author: { name: "Woko Eunice", role: "", facebook: "https://www.facebook.com/profile.php?id=100004821978609"  },
+      author: { name: "Ozoemenam Angela ", role: "", facebook: "https://www.facebook.com/angela.nnaamani"  },
     },
     {
       quote: "I will always recommend this project to anyone who needs training for reliable sources of income",
-      author: { name: "Destine Chiyonum", role: "", facebook: "https://www.facebook.com/imenwo1"  },
+      author: { name: "Linda Adeyemi", role: "", facebook: "https://www.facebook.com/linda.aaron.75"  },
     },
   ];
 

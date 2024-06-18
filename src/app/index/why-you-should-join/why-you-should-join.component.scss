@@ -65,6 +65,22 @@
   }
 
 
+  .down-arrow {
+    animation: blink 1.5s infinite;
+    mat-icon {
+      font-size: 1.2em;
+    }
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 /* Extra small devices (phones, 1500px and down) */
 @media only screen and (max-width: 1500px) {
 .training-approach {
