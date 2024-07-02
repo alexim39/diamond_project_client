@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { DownloadFormData, PreapproachService } from './pre-approach.service';
 import { HttpClient } from '@angular/common/http';
+import { Platform } from '@angular/cdk/platform';
 
 
 /**
@@ -28,13 +29,23 @@ export class PreapproachComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   isSpinning = false;
   isDownloadReady = true;
+  userDevice = '';
 
     constructor( 
         private router: Router,
         private fb: FormBuilder,
         private preapproachService: PreapproachService,
-        private http: HttpClient
-    ) { }
+        private http: HttpClient,
+        private platform: Platform
+    ) {
+      if (this.platform.ANDROID || this.platform.IOS) {
+        //console.log('User is using a mobile device.');
+        this.userDevice = 'mobile'
+      } else {
+        //console.log('User is using a desktop device.');
+        this.userDevice = 'desktop'
+      }
+    }
 
     ngOnInit() {
         this.downloadForm = this.fb.group({
@@ -42,6 +53,7 @@ export class PreapproachComponent implements OnInit, OnDestroy {
             email: ['', [Validators.email, Validators.required]],
             name: ['', Validators.required],
             surname: ['', Validators.required],
+            userDevice: this.userDevice
         });
     }
 
