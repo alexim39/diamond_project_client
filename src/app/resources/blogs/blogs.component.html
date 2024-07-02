@@ -1,0 +1,55 @@
+<section class="head">
+    <article>
+        <h2>The Wealth Blog Library        </h2>
+        <p>Welcome to our blog page! Here you discover valuable tips, success stories, product spotlights, wealth and business strategies and industry insights to empower your journey towards financial freedom and personal growth.
+      </article>
+</section>
+  
+<section class="breadcrumb-wrapper">
+    <div class="breadcrumb">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a> &gt;
+        <a routerLink="../blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Resources</a> &gt;
+        <span>blogs</span>
+    </div>
+</section>
+
+
+<section class="body">
+    <article class="writeup">
+      <!-- <h3>Featured Testimonials</h3> -->
+
+
+
+
+      <div class="blog-grid">
+        <a class="blog-item" (click)="viewBlogDetail({id: '1', url: 'soft-blog'})">
+          <img src="assets/img/hh2o.PNG" alt="Thumbnail 1">
+          <h3>Health Benefits of Ultra H2 - Molecular Hydrogen Water Bottle Generator</h3>
+          <p><span class="pulish-date">Published on:</span> 1st of June, 2024 | <span class="author">Author:</span> Dr. Temi Charles</p>
+        </a>
+        <!-- Add more blog items here -->
+      </div>
+      
+
+
+    </article>
+
+    <nav class="side-menu">
+      <h4>Blogs Category</h4>
+      <ul>
+          <li><a>All Category</a></li>
+          <li><a>Motivational Content</a></li>
+          <li><a>Training and Development</a></li>
+          <li><a>Product Spotlights</a></li>
+          <li><a>Industry News and Trends</a></li>
+          <li><a>Tips and Strategies</a></li>
+          <li><a>Success Stories</a></li>
+          
+      </ul>
+    </nav>
+
+</section>
+  
+  
+
+  

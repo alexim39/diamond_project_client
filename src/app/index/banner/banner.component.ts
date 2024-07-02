@@ -24,9 +24,10 @@ import { CommonModule } from '@angular/common';
 
           <article>
             <h1>
-            Diamond Project: We help you break barriers and achieve unprecedented success through personalized mentorship, 
-            rigorous training, and financial leverage systems, ensuring you emerge as a refined, resilient, and radiant individual. <br> <em></em> <br> <!-- <span>091 3031 1019</span> -->
+              Diamond Project: We help you become the best version of yourself through our mentorship while you earn money (online) with our proven residual income system and strategy
             </h1>
+
+            <br><br>
 
             <h3>
               <async-typing></async-typing>

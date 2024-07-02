@@ -11,12 +11,13 @@ import { FooterService } from './footer.services';
 import Swal from 'sweetalert2';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'async-footer-connected',
   standalone: true,
   providers: [FooterService],
-  imports: [MatToolbarModule, CommonModule, RouterModule, MatProgressBarModule, ReactiveFormsModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule],
+  imports: [MatToolbarModule, CommonModule, MatSelectModule, RouterModule, MatProgressBarModule, ReactiveFormsModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule],
   template: `
       <section>
         <h2>Stay Connected</h2>
@@ -45,6 +46,14 @@ import { CommonModule } from '@angular/common';
             <a href="https://www.linkedin.com/company/labuena-vida-project/?originalSubdomain=ng" class="fa fa-linkedin" title="Linkedin" target="_blank"></a>
             <!-- <a href="#" class="fa fa-youtube" title="Youtube" target="_blank"></a> -->
             <!-- <a href="#" class="fa fa-instagram" title="Instagram" target="_blank"></a> -->
+          </div>
+
+          <div id="language">
+            <select name="language">
+              <option value="">Language</option>
+              <option value="English">English</option>
+              <!-- <option value="French">French</option> -->
+            </select>
           </div>
         </article>
 
@@ -140,6 +149,10 @@ import { CommonModule } from '@angular/common';
             background: #125688;
             color: white;
           }
+        }
+
+        #language {
+          margin-top: 1em;
         }
 
         button {

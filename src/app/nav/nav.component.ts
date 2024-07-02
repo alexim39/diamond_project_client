@@ -108,9 +108,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
    <!-- resources -->
    <mat-menu #resources="matMenu">
-      <!-- <a mat-menu-item routerLink="blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a>
-      <a mat-menu-item routerLink="ebooks" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">eBooks</a> -->
+      <a mat-menu-item routerLink="blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a>
+     <!-- <a mat-menu-item routerLink="ebooks" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">eBooks</a> -->
       <a mat-menu-item routerLink="videos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Videos</a>
+      <a mat-menu-item routerLink="pre-approach-download" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Download pre-approach doc</a>
       <a mat-menu-item href="http://partners.diamondprojectonline.com" target="_blank">Partners platform</a>
     </mat-menu>
 

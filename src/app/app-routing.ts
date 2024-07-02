@@ -17,6 +17,7 @@ export const routes: Routes = [
   { path: 'videos', loadChildren: () => import('./resources/videos/videos-routes').then(r => r.videosRoutes) },
   { path: 'blogs', loadChildren: () => import('./resources/blogs/blogs-routes').then(r => r.blogsRoutes) },
   { path: 'ebooks', loadChildren: () => import('./resources/ebooks/ebooks-routes').then(r => r.ebooksRoutes) },
+  { path: 'pre-approach-download', loadComponent: () => import('./resources/pre-approach/pre-approach.component').then(c => c.PreapproachComponent) },
 
   // should be the last path on routes
   {path: '**', component: PageNotFoundComponent}

@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
+import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { videos } from './videos';
 import { CommonModule } from '@angular/common';
@@ -28,18 +28,18 @@ export class VideosComponent {
   videos: Video[] = videos;
   selectedCategory: string = '';
 
-  constructor() {}
+  constructor() { }
 
-   // scroll to top when clicked
-   scrollToTop() {
+  // scroll to top when clicked
+  scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   openVideoOnUrl(video: Video): void {
-     window.open(video.embedUrl, '_blank'); // Open URL in a new tab
+    window.open(video.embedUrl, '_blank'); // Open URL in a new tab
   }
 
-  filterVideo(cat: string):void {
+  filterVideo(cat: string): void {
     this.selectedCategory = cat;
   }
 

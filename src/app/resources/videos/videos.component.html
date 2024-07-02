@@ -1,7 +1,7 @@
 <section class="head">
     <article>
         <h2>The Wealth Video Library        </h2>
-        <p>Unlock the secrets to life-changing wealth and self development within our comprehensive video library. 
+        <p>Unlock the secrets to life-changing wealth and self development within our growing and comprehensive video library. 
             Whether you're just getting started or not, these powerful videos will provide you with the knowledge, motivation and proven strategies for lasting life success.
       </article>
 </section>
@@ -27,7 +27,7 @@
           </div>
           <img class="thumbnail" [src]="video.thumbnailUrl" alt="Video Thumbnail">
           <div class="video-details">
-            <h2>{{ video.title }}</h2>
+            <h4>{{ video.title }}</h4>
             <p class="subtitle">{{ video.subtitle }}</p>
             <p class="description">{{ video.description }}</p>
           </div>
@@ -37,9 +37,9 @@
     </article>
 
     <nav class="side-menu">
-      <h3>Videos Categories</h3>
+      <h4>Video Categories</h4>
       <ul>
-          <li><a style="color: #ffab40; font-style: italic;" (click)="filterVideo('')">Remove Category</a></li>
+          <li><a (click)="filterVideo('')">View All Categories</a></li>
           <li><a (click)="filterVideo('motivation')">Motivation & Mindset</a></li>
           <li><a (click)="filterVideo('wealth')">Wealth Principles</a></li>
           <li><a (click)="filterVideo('self-development')">Self Development</a></li>
