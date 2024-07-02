@@ -3,5 +3,5 @@ export interface ContactFormData {
     surname: string;
     email: string;
     subject: string;
-    message: Date;
+    message: string;
 }

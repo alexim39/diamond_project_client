@@ -1,1 +1,126 @@
-blog detail work
+<section class="blog-background">
+
+
+
+    
+    <section class="blog-container">
+
+        <section class="breadcrumb-wrapper">
+            <div class="breadcrumb">
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a> &gt;
+                <a routerLink="../../blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Resources</a> &gt;
+                <a routerLink="../../blogs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a> &gt;
+                <span>blog details</span>
+            </div>
+        </section>
+        <hr>
+
+        <!-- blog write up -->
+        <article class="blog-writeup">
+            <h2>Health Benefits of Ultra H2 - Molecular Hydrogen Water Bottle Generator</h2>
+            
+
+            <div class="blog-content">
+                <img src="assets/img/hh2o.PNG" alt="Blog image">
+
+                <h4>Exploring the Potential Health Benefits of Molecular Hydrogen Water: A Medical Perspective</h4>
+
+                <div class="blog-date"><span class="pulish-date">Published on:</span> 2nd of July, 2024 | <span class="author">Author:</span> Mr. Adeyemi Temitope</div>
+
+                <p>
+                    As an experienced medical practitioner, I've observed increasing interest in molecular hydrogen water and devices like the Ultra H2 Molecular Hydrogen Water Bottle Generator. 
+                    While research in this field is still evolving, early studies suggest that molecular hydrogen may offer several health benefits. Let's examine the current understanding of this topic.
+                </p>
+
+                <ol>
+                    <li>Antioxidant Properties: Molecular hydrogen is a potent antioxidant that may help neutralize harmful free radicals in the body. Unlike other antioxidants, hydrogen can potentially cross cell membranes and the blood-brain barrier, potentially offering protection to cells and neurons.
+
+                    </li>
+
+                    <li>Anti-Inflammatory Effects:
+                        Some studies indicate that hydrogen-rich water may help reduce inflammation in the body. Chronic inflammation is associated with various health issues, including cardiovascular diseases and autoimmune disorders.</li>
+                    <li>Potential Metabolic Benefits:
+                        Early research suggests that consuming hydrogen-rich water might positively influence metabolism. Some studies have reported improvements in lipid profiles and insulin sensitivity, which could be beneficial for individuals with metabolic disorders.</li>
+                    <li>Athletic Performance and Recovery:
+                        There is growing interest in using molecular hydrogen among athletes. Some studies suggest it may help reduce exercise-induced oxidative stress and improve recovery times.</li>
+                    <li>Neuroprotective Potential:
+                        Preliminary research indicates that molecular hydrogen might have neuroprotective properties. This could potentially be beneficial in managing neurodegenerative conditions, though much more research is needed in this area.</li>
+                    <li>Skin Health:
+                        Some studies suggest that hydrogen-rich water may have benefits for skin health, potentially due to its antioxidant properties. However, more research is needed to confirm these effects.</li>
+                </ol>
+
+                <p>
+                    It's important to note that while these potential benefits are promising, much of the research is still in early stages. Many studies have been conducted on animal models or with small human sample sizes. Large-scale, long-term human studies are needed to fully understand the effects and optimal use of molecular hydrogen water.
+                </p>
+
+                <p>
+                    Devices like the Ultra H2 Molecular Hydrogen Water Bottle Generator aim to provide a convenient way to produce hydrogen-rich water. However, it's crucial to ensure that such devices are used correctly and maintain proper hygiene standards.
+                </p>
+
+                <p>
+                    As with any health trend, it's essential to approach molecular hydrogen water with a balanced perspective. While it may offer potential benefits, it should not be viewed as a miracle cure or a replacement for a healthy lifestyle, balanced diet, and regular exercise.
+                </p>
+
+                <p>In conclusion, while the potential health benefits of molecular hydrogen water are intriguing, more comprehensive research is needed. As a medical professional, I recommend that individuals interested in trying products like the Ultra H2 generator should do so as part of a holistic approach to health and wellness, and always in consultation with their healthcare provider.
+
+                </p>
+
+                <p>
+                    Remember, maintaining overall health involves a combination of factors including a balanced diet, regular exercise, adequate sleep, stress management, and routine medical check-ups. These fundamental aspects of health should not be overlooked in favor of any single product or trend.
+                </p>
+            </div>
+        </article>
+
+
+
+
+
+
+
+
+        <!-- comment area -->
+        <article class="blog-comment">
+
+            <div class="contact-form">
+                <form [formGroup]="commentForm" (submit)="onSubmit()">
+                  <div class="form-wrapper">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Name</mat-label>
+                          <input matInput formControlName="name">
+                          <mat-error *ngIf="commentForm.get('name')?.hasError('required') ">
+                            Name is required
+                          </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Your Email</mat-label>
+                            <input matInput type="email" formControlName="email">
+                            <mat-error *ngIf="commentForm.get('email')?.hasError('email') ">
+                                Email is invalid
+                            </mat-error>
+                            <mat-error *ngIf="commentForm.get('email')?.hasError('required') ">
+                                Email is required
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+        
+                    <mat-form-field appearance="outline">
+                      <mat-label>Leave a comment</mat-label>
+                      <textarea matInput formControlName="comment"></textarea>
+                      <mat-error *ngIf="commentForm.get('comment')?.hasError('required') ">
+                        Comment is required
+                      </mat-error>
+                    </mat-form-field>
+      
+                    <mat-progress-bar mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar>
+        
+                    <div class="btn">
+                      <!-- <button mat-raised-button color="warn">CANCEL</button> -->
+                      <button mat-raised-button color="primary" [disabled]="isSpinning" [disabled]="true">Submit <i class="fa fa-angle-double-right"></i></button>
+                    </div>
+                  </form>
+                </div>
+
+        </article>
+    </section>
+</section>
