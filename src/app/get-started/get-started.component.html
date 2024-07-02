@@ -25,7 +25,7 @@
         <form [formGroup]="surveyForm" (submit)="onSubmit()">
   
           <mat-form-field appearance="outline">
-            <mat-label>Do you feel like you could be doing more? </mat-label>
+            <mat-label>Do you feel like doing more? </mat-label>
             <mat-select formControlName="doYouFeelNeedForChange">
               <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -49,7 +49,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline">
-            <mat-label>Looking to make some extra cash? </mat-label>
+            <mat-label>Want to make extra money? </mat-label>
             <mat-select formControlName="interestedInEarningAdditionaIcome">
             <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -73,7 +73,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline">
-            <mat-label>Are you open to being coached? </mat-label>
+            <mat-label>Are you open to coaching? </mat-label>
             <mat-select formControlName="areYouOpenToBeCoached">
               <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -85,7 +85,7 @@
           </mat-form-field>
   
           <mat-form-field appearance="outline">
-            <mat-label>Would you be interested in a session to unlock your potential?</mat-label>
+            <mat-label>Would you be interested in an online session?</mat-label>
             <mat-select formControlName="ifSessionIsSet">
               <mat-option value="Yes">Yes</mat-option>
               <mat-option value="No">No</mat-option>
@@ -98,7 +98,7 @@
   
           <div class="form-wrapper">
             <mat-form-field appearance="outline">
-              <mat-label>What's the best number to reach you on?</mat-label>
+              <mat-label>What's your phone number?</mat-label>
               <input matInput type="tel" formControlName="phoneNumber" maxlength="22">
               <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('required') ">
                 Your phone number is required
@@ -108,7 +108,7 @@
               </mat-error> -->
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>What's your best email address?</mat-label>
+              <mat-label>What's your email address?</mat-label>
               <input matInput type="email" formControlName="email">
             </mat-form-field>
           </div>
@@ -131,7 +131,7 @@
           </div>
 
           <mat-form-field appearance="outline">
-            <mat-label>How Did You Hear About Us?</mat-label>
+            <mat-label>How did you hear about us?</mat-label>
             <mat-select formControlName="referral">
             <mat-option value="Search Engine">Search Engine (Google, Bing, etc.)</mat-option>
               <mat-option value="Social Media">Social Media (Facebook, Twitter, Instagram, etc.)</mat-option>
@@ -154,7 +154,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="surveyForm.get('referral')?.value === 'Referral'">
-            <mat-label>Referral Names</mat-label>
+            <mat-label>Referral names</mat-label>
             <input matInput formControlName="referralCode">
             <mat-error *ngIf="surveyForm.get('referralCode')?.hasError('required') ">
             Code is required
