@@ -88,7 +88,7 @@ export class PreapproachComponent implements OnInit, OnDestroy {
     
   }
 
-  downloadPdf() {
+  downloadPdf(): void {
     const pdfUrl = 'assets/doc/pre-approach_tool_for_Diamondprojectonline.pdf';
     
     this.http.get(pdfUrl, { responseType: 'blob' as 'json' }).subscribe((res: any) => {

@@ -13,8 +13,8 @@ export interface DownloadFormData {
 @Injectable()
 export class PreapproachService {
   // Define API
-  //api = 'https://diamondprojectapi-y6u04o8b.b4a.run/';
-  api = 'http://localhost:3000';
+  api = 'https://diamondprojectapi-y6u04o8b.b4a.run/';
+  //api = 'http://localhost:3000';
   constructor(private http: HttpClient) {}
   /*========================================
     CRUD Methods for consuming RESTful API
@@ -47,7 +47,7 @@ export class PreapproachService {
   submit(formData: DownloadFormData): Observable<DownloadFormData> {
     console.log('form record', formData);
     return this.http
-      .post<DownloadFormData>(this.api + '/contact/submit', formData)
+      .post<DownloadFormData>(this.api + '/contact/pre-approach', formData)
       .pipe(retry(1), catchError(this.handleError));
   }
 
