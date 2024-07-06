@@ -1,0 +1,48 @@
+
+.banner-program {
+    width: inherit;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    section {
+      display: flex;
+      flex-direction: row;
+      margin: 1.2em;
+      mat-icon {
+        border-radius: 50%;
+        border: 1px solid #00838F;
+        padding: 0.5em;
+        margin-right: 0.8em;
+        color: #00838F;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        span {
+          font-family: 'Brush Script MT', cursive;
+          font-size: 1.5em;
+
+        }
+        small {
+          font-size: 0.8em;
+          margin-top: 0.6em;
+          font-family: 'Trebuchet MS', sans-serif;
+          color: #00838F;
+          font-weight: bold;
+          .start-date {
+            color: #EF6C00;
+            font-family: sans-serif;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+
+/* iPads/tablet (portrait and landscape) */
+@media only screen and (min-device-width: 601px) and (max-device-width: 1024px) {
+  .banner-program{
+    display: flex;
+    flex-direction: row;
+  }
+}

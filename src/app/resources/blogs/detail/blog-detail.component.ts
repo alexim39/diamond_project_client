@@ -34,11 +34,11 @@ export class BlogDetailComponent implements OnInit, OnDestroy  {
     userDevice = '';
 
     constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private fb: FormBuilder,
-        private blogCommentService: BlogCommentService,
-        private platform: Platform
+      private route: ActivatedRoute,
+      private router: Router,
+      private fb: FormBuilder,
+      private blogCommentService: BlogCommentService,
+      private platform: Platform
     ) {
         if (this.platform.ANDROID || this.platform.IOS) {
             //console.log('User is using a mobile device.');

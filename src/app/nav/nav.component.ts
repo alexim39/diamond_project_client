@@ -43,7 +43,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     <a class="view-on-desktop" mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a>
     <a class="view-on-desktop" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Us</a>
     <a class="view-on-desktop" mat-button routerLink="testimonials" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Testimonials</a>
-    <a class="view-on-desktop" mat-button routerLink="packages" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Packages</a>
+    <!-- <a class="view-on-desktop" mat-button routerLink="packages" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Packages</a> -->
     <!-- <a class="view-on-desktop" mat-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a> -->
     <a class="view-on-desktop" mat-button [matMenuTriggerFor]="resources">Resources <i class="fa fa-angle-double-down"></i></a>
     <a class="view-on-desktop" mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
@@ -69,7 +69,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
       <a mat-button routerLink="/" (click)="scrollToTop()">Home</a>
       <a mat-button routerLink="about-us" (click)="scrollToTop()">About Us</a>
       <a mat-button routerLink="testimonials" (click)="scrollToTop()">Testimonial</a>
-      <a mat-button routerLink="packages" (click)="scrollToTop()">Packages</a>
+      <!-- <a mat-button routerLink="packages" (click)="scrollToTop()">Packages</a> -->
       <!-- <a mat-button routerLink="#" (click)="scrollToTop()">Blogs</a> -->
       <!-- <a mat-stroked-button routerLink="get-started">Get Started</a> -->
       <a mat-button [matMenuTriggerFor]="resources">Resources <i class="fa fa-angle-double-down"></i></a>

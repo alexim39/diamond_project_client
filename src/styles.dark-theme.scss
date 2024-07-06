@@ -164,6 +164,25 @@ body {
         background-color: var(--intro-course-background);
         color: var(--text-color);
     }
+
+    .blog-background {
+        background-color: var(--intro-course-background);
+        color: var(--text-color);
+        .blog-container {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+    }
+
+    .partners {
+        background-color:  var(--intro-course-background);
+        color: var(--text-color);
+    }
+
+    .partner-banner{
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
    
 }
 

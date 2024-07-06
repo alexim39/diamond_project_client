@@ -1,0 +1,41 @@
+.banner-price {
+    text-align: center;
+    padding-top: 1em;
+    border-radius: 2%;
+    .current {
+      font-size: 1.5em;
+      font-weight: bold;
+      font-family: "Open Sans", sans;
+      color: #00838F;
+    }
+    .divider {
+      color: #aaa;
+    }
+    .old {
+      color: #aaa;
+      text-decoration: line-through
+    }
+    small {
+      font-size: 0.8em;
+      margin: 0 2em;
+      color: gray;
+    }
+    hr {
+      margin: 1em;
+    }
+    a {
+      width: 300px;
+    }
+    .already-reg {
+      small {
+        color: #00838F;
+        animation: blinker 1s linear infinite;
+      }
+    }
+  }
+
+  @keyframes blinker {
+    from { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    to { opacity: 1.0; }
+  }

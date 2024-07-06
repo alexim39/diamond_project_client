@@ -20,27 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
         </div>
 
         <div class="text-content">
-          <!-- <h1>
-              Our Story?
-            </h1> -->
-
-           <!--  <p>
-              Async Groups: <strong>Your Partner in Progress.</strong> Since our inception, we’ve been more than just a conglomerate. 
-              We’re a partner to our clients, delivering top-tier solutions across public and private sectors in Nigeria. 
-              Our journey began with Async Solutions Limited, our IT arm, where we harnessed the power of technology to drive innovation and deliver quality services. 
-              We’ve helped businesses transform their operations, making them more efficient and competitive in the digital age.
-            </p>
-
-            <p>
-              But we didn’t stop there. Recognizing the critical role of transportation and logistics in Nigeria’s economy, we established Async Edge Limited. 
-              Our goal was simple: to ensure the smooth flow of people, goods and services across the country. And we’ve done just that. 
-              From small businesses to large corporations, we’ve provided reliable, efficient, and innovative logistics solutions that have kept Nigeria moving forward.            
-            </p>
-
-            <p>
-              At Async Groups, we’re not just providing services; we’re building relationships based on trust and mutual growth. We’re proud of the work we’ve done, and we’re excited about what the future holds. 
-              Because at Async Groups, we believe that our success is tied to the success of our customers.            
-            </p> -->
 
             <h3>Impact and Growth: Building Financially Free Community</h3>
             <p>
@@ -51,6 +30,16 @@ import { MatIconModule } from '@angular/material/icon';
             <p>
             As we look to the future, we are excited about the opportunities for growth and expansion. 
             We are dedicated to reaching more individuals, enhancing our programs, and continuing to make a positive impact.
+            </p>
+
+
+            <h3>Diamond Project Online</h3>
+            <p>
+            This is the online platform of Diamond Project. It replicates the well-established and proven system of Diamond Project in an online format. 
+            It serves as an online business platform that is based on the principles of Diamond Project, enabling individuals to leverage the digital world and the internet to enhance themselves and earn money online.            </p>
+
+            <p>
+            By leveraging the digital world through Diamond Project Online, people can access opportunities for personal growth and financial success in a convenient online environment.
             </p>
 
         </div>
