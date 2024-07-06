@@ -29,7 +29,7 @@
             
             <p>Book a session below to get more information about our business</p>
 
-            <button mat-flat-button color="accent">Book A One-On-One</button>
+            <a mat-flat-button color="accent" routerLink="../one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A One-On-One</a>
           </div>
 
           <div class="b-img">
@@ -67,7 +67,7 @@
                 </p>
 
                 <p class="comments">
-                    <button mat-flat-button color="accent">Get Started</button>
+                    <a mat-flat-button color="accent" routerLink="../get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a>
                 </p>
             </div>
 

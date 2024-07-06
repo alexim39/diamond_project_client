@@ -118,7 +118,7 @@ import { CommonModule } from '@angular/common';
 @media screen and (max-width: 600px) {
   aside {
     div {
-      margin: 1em;
+      margin: 0.5em;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -127,8 +127,38 @@ import { CommonModule } from '@angular/common';
         border-right: 0px dotted #bbb;
         padding-bottom: 1em;
       }
+      ul {
+        width: 100%;
+        li {
+          
+        }
+      }
     }
   }
+}
+
+/* iPads/tablet (portrait and landscape) */
+@media only screen and (min-device-width: 601px) and (max-device-width: 1024px) {
+  aside {
+    div {
+      margin: 0.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .mark {
+        border-bottom: 1px dotted #bbb;
+        border-right: 0px dotted #bbb;
+        padding-bottom: 1em;
+      }
+      ul {
+        width: 100%;
+        li {
+          
+        }
+      }
+    }
+  }
+
 }
   `],
 })
