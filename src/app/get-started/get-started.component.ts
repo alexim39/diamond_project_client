@@ -17,6 +17,7 @@ import { SurveyService } from './get-started.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
+import { minDigitsValidator } from '../_common/services/username-check';
 
 /**
  * @title Survey form for getting started
@@ -70,7 +71,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       doYouBelieveInTraining: ['', Validators.required],
       areYouOpenToBeCoached: ['', Validators.required],
       ifSessionIsSet: ['', Validators.required],
-      phoneNumber: ['', Validators.required, Validators.minLength],
+      phoneNumber: ['', [Validators.required, minDigitsValidator(6)]],
       //phoneNumber: ['', Validators.required, Validators.pattern('0\\d{10}')],
       email: ['', [Validators.email]],
       name: ['', Validators.required],

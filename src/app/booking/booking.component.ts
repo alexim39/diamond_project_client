@@ -17,6 +17,7 @@ import { BookingService } from './booking.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
+import { minDigitsValidator } from '../_common/services/username-check';
 
 /**
  * @title Booking component
@@ -72,7 +73,7 @@ export class BookingComponent implements OnInit, OnDestroy {
       consultTime: ['', Validators.required],
       contactMethod: ['', Validators.required],
       referral: ['', Validators.required],
-      phone: ['', Validators.required, Validators.minLength],
+      phone: ['', [Validators.required, minDigitsValidator(6)]],
       //phoneNumber: ['', Validators.required, Validators.pattern('0\\d{10}')],
       email: ['', [Validators.email]],
       name: ['', Validators.required],

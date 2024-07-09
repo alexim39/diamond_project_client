@@ -11,4 +11,5 @@ export interface BookingFormData {
     referral?: string;
     referralCode?: string;
     userDevice: string;
+    username: string;
 }

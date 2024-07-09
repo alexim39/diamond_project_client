@@ -10,4 +10,5 @@ export interface SurveyFormData {
     name: string;
     surname: string;
     userDevice: string;
+    username: string;
 }
