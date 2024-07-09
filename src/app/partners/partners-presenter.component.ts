@@ -4,6 +4,7 @@ import { AboutWhyYouShouldJoinComponent } from '../index/why-you-should-join/why
 import {MatButtonModule} from '@angular/material/button';
 import { BrandsComponent } from './brands.component';
 import { WhyWeExistComponent } from './why-we-exist/why-we-exist.component';
+import { PartnerInterface } from '../_common/interface/partner.interface';
 
 /**
  * @title Partners
@@ -17,13 +18,15 @@ import { WhyWeExistComponent } from './why-we-exist/why-we-exist.component';
 })
 export class PartnersPresenterComponent implements OnInit {
 
-    @Input() partnerUsername!: string | null;
+    @Input() partner!: PartnerInterface;
 
     constructor(
-    ) {}
+      
+    ) {
+    }
 
     ngOnInit() {
-        console.log('---',this.partnerUsername)
+        //console.log('partner ',this.partner)      
     }
 
      // scroll to top when clicked

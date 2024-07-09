@@ -53,9 +53,9 @@
             <div class="form-wrapper">
             <mat-form-field appearance="outline">
                 <mat-label>Phone Number</mat-label>
-                <input matInput formControlName="phone">
+                <input matInput formControlName="phone" [minlength]="6">
                 <mat-error *ngIf="bookinForm.get('phone')?.hasError('required') ">
-                Phone is required
+                  Phone is required
                 </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">

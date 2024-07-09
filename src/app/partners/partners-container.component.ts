@@ -1,6 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PartnersPresenterComponent } from './partners-presenter.component';
+import { UsernameCheckService } from '../_common/services/username-check';
+import { Observable, Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { PartnerInterface } from '../_common/interface/partner.interface';
 
 /**
  * @title Partners
@@ -8,25 +12,54 @@ import { PartnersPresenterComponent } from './partners-presenter.component';
 @Component({
   selector: 'async-partners-container',
   standalone: true,
-  imports: [PartnersPresenterComponent],
+  imports: [PartnersPresenterComponent, CommonModule],
+  providers: [UsernameCheckService],
   template: `
-    <async-partners-presentation [partnerUsername]="partnerUsername"></async-partners-presentation>
+    <async-partners-presentation *ngIf="partner" [partner]="partner"></async-partners-presentation>
   `,
 })
-export class PartnersContainerComponent implements OnInit {
+export class PartnersContainerComponent implements OnInit, OnDestroy {
 
-    partnerUsername!: string | null;
+  partner!: PartnerInterface;
+  subscriptions: Subscription[] = [];
 
     constructor(
-        private route: ActivatedRoute,
-    ) {}
+      private router: Router,
+      private usernameCheckService: UsernameCheckService
+    ) {
+      
+      const url = window.location.pathname;
+      const username = url.substring(url.lastIndexOf('/') + 1);
+
+      // check if username exist
+      this.subscriptions.push(
+        this.usernameCheckService.checkUsernameAvailability(username).subscribe(
+          (returnedObject) => {
+            if (returnedObject.username == username) {
+              // Store the extracted data in local storage
+              localStorage.setItem('username', username);
+              this.partner = returnedObject;
+            }
+          }, error => {
+            // No partner with provided username
+            // show page not found
+            this.router.navigate(['/page/not-found/']);
+            localStorage.removeItem('username');
+          }
+        )
+      )
+      
+
+      
+    }
 
     ngOnInit() {
-        this.route.paramMap.subscribe(params => {
-            this.partnerUsername = params.get('partnerUsername');
-            // Fetch blog details using this ID
+    }
 
-            
-        });
+    ngOnDestroy() {
+      // unsubscribe list
+      this.subscriptions.forEach(subscription => {
+        subscription.unsubscribe();
+      });
     }
 }

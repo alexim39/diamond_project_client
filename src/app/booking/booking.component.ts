@@ -34,6 +34,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   bookinForm: FormGroup = new FormGroup({}); // Assigning a default value
   subscriptions: Subscription[] = [];
   isSpinning = false;
+  username!: string;
 
   minDate = new Date(); // Today's date
   userDevice = '';
@@ -51,6 +52,15 @@ export class BookingComponent implements OnInit, OnDestroy {
       //console.log('User is using a desktop device.');
       this.userDevice = 'desktop'
     }
+
+    const storedUsername = localStorage.getItem('username');
+    // Retrieve the data from local storage
+    if (storedUsername) {
+      this.username = storedUsername;
+      //console.log('Retrieved data from local storage:', this.username);
+    } else {
+      //console.log('Data not found in local storage');
+    }
   }
 
   ngOnInit(): void {
@@ -62,12 +72,13 @@ export class BookingComponent implements OnInit, OnDestroy {
       consultTime: ['', Validators.required],
       contactMethod: ['', Validators.required],
       referral: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', Validators.required, Validators.minLength],
       //phoneNumber: ['', Validators.required, Validators.pattern('0\\d{10}')],
       email: ['', [Validators.email]],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      userDevice: this.userDevice
+      userDevice: this.userDevice,
+      username: this.username
     });
   }
 
