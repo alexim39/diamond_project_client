@@ -23,8 +23,11 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
   partner!: PartnerInterface;
   subscriptions: Subscription[] = [];
 
+  channel: string | null = null;
+
     constructor(
       private router: Router,
+      private route: ActivatedRoute,
       private usernameCheckService: UsernameCheckService
     ) {
       
@@ -39,6 +42,15 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
               // Store the extracted data in local storage
               localStorage.setItem('username', username);
               this.partner = returnedObject;
+
+              // Capture the channel from the query parameters
+              this.route.queryParams.subscribe(params => {
+                this.channel = params['utm_source'] || 'unknown';
+                //console.log('Traffic source - Urchin Tracking Module (channel):', this.channel);
+
+                // You can send the captured information to your backend or analytics service here
+                this.recordVisit(username, this.channel);
+              });
             }
           }, error => {
             // No partner with provided username
@@ -47,13 +59,24 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
             localStorage.removeItem('username');
           }
         )
-      )
-      
-
-      
+      )      
     }
 
     ngOnInit() {
+    }
+
+    private recordVisit(username: string | null, channel: string | null): void {
+
+      this.subscriptions.push(
+        this.usernameCheckService.recordVisit(username, channel).subscribe(
+          response => {
+            //console.log('Visit recorded:', response);
+          },
+          error => {
+            //console.error('Error recording visit:', error);
+          }
+        )
+      )
     }
 
     ngOnDestroy() {

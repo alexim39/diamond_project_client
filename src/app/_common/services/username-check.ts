@@ -22,6 +22,10 @@ export class UsernameCheckService {
     // Make a request to your backend API to check username availability
     return this.http.get<PartnerInterface>(this.api + `/partners/check-username/${username}`);
   }
+
+  recordVisit(username: string | null, channel: string | null): Observable<any> {
+    return this.http.post(this.api + `/campaign/visits`, { username, channel });
+  }
 }
 
 
