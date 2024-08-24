@@ -53,9 +53,9 @@ import { CommonModule } from '@angular/common';
       </div>
 
 
-      <h1>Diamond Project: Your online partner for personal and financial growth</h1>
+      <h1>Diamond Project (Online): Your online business<span> partner for personal and financial growth</span> </h1>
 
-      <a mat-flat-button color="accent">Get Started</a>
+      <a  mat-flat-button color="accent" routerLink="../get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()" color="accent">Get Started</a>
     </aside>
   `,
   styles: [`
@@ -103,9 +103,11 @@ import { CommonModule } from '@angular/common';
     }
     h1 {
       font-weight: bold;
-      //margin: 1em;
-      //color: #ffab40;
-
+      margin: 1em;
+      font-size: 1.8em;
+      span {
+        color: #ffab40;
+      }
     }
     small {
       text-align: justify;
