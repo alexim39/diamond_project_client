@@ -41,9 +41,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     <span class="spacer"></span>
 
     <a class="view-on-desktop" mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a>
-    <a class="view-on-desktop" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Us</a>
+    <!-- <a class="view-on-desktop" mat-button routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Us</a> -->
+    <a class="view-on-desktop" mat-button [matMenuTriggerFor]="about">About Us <i class="fa fa-angle-double-down"></i></a>
     <a class="view-on-desktop" mat-button routerLink="testimonials" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Testimonials</a>
-    <!-- <a class="view-on-desktop" mat-button routerLink="packages" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Packages</a> -->
+    <a class="view-on-desktop" mat-button routerLink="plans" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Plans</a>
     <!-- <a class="view-on-desktop" mat-button routerLink="#" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Blogs</a> -->
     <a class="view-on-desktop" mat-button [matMenuTriggerFor]="resources">Resources <i class="fa fa-angle-double-down"></i></a>
     <a class="view-on-desktop" mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
@@ -67,9 +68,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
     <mat-toolbar-row class="mobile-nav" id="mobile-nav" *ngIf="showMobileNav">
       <a mat-button routerLink="/" (click)="scrollToTop()">Home</a>
-      <a mat-button routerLink="about-us" (click)="scrollToTop()">About Us</a>
+      <!-- <a mat-button routerLink="about-us" (click)="scrollToTop()">About Us</a> -->
+      <a mat-button [matMenuTriggerFor]="about">About Us <i class="fa fa-angle-double-down"></i></a>
       <a mat-button routerLink="testimonials" (click)="scrollToTop()">Testimonial</a>
-      <!-- <a mat-button routerLink="packages" (click)="scrollToTop()">Packages</a> -->
+      <a mat-button routerLink="plans" (click)="scrollToTop()">Plans</a>
       <!-- <a mat-button routerLink="#" (click)="scrollToTop()">Blogs</a> -->
       <!-- <a mat-stroked-button routerLink="get-started">Get Started</a> -->
       <a mat-button [matMenuTriggerFor]="resources">Resources <i class="fa fa-angle-double-down"></i></a>
@@ -113,6 +115,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
       <a mat-menu-item routerLink="videos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Videos</a>
       <a mat-menu-item routerLink="pre-approach-download" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Download pre-approach doc</a>
       <!-- <a mat-menu-item href="http://partners.diamondprojectonline.com" target="_blank">Partners platform</a> -->
+    </mat-menu>
+
+   <!-- about -->
+   <mat-menu #about="matMenu">
+      <a mat-menu-item routerLink="about-us" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Diamond Project</a>
+      <a mat-menu-item routerLink="about-our-business" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">About Our Online Business</a>
     </mat-menu>
 
   `,

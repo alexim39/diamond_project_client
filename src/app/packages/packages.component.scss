@@ -28,8 +28,13 @@
 
   .body {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .cta-button {
+      margin: 2em;
+      width: 20em;
+    }
     .writeup {
       padding: 2em 1em 2em 8em;
       p {

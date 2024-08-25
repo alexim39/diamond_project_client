@@ -18,7 +18,7 @@ declare const $: any;
         font-size: 1em;
         font-weight: bold;
         padding: 0 1em;
-        color: white;
+        color: black;
       }
     }
 
@@ -53,7 +53,7 @@ export class TypingComponent implements AfterViewInit {
   @Input() wordArray: string[] = [
     " We get you trained to be financially free.    ",
     " We help you unlock the secrete skills of financial autonomy.     ",
-    " We provide you with the training to achieve financial independence.     ",
+    " We mentor and support you until your business start paying.     ",
     //" BonnyRide, the no. 1 cab service in Bonny Island.     ",
     //" Get links to helpful  academic resources.     ",
     //" Get links to income generating resources.     ",

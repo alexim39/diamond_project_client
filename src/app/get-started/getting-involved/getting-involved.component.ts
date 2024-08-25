@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -31,7 +27,7 @@ export interface Video {
   selector: 'async-getting-involved',
   standalone: true,
   providers: [],
-  imports: [MatButtonModule, CommonModule, MatDialogModule, MatDividerModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+  imports: [MatButtonModule, CommonModule, MatButtonModule, MatDialogModule, RouterModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   template: `
   <section class="head">
 
@@ -57,8 +53,7 @@ export interface Video {
     <article class="writeup">
       <h3>Get Started And Be A Member From {{this.selectedCountry}}</h3>
       
-
-      <div class="video-gallery">
+      <!-- <div class="video-gallery">
         <div *ngFor="let video of videos" class="video-item" (click)="openVideoModal(video)">
           <div class="play-overlay">
             <div class="play-button">&#9654;</div>
@@ -70,30 +65,21 @@ export interface Video {
             <p class="description">{{ video.description }}</p>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div  class="infor">
-        <p >
-        Embark on a transformative journey towards success by becoming a valued partner of the Diamond Project. Your path to financial prosperity and innovation begins here. </p>
-        <p >
-        By joining us, you not only step into a community of like-minded individuals but also unlock unparalleled opportunities for growth and collaboration. </p>
-        <p >
-        The Diamond Project is more than just a venture; it's a dynamic ecosystem where your aspirations thrive. </p>
-        <p >
-        If you're ready to redefine your future, click the button below to become a member and gain access to exclusive information that will pave the way for your success. </p>
-        <p>
-        Your journey to excellence starts now. Click below to be a part of something extraordinary!
-        </p>
+        <p>  By joining us, you not only step into a community of like-minded individuals but also unlock unparalleled opportunities for growth and collaboration. </p>
+        <p> If you're ready to get started, use the button below to become a member and gain access to exclusive information that will pave the way for your success. </p>
+        <p> Your journey to excellence starts now. Be a part of something extraordinary! </p>
       </div>
 
       
-
       <div class="next-view">
         <button mat-raised-button color="accent" class="back" (click)="onPrevious()"><i class="fa fa-angle-double-left"></i> Previous</button>
-        <button mat-stroked-button color="primary" (click)="onNext()"><i class="fa fa-whatsapp"></i> Be A Partner Now </button>
-        <button mat-stroked-button color="primary" (click)="onNext()"><i class="fa fa-whatsapp"></i> Need More Info? </button>
+        <button mat-stroked-button color="primary" class="whatsapp" (click)="onNext()"><i class="fa fa-whatsapp"></i> Chat With A Consultant </button>
+        <!-- <button mat-stroked-button color="primary" (click)="onNext()"><i class="fa fa-whatsapp"></i> Need More Info? </button> -->
+        <button mat-flat-button color="primary" (click)="moreInfo()"><i class="fa fa-info-circle"></i> Need More Info? </button> 
       </div>
-
 
     </article>
 
@@ -160,8 +146,13 @@ export interface Video {
         margin-top: 2em;
         text-align: center;
         button {
-          width: 20%;
+          //width: 20%;
           margin-left: 1em;
+          
+        }
+        .whatsapp {
+          background: #075e54;
+          color: white;
         }
       }
     }
@@ -356,7 +347,12 @@ export class GettingInvolvedComponent implements OnInit {
   }
 
   onNext(): void {
-    window.open('https://wa.me/message/I5F2NKYKO7JNB1', '_blank');
+   // window.open('https://wa.me/message/I5F2NKYKO7JNB1', '_blank'); // Adeyemi
+    window.open(' https://wa.me/message/GQ6P3GATFO4IB1', '_blank');
+  }
+
+  moreInfo(): void {
+    this.router.navigateByUrl('about-our-business');
   }
 
   onPrevious(): void {

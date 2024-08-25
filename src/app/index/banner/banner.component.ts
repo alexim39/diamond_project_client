@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
 
           <article>
             <h1>
-              Diamond Project: We help you become the best version of yourself through our mentorship while you earn money (online) with our proven residual income system and strategy
+              Diamond Project: Your personal and financial growth journey, fueled by mentorship and online entrepreneurship.
             </h1>
 
             <br><br>
