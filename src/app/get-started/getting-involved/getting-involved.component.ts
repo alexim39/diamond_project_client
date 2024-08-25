@@ -352,7 +352,8 @@ export class GettingInvolvedComponent implements OnInit {
   }
 
   moreInfo(): void {
-    this.router.navigateByUrl('about-our-business');
+    this.router.navigateByUrl('one-on-one-booking');
+    this.scrollToTop();
   }
 
   onPrevious(): void {
