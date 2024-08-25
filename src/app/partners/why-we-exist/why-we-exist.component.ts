@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
           <strong>Financial Benefits: </strong>
           <ul>
             <li>Earning Potential: Your earning potentail depends on how much you are willing to put into work</li>
-            <li>Be Your Own Boss: You to set your own hours to work</li>
+            <li>Be Your Own Boss: You set your own hours to work</li>
             <li>Residual Income: You build an online business that earn even while you are no more working</li>
           </ul>
           <!-- <div class="more">
