@@ -35,7 +35,7 @@ export class BookingComponent implements OnInit, OnDestroy {
   bookinForm: FormGroup = new FormGroup({}); // Assigning a default value
   subscriptions: Subscription[] = [];
   isSpinning = false;
-  username!: string;
+  username: string = 'business';
 
   minDate = new Date(); // Today's date
   userDevice = '';

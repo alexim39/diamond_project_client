@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
-import { PageNotFoundComponent } from './page-not-found.component';
 
 export const routes: Routes = [
   //{ path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -20,8 +19,5 @@ export const routes: Routes = [
   { path: 'ebooks', loadChildren: () => import('./resources/ebooks/ebooks-routes').then(r => r.ebooksRoutes) },
   { path: 'pre-approach-download', loadComponent: () => import('./resources/pre-approach/pre-approach.component').then(c => c.PreapproachComponent) },
   { path: ':partnerUsername', loadChildren: () => import('./partners/partners-routes').then(r => r.partnersRoutes) },
-
-  // should be the last path on routes
-  {path: '**', component: PageNotFoundComponent}
 
 ];

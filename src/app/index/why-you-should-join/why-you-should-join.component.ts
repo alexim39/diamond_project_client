@@ -69,7 +69,8 @@ import { MatButtonModule } from '@angular/material/button';
 
         <section class="call-to-action">
             <p>
-                Use the button below to join our WhatsApp group, where we show you our business every Sunday evening at 7:00 PM (your local time zone).
+                <!-- Use the button below to join our WhatsApp group, where we show you our business every Sunday evening at 7:00 PM (your local time zone). -->
+                Use the button below to join our WhatsApp group, where we provide links to weekly online meetings to showcase our business.
             </p>
 
             <div class="down-arrow">

@@ -36,7 +36,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   isSpinning = false;
   userDevice = '';
-  username!: string;
+  username: string = 'business';
 
   constructor (
     private router: Router,

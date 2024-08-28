@@ -54,11 +54,13 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
                 this.recordVisit(username, this.channel);
               });
             }
-          }, error => {
-            // No partner with provided username
-            // show page not found
-            this.router.navigate(['/page/not-found/']);
-            localStorage.removeItem('username');
+          }, (error) => {
+            if (error.error.code == 400) {
+              // No partner with provided username
+              // show page not found
+              this.router.navigate(['/page/not-found/']);
+              localStorage.removeItem('username');
+            }
           }
         )
       )      

@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { PartnersContainerComponent } from "./partners-container.component";
 /* import {BlogsComponent} from './blogs.component';
 import { BlogDetailComponent } from "./detail/blog-detail.component"; */
+import { PageNotFoundComponent } from './../page-not-found.component';
 
 export const partnersRoutes: Routes = [
     { 
@@ -21,5 +22,7 @@ export const partnersRoutes: Routes = [
 
         ]
     },
+    // should be the last path on routes
+  {path: '**', component: PageNotFoundComponent}
 
 ]

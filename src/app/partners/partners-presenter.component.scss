@@ -101,6 +101,7 @@
     
         h2 {
           margin: 2em 0 1em 0;
+          
         }
     
         .comments-container {
@@ -245,3 +246,51 @@
 }
 
 }
+
+
+
+
+
+
+
+
+
+
+.how-it-works {  
+  padding: 1rem; /* Padding for the section */  
+}  
+
+.container {  
+  margin: 0 auto; /* Center the container */  
+  text-align: center; /* Center text */  
+}  
+
+h3 {  
+  font-size: 0.8em; /* Font size for the heading */  
+  margin-bottom: 2rem; /* Margin below the heading */  
+}  
+
+ul {  
+  list-style-type: none; /* Decimal list style */  
+  padding-left: 0; /* Remove default padding */  
+  margin: 0; /* Remove default margin */  
+}  
+
+li {  
+  //background-color: white; /* White background for list items */  
+  padding: 1.5rem; /* Padding for list items */  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */  
+  border-radius: 0.5rem; /* Rounded corners */  
+  transition: transform 0.3s; /* Transition for hover effect */  
+  margin-bottom: 1.5rem; /* Space between list items */  
+}  
+
+li:hover {  
+  transform: scale(1.05); /* Scale effect on hover */  
+}  
+
+h4 {  
+  font-size: 1em; /* Font size for subheadings */  
+  margin-bottom: 0.5rem; /* Margin below subheading */  
+  color: #ffab40;
+}  

@@ -7,10 +7,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BannerComponent } from './banner/banner.component';
-import { WhyWeExistComponent } from './why-we-exist/why-we-exist.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
 import { AboutWhyYouShouldJoinComponent } from './why-you-should-join/why-you-should-join.component';
+import { WhyWeExistComponent } from './why-we-exist/why-we-exist.component';
 
 
 @Component({
