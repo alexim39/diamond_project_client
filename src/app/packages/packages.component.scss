@@ -6,6 +6,7 @@
       h2 {
         font-family: Garamond, serif;
         font-size: 2em;
+
       }
       h3 {
         font-family: Georgia, serif;
@@ -37,13 +38,17 @@
     }
     .writeup {
       padding: 2em 1em 2em 8em;
+      h3 {
+        text-align: center;
+        font-size: 1.5em;
+      }
       p {
         text-align: justify;
         font-size: 14px;
         line-height: 1.5em;
       }
 
-      .packges-container {
+/*       .packges-container {
         display: flex;
         flex-wrap: wrap;
         mat-card {
@@ -78,10 +83,72 @@
 
 
         }
-      }
+      } */
       
     }
 }
+
+
+
+.packages-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+  .plan-card {
+    width: 300px;
+    margin: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 25px;
+      color: #ffab40;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+    h3, h2 {
+      text-align: left;
+      color: #ffab40;
+    }
+    ol {
+      li {
+        font-weight: bold;
+        text-align: left;
+        ul {
+          list-style-type:none;
+          padding-left: 1em;
+          margin-bottom: 20px;
+          li {
+            margin-bottom: 10px;
+            text-align: justify;
+            font-weight: normal;
+            
+          }
+        }
+      }
+    }
+    
+    button {
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  }
+}
+
+
+
+.plan-card:hover {
+  transform: translateY(-5px);
+}
+
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
