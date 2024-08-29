@@ -24,74 +24,13 @@
         <h3>Diamond Project Business Starter Packages</h3>
 
 
-<!--         <div class="packges-container">
-
-            <mat-card>
-                <h2>Access Business Bundle</h2>
-                <p>Enjoy a potential daily profit of $190.00 and exclusive access to a profit center to boost your earnings.</p>
-                <ul>
-                    <li>$190.00 potential daily profit</li>
-                    <li>1 business center</li>
-                </ul>
-            </mat-card>
-
-            <mat-card>
-                <h2>Bronze Business Bundle</h2>
-                <p>Elevate your investment game with our Bronze bundle and experience a higher potential profit and a diversified three business centers for maximum returns.</p>
-                <ul>
-                    <li>$580.00 potential daily profit</li>
-                    <li>3 business centers</li>
-                </ul>
-            </mat-card>
-
-            <mat-card>
-                <h2>Silver Business Bundle</h2>
-                <p>Shine bright with our Silver bundle offering a $580.00 potential daily profit and three business centers. Maximizing your earning potential and financial growth.</p>
-                <ul>
-                    <li>$610.00 potential daily profit</li>
-                    <li>3 business centers</li>
-                </ul>
-            </mat-card>
-
-            <mat-card>
-                <h2>Gold Business Bundle</h2>
-                <p>Unleash the power of your business with our Gold bundle featuring a $860.00 potential daily profit. Diversify your portfolio across seven business centers for optimal returns and financial success. </p>
-                <ul>
-                    <li>$860.00 potential daily profit</li>
-                    <li>7 business centers</li>
-                </ul>
-            </mat-card>
-
-            <mat-card>
-                <h2>Platinum Business Bundle</h2>
-                
-                <p>Elevate your financial game with our Platinum bundle offering a remarkable $2,090.00 potential daily profit. Access fifteen business centers to maximize your earnings and secure your path to wealth.</p>
-                <ul>
-                    <li>$2,090.00 potential daily profit</li>
-                    <li>15 business centers</li>
-                </ul>
-            </mat-card>
-
-            <mat-card>
-                <h2>Elite Business Bundle</h2>
-                <p>Reach the pinnacle of success with our Elite bundle showcasing an impressive $3,080.00 potential daily profit. Explore a diverse range of thirty-one business centers, ensuring unparalleled growth and prosperity in your investment journey.</p>
-                <ul>
-                    <li>$3,080.00 potential daily profit</li>
-                    <li>31 business centers</li>
-                </ul>
-            </mat-card>
-
-        </div> -->
-
-
-
         <div class="packages-container">
             <!-- Access Business Bundle -->
             <mat-card class="plan-card">
               <h2>Access Business Bundle</h2>
               <p>
                 The Access Business Bundle is the ideal starting point for anyone looking to dip their toes into the world of digital network marketing. 
-                Priced at N69,990, this bundle offers a comprehensive entry-level package designed to equip you with the essential tools and resources needed to launch your business successfully.
+                Priced at {{69990 | currency:'₦':'symbol':'1.0-0' }}, this bundle offers a comprehensive entry-level package designed to equip you with the essential tools and resources needed to launch your business successfully.
               </p>
 
               <h3>Who Is This For?</h3>
@@ -104,12 +43,12 @@
                     It offers the right mix of profitability, support, and flexibility, making it a smart choice for ambitious entrepreneurs ready to take their business to new heights.
                 </p>
 
-              <p class="price">N69,990</p>
+              <p class="price"> {{69990 | currency:'₦':'symbol':'1.0-0' }}</p>
 
               <ol>
-                <li> Potential Daily Profit of $190.00:
+                <li> Potential Daily Profit of {{152000 | currency:'₦':'symbol':'1.0-0' }}:
                     <ul>
-                        <li>With the Access Business Bundle, you can unlock a potential daily profit of up to $190.00, setting a solid foundation for your financial growth.</li>
+                        <li>With the Access Business Bundle, you can unlock a potential daily profit of up to {{152000 | currency:'₦':'symbol':'1.0-0' }}, setting a solid foundation for your financial growth.</li>
                     </ul>
                 </li>
 
@@ -125,7 +64,7 @@
                     </ul>
                 </li>
               </ol>
-              <button mat-raised-button color="primary">Choose Access</button>
+              <button mat-raised-button color="primary" (click)="openDialog(69990)">Choose Access</button>
             </mat-card>
           
             <!-- Bronze Business Bundle -->
@@ -133,7 +72,7 @@
                 <h2>Bronze Business Bundle</h2>
                 <p>
                     The Bronze Business Bundle is designed for those ready to elevate their business in digitally connected economy and expand their earning potential. 
-                    Priced at N129,990, this bundle offers a more robust package, ideal for individuals looking to enhance their business and increase their profitability.
+                    Priced at {{129990 | currency:'₦':'symbol':'1.0-0' }}, this bundle offers a more robust package, ideal for individuals looking to enhance their business and increase their profitability.
                 </p>
   
                 <h3>Who Is This For?</h3>
@@ -148,12 +87,12 @@
                     It offers the right mix of profitability, support, and flexibility, making it a smart choice for ambitious entrepreneurs ready to take their business to new heights.
                 </p>
   
-                <p class="price">N129,990</p>
+                <p class="price">{{129990 | currency:'₦':'symbol':'1.0-0' }}</p>
   
                 <ol>
-                  <li> Potential Daily Profit of $580.00:
+                  <li> Potential Daily Profit of {{464000 | currency:'₦':'symbol':'1.0-0' }}:
                       <ul>
-                          <li>The Bronze Business Bundle significantly boosts your earning capacity, with a potential daily profit of up to $580.00, offering a substantial return on investment.</li>
+                          <li>The Bronze Business Bundle significantly boosts your earning capacity, with a potential daily profit of up to N464,000, offering a substantial return on investment.</li>
                       </ul>
                   </li>
   
@@ -171,7 +110,7 @@
                       </ul>
                   </li>
                 </ol>
-                <button mat-raised-button color="primary">Choose Bronze </button>
+                <button mat-raised-button color="primary" (click)="openDialog(129990)">Choose Bronze </button>
               </mat-card>
 
             <!-- Silver Business Bundle -->
@@ -179,7 +118,7 @@
                 <h2>Silver Business Bundle</h2>
                 <p>
                     The Silver Business Bundle is a step up for those who are serious about maximizing their earning potential in the connected economy. 
-                    Priced at N190,000, this bundle is tailored for individuals who are ready to invest in a more substantial business package that promises significant financial growth and stability.
+                    Priced at {{190000 | currency:'₦':'symbol':'1.0-0' }}, this bundle is tailored for individuals who are ready to invest in a more substantial business package that promises significant financial growth and stability.
                 </p>
   
                 <h3>Who Is This For?</h3>
@@ -194,12 +133,12 @@
                     It offers the perfect blend of profitability, flexibility, and support, making it an excellent investment for those looking to achieve long-term success.
                 </p>
   
-                <p class="price">N190,000</p>
+                <p class="price">{{190000 | currency:'₦':'symbol':'1.0-0' }}</p>
   
                 <ol>
-                  <li> Potential Daily Profit of $610.00:
+                  <li> Potential Daily Profit of {{488000 | currency:'₦':'symbol':'1.0-0' }}:
                       <ul>
-                          <li>With the Silver Business Bundle, you can earn up to $610.00 daily, offering a notable increase in your income potential compared to entry-level options. 
+                          <li>With the Silver Business Bundle, you can earn up to {{488000 | currency:'₦':'symbol':'1.0-0' }} daily, offering a notable increase in your income potential compared to entry-level options. 
                             This makes it a lucrative choice for those looking to elevate their financial success.</li>
                       </ul>
                   </li>
@@ -218,7 +157,7 @@
                       </ul>
                   </li>
                 </ol>
-                <button mat-raised-button color="primary">Choose Silver </button>
+                <button mat-raised-button color="primary" (click)="openDialog(190000)">Choose Silver </button>
               </mat-card>
           
             <!-- Gold Business Bundle -->
@@ -226,7 +165,7 @@
                 <h2>Gold Business Bundle</h2>
                 <p>
                     The Gold Business Bundle is a premium package designed for entrepreneurs who are ready to fully commit to their business. 
-                    Priced at N310,000, this bundle offers substantial benefits and a powerful platform for those looking to maximize their earning potential and achieve significant financial success.
+                    Priced at {{310000 | currency:'₦':'symbol':'1.0-0' }}, this bundle offers substantial benefits and a powerful platform for those looking to maximize their earning potential and achieve significant financial success.
                 </p>
   
                 <h3>Who Is This For?</h3>
@@ -241,12 +180,12 @@
                     It offers the ideal combination of profitability, growth potential, and support, making it a smart investment for those ready to reach new heights in their business journey.
                 </p>
   
-                <p class="price">N310,000</p>
+                <p class="price">{{310000 | currency:'₦':'symbol':'1.0-0' }}</p>
   
                 <ol>
-                  <li> Potential Daily Profit of $860.00:
+                  <li> Potential Daily Profit of {{688000 | currency:'₦':'symbol':'1.0-0' }}:
                       <ul>
-                          <li>The Gold Business Bundle provides an impressive potential daily profit of up to $860.00, making it a highly attractive option for those who aim to earn substantial returns on their investment.</li>
+                          <li>The Gold Business Bundle provides an impressive potential daily profit of up to {{688000 | currency:'₦':'symbol':'1.0-0' }}, making it a highly attractive option for those who aim to earn substantial returns on their investment.</li>
                       </ul>
                   </li>
   
@@ -264,7 +203,7 @@
                       </ul>
                   </li>
                 </ol>
-                <button mat-raised-button color="primary">Choose Gold </button>
+                <button mat-raised-button color="primary" (click)="openDialog(310000)">Choose Gold </button>
               </mat-card>
           
             <!-- Platinum Business Bundle -->
@@ -272,7 +211,7 @@
                 <h2>Platinum Business Bundle</h2>
                 <p>
                     The Platinum Business Bundle is a top-tier package designed for partners who are serious about reaching elite levels of success in the digital space. 
-                    Priced at N499,990, this bundle offers exceptional value and unmatched potential, making it the ideal choice for those committed to maximizing their earnings and building a thriving, sustainable business.
+                    Priced at {{499990 | currency:'₦':'symbol':'1.0-0' }}, this bundle offers exceptional value and unmatched potential, making it the ideal choice for those committed to maximizing their earnings and building a thriving, sustainable business.
                 </p>
   
                 <h3>Who Is This For?</h3>
@@ -287,12 +226,12 @@
                     It combines immense earning potential, extensive growth opportunities, and advanced support, making it the perfect investment for those who are ready to dominate in the connected economy.
                 </p>
   
-                <p class="price">N499,990</p>
+                <p class="price">{{499990 | currency:'₦':'symbol':'1.0-0' }}</p>
   
                 <ol>
-                  <li> Potential Daily Profit of $2,090.00:
+                  <li> Potential Daily Profit of {{1672000 | currency:'₦':'symbol':'1.0-0' }}:
                       <ul>
-                          <li>The Platinum Business Bundle boasts a remarkable potential daily profit of up to $2,090.00, positioning it as one of the most lucrative options available. 
+                          <li>The Platinum Business Bundle boasts a remarkable potential daily profit of up to {{1672000 | currency:'₦':'symbol':'1.0-0' }}, positioning it as one of the most lucrative options available. 
                             This significant earning potential allows you to achieve rapid financial growth and stability.</li>
                       </ul>
                   </li>
@@ -311,7 +250,7 @@
                       </ul>
                   </li>
                 </ol>
-                <button mat-raised-button color="primary">Choose Platinum </button>
+                <button mat-raised-button color="primary" (click)="openDialog(499990)">Choose Platinum </button>
               </mat-card>
           
             <!-- Elite Business Bundle -->
@@ -319,7 +258,7 @@
                 <h2>Elite Business Bundle</h2>
                 <p>
                     The Elite Business Bundle represents the pinnacle of all the packages, crafted for those who aspire to achieve the highest level of success. 
-                    Priced at N999,990, this bundle is designed for entrepreneurs who are ready to make a significant investment in their business and aim for unparalleled growth and profitability.
+                    Priced at {{999990 | currency:'₦':'symbol':'1.0-0' }}, this bundle is designed for entrepreneurs who are ready to make a significant investment in their business and aim for unparalleled growth and profitability.
                 </p>
   
                 <h3>Who Is This For?</h3>
@@ -335,12 +274,12 @@
                 </p>
 
   
-                <p class="price">N999,990</p>
+                <p class="price">{{999990 | currency:'₦':'symbol':'1.0-0' }}</p>
   
                 <ol>
-                  <li> Potential Daily Profit of $3,080.00:
+                  <li> Potential Daily Profit of {{2464000 | currency:'₦':'symbol':'1.0-0' }}:
                       <ul>
-                          <li>The Elite Business Bundle offers an extraordinary potential daily profit of up to $3,080.00, making it one of the most lucrative options available. 
+                          <li>The Elite Business Bundle offers an extraordinary potential daily profit of up to {{2464000 | currency:'₦':'symbol':'1.0-0' }}, making it one of the most lucrative options available. 
                             This exceptional earning potential is designed to deliver substantial financial rewards and accelerate your business growth.</li>
                       </ul>
                   </li>
@@ -359,7 +298,7 @@
                       </ul>
                   </li>
                 </ol>
-                <button mat-raised-button color="primary">Choose Elite </button>
+                <button mat-raised-button color="primary" (click)="openDialog(999990)">Choose Elite </button>
               </mat-card>
           
           </div>

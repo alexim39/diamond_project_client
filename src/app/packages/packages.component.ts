@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +10,18 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
+import { MatDialogModule} from '@angular/material/dialog';
+import { PaymentDialogComponent } from './payment-dialog.component';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog'
+import { CommonModule } from '@angular/common';
 
 /**
  * @title Packages component
@@ -19,13 +31,21 @@ import {MatCardModule} from '@angular/material/card';
   templateUrl: 'packages.component.html',
   styleUrls: ['packages.component.scss'],
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule, MatCardModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+  imports: [MatButtonModule, CommonModule, MatDividerModule, PaymentDialogComponent, MatDialogModule, MatCardModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
 })
 export class PackagesComponent {
 
-    // scroll to top when clicked
-    scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  readonly dialog = inject(MatDialog);
+
+  // scroll to top when clicked
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  openDialog(amount: number): void {
+    const dialogRef = this.dialog.open(PaymentDialogComponent, {
+      data: {amount: amount},
+    });
+  }
 
 }
