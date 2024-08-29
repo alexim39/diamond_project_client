@@ -14,6 +14,7 @@ import {
 } from '@angular/material/dialog'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import Swal from 'sweetalert2';
 
 /**
  * @title Payment Dialog
@@ -97,23 +98,64 @@ export class PaymentDialogComponent {
 
   constructor() {}  
 
+  pay(form: any): void {
+    if (form.valid) {
+      const paymentDetails = {
+        firstName: this.firstName,
+        surname: this.surname,
+        phoneNumber: this.phoneNumber,
+        emailAddress: this.emailAddress,
+        amount: this.data.amount,
+      };
 
-  pay(form: any): void {  
-    if (form.valid) {  
-      const paymentDetails = {  
-        firstName: this.firstName,  
-        surname: this.surname,  
-        phoneNumber: this.phoneNumber,  
-        emailAddress: this.emailAddress,  
-        amount: this.data.amount,  
-      };  
+      const handler = (<any>window).PaystackPop.setup({
+        key: 'pk_live_ef4b274402e6786a901e106596f1904e3e08a713', // Replace with your Paystack public key
+        email: this.emailAddress,
+        amount: this.data.amount * 100, // Paystack accepts amount in kobo
+        currency: 'NGN',
+        ref: '' + Math.floor(Math.random() * 1000000000 + 1), // Generate a random reference
+        metadata: {
+          custom_fields: [
+            {
+              display_name: 'First Name',
+              variable_name: 'first_name',
+              value: this.firstName,
+            },
+            {
+              display_name: 'Surname',
+              variable_name: 'surname',
+              value: this.surname,
+            },
+            {
+              display_name: 'Phone Number',
+              variable_name: 'phone_number',
+              value: this.phoneNumber,
+            },
+          ],
+        },
+        callback: (response: any) => {
+          console.log('Payment successful. Reference:', response.reference);
+          this.dialogRef.close({ success: true, reference: response.reference });
 
-      console.log(paymentDetails);  
-      // Further processing of paymentDetails  
-    } else {  
-      console.log('Form is invalid');  
-    }  
-  } 
+          Swal.fire({
+            position: "bottom",
+            icon: 'success',
+            text: 'Payment successful. You will be contacted in few minutes.',
+            showConfirmButton: true,
+            timer: 15000,
+          })
+
+        },
+        onClose: () => {
+          console.log('Payment dialog closed');
+        },
+      });
+
+      handler.openIframe();
+    } else {
+      console.log('Form is invalid');
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
