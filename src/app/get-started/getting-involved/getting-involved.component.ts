@@ -77,8 +77,8 @@ export interface Video {
       <div class="next-view">
         <button mat-raised-button color="accent" class="back" (click)="onPrevious()"><i class="fa fa-angle-double-left"></i> Previous</button>
         <button mat-stroked-button color="primary" class="whatsapp" (click)="onNext()"><i class="fa fa-whatsapp"></i> Chat With A Consultant </button>
-        <!-- <button mat-stroked-button color="primary" (click)="onNext()"><i class="fa fa-whatsapp"></i> Need More Info? </button> -->
         <button mat-flat-button color="primary" (click)="moreInfo()"><i class="fa fa-info-circle"></i> Need More Info? </button> 
+        <button mat-stroked-button (click)="start()"><i class="fa fa-money"></i> Choose Plan & Start </button> 
       </div>
 
     </article>
@@ -358,6 +358,12 @@ export class GettingInvolvedComponent implements OnInit {
 
   onPrevious(): void {
     this.router.navigateByUrl('get-started/connected-economy');
+    this.scrollToTop();
+  }
+
+  start(): void {
+    this.router.navigateByUrl('plans');
+    this.scrollToTop();
   }
 
   // scroll to top when clicked
