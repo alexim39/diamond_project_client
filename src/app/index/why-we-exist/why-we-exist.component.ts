@@ -39,12 +39,9 @@ import { CommonModule } from '@angular/common';
       </div>
 
 
-      <!-- <h1>We firmly believe that you can have a comfortable journey to your destination at any hour, whether it’s day or night.</h1> -->
       <h1>Diamond Project Online: Your Online Business Partner</h1>
 
-      <!-- <small>Use our flexible learning path, adjust your learning to suit your time  — all in one place. Open a free account in minutes and learn any time.</small> -->
-
-      <a mat-flat-button color="primary" routerLink="plans" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Start Your Own Business Now</a>
+      <!-- <a mat-flat-button color="primary" routerLink="plans" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Start Your Own Business Now</a> -->
     </aside>
   `,
   styles: [`

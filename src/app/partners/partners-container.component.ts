@@ -30,8 +30,11 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
       private route: ActivatedRoute,
       private usernameCheckService: UsernameCheckService
     ) {
-      // url format
-      //       // http://localhost:4200/business?utm_source=6696bbe2e8d1d5d6edd178e0
+      /* 
+        url format
+       http://localhost:4200/business?utm_source=6696bbe2e8d1d5d6edd178e0 
+       https://diamondprojectonline.com/business?utm_source=6696bbe2e8d1d5d6edd178e0
+      */
 
       const url = window.location.pathname;
       const username = url.substring(url.lastIndexOf('/') + 1);
