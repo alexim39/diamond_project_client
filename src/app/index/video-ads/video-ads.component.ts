@@ -70,7 +70,7 @@ import { CommonModule } from '@angular/common';
     p {
       font-size: 1.2rem;
       margin-bottom: 1em;
-      color: #555;
+      //color: #555;
     }
     .cta-button {
       margin-top: 1em;
