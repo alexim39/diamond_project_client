@@ -15,7 +15,6 @@ import { NotificationBannerComponent } from './notification-banner/notification-
 import { Emitters } from '../_common/emitters/emitters';
 import {} from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { BreadcrumbComponent } from '../_common/breadcrumb.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
 import { LoadingSpinnerComponent } from '../_common/spinner.compnent';
 import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
@@ -25,7 +24,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
   selector: 'async-nav',
   standalone: true,
   providers: [],
-  imports: [MatToolbarModule, BreadcrumbComponent, MatProgressBarModule, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, 
+  imports: [MatToolbarModule, MatProgressBarModule, LoadingSpinnerComponent, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, 
 ],
   template: `
   

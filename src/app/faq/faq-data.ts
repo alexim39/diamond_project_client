@@ -13,14 +13,20 @@ export const FAQS = [
       answer: `Joining Diamond Project Online offers numerous benefits, including global business reach, flexibility, passive income potential, financial freedom, personal growth and branding, and scalability. 
       You can work from anywhere and on your terms, making it easier to balance your business with your lifestyle. 
       Our platform is designed to help you build residual income streams that grow over time, providing long-term financial stability. 
-      Additionally, our data-driven tools enable you to make informed decisions to optimize your business strategies.`
+      Additionally, our data-driven tools enable you to make informed decisions to optimize your business strategies.
+      ` 
     },
     {
       question: "How much capital do I need to start with Diamond Project Online, and is it worth it?",
       answer: `The capital required to join varies depending on the package you choose, but the investment is worth it given the potential returns. 
       With Diamond Project Online, you're not just investing in a business; you're investing in your future. 
       The platform is designed to help you generate passive income, scale your business globally, and achieve financial freedom. 
-      Our mentorship and support systems are in place to ensure that you maximize your investment and see real results.`
+      Our mentorship and support systems are in place to ensure that you maximize your investment and see real results.
+      <p>
+        Visit the <a routerLink="/plans" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">plan section</a> on our website for start up plans
+      </p>
+
+      `
     },
     {
       question: "I've heard that some businesses like this can be risky. What makes Diamond Project Online different?",
@@ -100,32 +106,52 @@ export const FAQS = [
       We also provide training on advanced digital marketing techniques, such as targeted advertising and content creation, to help you attract and retain customers. 
       Additionally, our data-driven tools allow you to monitor competitors and adjust your strategies accordingly, ensuring you stay ahead of the curve.`
     },
-    /* {
+    {
       question: "Who is this diamond project online designed for?",
-      answer: `Diamond Project Online is designed for a wide range of individuals who are motivated to achieve financial independence and personal growth through digital entrepreneurship. 
-      Specifically, it is ideal for:
-      
-      1. Aspiring Entrepreneurs: Individuals who are looking to start their own business but may not have the resources or experience to do so through traditional means. 
-      Diamond Project Online provides the tools, training, and support needed to build a successful online business from scratch.
-  
-      2. Experienced Entrepreneurs: Those who already have experience in business but want to expand their reach and income potential through digital marketing and online partnerships. 
-      The platform offers scalability and global reach, allowing seasoned entrepreneurs to grow their businesses more effectively.
-  
-      3. Individuals Seeking Flexibility: People who want to break free from the constraints of a traditional 9-to-5 job and are looking for a business model that offers flexibility in terms of time and location. 
-      With Diamond Project Online, you can work on your terms, from anywhere in the world.
-  
-      4. Professionals Looking for Passive Income: Individuals who are interested in creating additional income streams that don't require constant active work. 
-      The platform is designed to help you build residual income that grows over time, providing long-term financial stability.
-  
-      5. Personal Brand Builders: Those who want to establish themselves as authorities in their niche by building a personal brand. 
-      Diamond Project Online offers tools and strategies to help you create a strong online presence and influence, which can lead to greater business success.
-  
-      6. Digital Marketers and Social Media Lovers: People who are already involved in digital marketing and want to leverage that skill to enhance their business. 
-      The platform's advanced system makes managing and expanding a network more efficient and effective.
-  
-      7. Anyone Seeking Financial Freedom: Individuals who are motivated to take control of their financial future and are willing to put in the effort to achieve their goals. 
-      Diamond Project Online provides a path to financial freedom through a well-supported and proven online business model`
-    }, */
+      answer: `
+      <p>
+        Diamond Project Online is designed for a wide range of individuals who are motivated to achieve financial independence and personal growth through digital entrepreneurship. 
+        Specifically, it is ideal for:
+      <p>
+
+        <ol>
+          <li>
+            <strong>Aspiring Entrepreneurs:</strong> Individuals who are looking to start their own business but may not have the resources or experience to do so through traditional means. 
+            Diamond Project Online provides the tools, training, and support needed to build a successful online business from scratch.
+          </li>
+          <br>
+          <li>
+            <strong>Experienced Entrepreneurs:</strong> Those who already have experience in business but want to expand their reach and income potential through digital marketing and online partnerships. 
+            The platform offers scalability and global reach, allowing seasoned entrepreneurs to grow their businesses more effectively.
+          </li>
+          <br>
+          <li>
+            <strong>Individuals Seeking Flexibility:</strong> People who want to break free from the constraints of a traditional 9-to-5 job and are looking for a business model that offers flexibility in terms of time and location. 
+            With Diamond Project Online, you can work on your terms, from anywhere in the world.
+          </li>
+          <br>
+          <li>
+            <strong>Professionals Looking for Passive Income:</strong> Individuals who are interested in creating additional income streams that don't require constant active work. 
+            The platform is designed to help you build residual income that grows over time, providing long-term financial stability.
+          </li>
+          <br>
+          <li>
+            <strong>Personal Brand Builders:</strong> Those who want to establish themselves as authorities in their niche by building a personal brand. 
+            Diamond Project Online offers tools and strategies to help you create a strong online presence and influence, which can lead to greater business success.
+          </li>
+          <br>
+          <li>
+            <strong>Digital Marketers and Social Media Lovers:</strong> People who are already involved in digital marketing and want to leverage that skill to enhance their business. 
+            The platform’s advanced system makes managing and expanding a network more efficient and effective.
+          </li>
+          <br>
+          <li>
+            <strong> Anyone Seeking Financial Freedom:</strong> Individuals who are motivated to take control of their financial future and are willing to put in the effort to achieve their goals. 
+            Diamond Project Online provides a path to financial freedom through a well-supported and proven online business model
+          </li>
+        </ol>
+      `
+    },
     {
       question: "How much time commitment is required?",
       answer: `Your level of commitment determines your level of success in every business. 

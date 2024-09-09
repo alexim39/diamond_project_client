@@ -26,7 +26,8 @@
 }
   
 body {
-
+    background-color: var(--background-color);
+    color: var(--text-color);
     article.testimonial {
         background-color: var(--background-color);
         color: var(--text-color);
@@ -114,6 +115,8 @@ body {
     }
 
 
+
+
     .page_404 {
         background-color: var(--background-color);
         color: var(--text-color);
@@ -132,12 +135,12 @@ body {
         color: var(--text-color);
     }
 
-    .our-story, .mission-vision-corevalues {
+    .our-story, .mission-vision-corevalues, .core-mv-container, .mv-card {
         
         background-color: var(--background-color);
         color: var(--text-color);
 
-        .mision-vision, .core-values {
+        .mission-vision, .core-values {
             background-color: var(--background-color);
             color: var(--text-color);
         }
