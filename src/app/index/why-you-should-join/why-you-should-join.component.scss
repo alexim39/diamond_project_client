@@ -1,104 +1,106 @@
 .training-approach {
     background-color: #03010f;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     padding: 3em;
-    align-items: center;
     color: white;
+  
     h1 {
-        margin-bottom: 2em;
+      margin-bottom: 2em;
+      text-align: center;
     }
-    section {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+  
+    .approach-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-gap: 2em;
+  
       .approach-card {
-
+        background-color: #121212;
+        border-radius: 8px;
+        padding: 2em;
+  
         .title {
           display: flex;
           flex-direction: row;
           justify-content: center;
-          align-content: center;
+          align-items: center;
+  
           h1 {
-              font-size: 1.5em;
-              margin-top: -0.2em;
-              font-family: system-ui;
+            font-size: 1.2em;
+            margin-top: -0.2em;
+            font-family: system-ui;
           }
+  
           mat-icon {
-              transform: scale(2);
-              margin-right: 1em;
+            transform: scale(2);
+            margin: -2em 1em 0 0;
           }
         }
-
+  
         .content {
           font-size: 1em;
-          padding-left: 3em;
-          margin-top: -2em;
-
+          margin-top: 1em;
+  
           p {
             line-height: 2em;
-            //text-align: justify;
           }
         }
       }
     }
-
+  
     .call-to-action {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        p {
-            font-size: 1.5em;
-            width: 30em;
-            color: #ffab40;
-
-        }
-        button {
-            background-color: #075E54;
-            color: white;
-        }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 3em;
+  
+      p {
+        font-size: 1.5em;
+        color: #ffab40;
+        text-align: center;
+        max-width: 600px;
+      }
+  
+      button {
+        background-color: #075E54;
+        color: white;
+        margin-top: 2em;
+      }
     }
-
-
   }
-
-
-.down-arrow {
+  
+  .down-arrow {
     animation: blink 1.5s infinite;
+    margin-top: 1em;
+  
     mat-icon {
       font-size: 1.2em;
     }
-}
-
-@keyframes blink {
+  }
+  
+  @keyframes blink {
     0%, 50% {
-        opacity: 0;
+      opacity: 0;
     }
     100% {
-        opacity: 1;
+      opacity: 1;
     }
-}
-
-/* Extra small devices (phones, 1500px and down) */
-@media only screen and (max-width: 1500px) {
-.training-approach {
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
-    section {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        .approach-card {
-            margin-top: 2em;
-        }
-    }
-    .call-to-action {
+  }
+  
+  /* Media Queries */
+  @media only screen and (max-width: 768px) {
+    .training-approach {
+      padding: 1em;
+  
+      .approach-cards {
+        grid-template-columns: 1fr;
+      }
+  
+      .call-to-action {
         p {
-            width: auto;
+          font-size: 1.2em;
+          max-width: 100%;
         }
+      }
     }
-}
-}
+  }

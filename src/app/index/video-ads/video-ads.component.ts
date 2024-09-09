@@ -62,7 +62,7 @@ import { CommonModule } from '@angular/common';
     h1 {
       font-size: 2rem;
       margin-bottom: 1em;
-      color: #333;
+      //color: #333;
       span {
         color: #ffab40;
       }
@@ -82,7 +82,7 @@ import { CommonModule } from '@angular/common';
     h1 {
       font-size: 1.75rem;
       margin-bottom: 1em;
-      color: #333;
+      //color: #333;
     }
     .video-container {
       width: 100%;
