@@ -13,13 +13,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatDialogModule} from '@angular/material/dialog';
 import { PaymentDialogComponent } from './payment-dialog.component';
 import {
-  MAT_DIALOG_DATA,
   MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
 } from '@angular/material/dialog'
 import { CommonModule } from '@angular/common';
 
@@ -47,5 +41,6 @@ export class PackagesComponent {
       data: {amount: amount},
     });
   }
+
 
 }
