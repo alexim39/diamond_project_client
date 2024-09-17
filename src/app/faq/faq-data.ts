@@ -35,6 +35,22 @@ export const FAQS = [
       Our focus on personal growth, financial independence, and long-term residual income sets us apart from other opportunities, making this a solid investment in your future.`
     },
     {
+      question: "What are the requirements to start this business?",
+      answer: `
+      <strong>Initial Investment:</strong> You’ll need to choose one of our business bundles, which come with different investment levels to suit your budget and goals. 
+      The capital required varies depending on the bundle you select, with options ranging from N69,990 for the Access Business Bundle to N999,990 for the Elite Business Bundle.
+      <p>Visit the plan section on our website for plan detail</p>
+
+      <p><strong>Internet Access:</strong> Since this is a digital business, reliable internet access is essential for promoting your personalized link, managing your business, and engaging with potential customers and partners.</p>
+
+      <p><strong>Commitment and Time:</strong> While our system is designed for flexibility, your commitment and effort are key to achieving success. 
+      You can work remotely and at your own pace, but dedicating time to promoting your business and leveraging our mentorship program will greatly impact your growth.</p>
+
+      <p><strong>Willingness to Learn:</strong> We provide comprehensive training and mentorship to guide you every step of the way, so being open to learning and applying new strategies is important.</p>
+
+      <p><strong>Desire for Financial Freedom:</strong> If you are motivated to take control of your financial future and are serious about building a sustainable online business, Diamond Project Online provides the tools and support needed to make it happen.`
+    },
+    {
       question: "What kind of support will I receive after joining, especially if I'm new to online business?",
       answer: `At Diamond Project Online, we believe that success comes from not just having the right tools but also knowing how to use them. 
       That's why mentorship is at the heart of our business. 
