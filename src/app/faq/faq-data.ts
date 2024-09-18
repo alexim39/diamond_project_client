@@ -116,6 +116,32 @@ export const FAQS = [
       `
     },
     {
+      question: "How does Diamond Project Online (Business) work?",
+      answer: `
+      <p>Our business model at Diamond Project Online is designed to help you grow a successful online business using digital marketing and network partnerships. Here’s how it works:</p>
+
+      <p><strong>Sign Up and Join:</strong><br> When you sign up with Diamond Project Online, you choose a business plan that best suits your goals. 
+      After signing up, you’ll receive a unique referral link, which will serve as your primary tool for promoting the business.</p>
+      
+      <p><strong>Promote Your Link: </strong><br> Your main task is to promote your unique link through various online channels like social media, email, blogs, or digital ads. 
+      The more exposure your link gets, the more potential partners or customers you’ll attract.</p>
+      <p>You can outsource these activities to the partner software tool to automate and handle the process for you.</p>
+      
+      <p><strong>Earn Through Commissions:</strong><br> As people click on your link and join the business or purchase products, you’ll earn commissions. 
+      Our business model allows you to generate income by growing your network and promoting products or services.</p>
+
+      <p><strong>Build Passive Income:</strong><br> Over time, as your network grows, so does your potential to earn residual income. 
+      The goal is to create multiple income streams where you earn even when you're not actively working, providing you with long-term financial stability.</p>
+
+      <p><strong>Receive Ongoing Support and Training:</strong><br> Diamond Project Online offers comprehensive training to help you understand how to effectively promote your link and build your business. 
+      You’ll also receive mentorship from experienced leaders to guide you through every step.</p>
+
+      <p><strong>Leverage Data-Driven Software:</strong><br> Our platform provides data-driven insights and Software tools to help you track your performance, optimize your strategies, and make informed decisions to scale your business.</p>
+
+      <p>In summary, our business works by helping you harness the power of digital marketing and partnerships to build a sustainable online business that offers both flexibility and the potential for passive income. The more effort you put in, the greater your earnings and business growth potential</p>
+      `
+    },
+    {
       question: "What are the risks involved in joining Diamond Project Online, and how are they mitigated?",
       answer: `As with any business venture, there are inherent risks, including market fluctuations, competition, and the challenge of building a customer (partner) base. 
       However, Diamond Project Online mitigates these risks through a well-established business model that combines digital marketing with online partnership programs. 
