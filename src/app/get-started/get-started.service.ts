@@ -4,6 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { SurveyFormData } from './get-started.interface';
 
+
+
 @Injectable()
 export class SurveyService {
   // Define API
@@ -38,7 +40,7 @@ export class SurveyService {
 
 
   // user submit survey
-  submit(formData: SurveyFormData): Observable<SurveyFormData> {
+  submit(formData: SurveyFormData): Observable<any> {
     //console.log('form record', formData);
     return this.http
       .post<SurveyFormData>(this.api + '/survey/submit', formData)

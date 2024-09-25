@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Router } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormArray } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { SurveyFormData } from './get-started.interface';
 import { Subscription } from 'rxjs';
@@ -18,6 +18,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
 import { minDigitsValidator } from '../_common/services/username-check';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 /**
  * @title Survey form for getting started
@@ -26,9 +28,9 @@ import { minDigitsValidator } from '../_common/services/username-check';
   selector: 'async-feedback',
   standalone: true,
   providers: [SurveyService],
-  imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+  imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
   templateUrl: 'get-started.component.html',
-  styleUrls: ['get-started.component.scss']
+  styleUrls: ['get-started.component.scss', 'get-started.mobile.scss']
 })
 export class GetStartedComponent implements OnInit, OnDestroy {
 
@@ -63,7 +65,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     
   }
 
-  ngOnInit(): void {
+/*   ngOnInit(): void {
     this.surveyForm = this.fb.group({
       doYouFeelNeedForChange: ['', Validators.required],
       employedStatus: ['', Validators.required],
@@ -81,6 +83,55 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       userDevice: this.userDevice,
       username: this.username
     });
+  } */
+
+    ngOnInit(): void {
+      this.surveyForm = this.fb.group({
+        ageRange: ['', Validators.required],
+        socialMedia: this.fb.array([], Validators.required), // FormArray for socialMedia checkboxes
+        importanceOfPassiveIncome: ['', Validators.required],
+        onlinePurchaseSchedule: ['', Validators.required],
+        primaryOnlineBusinessMotivation: ['', Validators.required],
+        employedStatus: ['', Validators.required],
+        comfortWithTech: ['', Validators.required],
+        onlineBusinessTimeDedication: ['', Validators.required],
+        phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+        email: ['', [Validators.required, Validators.email]],
+        name: ['', Validators.required],
+        surname: ['', Validators.required],
+        referral: ['', Validators.required],
+        referralCode: ['', Validators.required],
+        userDevice: this.userDevice,
+        username: this.username
+      });
+  
+      this.surveyForm.get('referral')?.valueChanges.subscribe(value => {
+        if (value === 'Referral') {
+          this.surveyForm.get('referralCode')?.setValidators([Validators.required]);
+        } else {
+          this.surveyForm.get('referralCode')?.clearValidators();
+        }
+        this.surveyForm.get('referralCode')?.updateValueAndValidity();
+      });
+    }
+
+    // Get FormArray for socialMedia
+    get socialMedia(): FormArray {
+      return this.surveyForm.get('socialMedia') as FormArray;
+    }
+
+  // Add or remove checkbox values in the FormArray
+  onCheckboxChange(event: any) {
+    const formArray: FormArray = this.surveyForm.get('socialMedia') as FormArray;
+
+    if (event.checked) {
+      // Add the value to the FormArray
+      formArray.push(this.fb.control(event.source.value));
+    } else {
+      // Remove the value from the FormArray
+      const index = formArray.controls.findIndex(x => x.value === event.source.value);
+      formArray.removeAt(index);
+    }
   }
 
    // scroll to top when clicked
@@ -121,6 +172,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       )
     } else {
      this.isSpinning = false;
+     this.surveyForm.markAllAsTouched(); // Highlight invalid fields
     }
     
   }

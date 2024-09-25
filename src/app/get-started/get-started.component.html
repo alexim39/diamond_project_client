@@ -3,7 +3,7 @@
 
     <article>
         <h2>Getting Started</h2>
-        <!-- <h3>{{course.subTitle}}</h3> -->
+        <!-- <h3>Survey Form</h3> -->
         <p>Kindly fill out this survey to get started with Diamond Project</p>
       </article>
   
@@ -12,7 +12,6 @@
      <section class="breadcrumb-wrapper">
         <div class="breadcrumb">
             <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Home</a> &gt;
-            <!-- <a routerLink="/get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a> &gt; -->
             <span>get started</span>
         </div>
      </section>
@@ -23,89 +22,148 @@
         <h3>Get Started - Diamond Project</h3>
         
         <form [formGroup]="surveyForm" (submit)="onSubmit()">
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Do you feel like doing more? </mat-label>
-            <mat-select formControlName="doYouFeelNeedForChange">
-              <mat-option value="Yes">Yes</mat-option>
-              <mat-option value="No">No</mat-option>
+
+          <div class="form-wrapper">
+            <div class="range">
+              <h4>What is your age range?</h4>
+              <mat-radio-group aria-label="Select an age range" formControlName="ageRange"
+                [ngClass]="{'invalid-field': surveyForm.get('ageRange')?.invalid && surveyForm.get('ageRange')?.touched}">
+                <mat-radio-button value="18-24">18-24</mat-radio-button>
+                <mat-radio-button value="25-34">25-34</mat-radio-button>
+                <mat-radio-button value="35-44">35-44</mat-radio-button>
+                <mat-radio-button value="45-54">45-54</mat-radio-button>
+                <mat-radio-button value="55+">55+</mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="surveyForm.get('ageRange')?.invalid && surveyForm.get('ageRange')?.touched">
+                Please select your age range.
+              </mat-error>
+            </div>
+
+            <div class="range">
+              <h4>Which social media platforms do you use most frequently?</h4>
+              <section [ngClass]="{'invalid-field': surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched}">
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Facebook">Facebook</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Instagram">Instagram</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="LinkedIn">LinkedIn</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Youtube">Youtube</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Twitter">Twitter</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="TikTok">TikTok</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Pinterest">Pinterest</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Snapchat">Snapchat</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="WhatsApp">WhatsApp</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Telegram">Telegram</mat-checkbox>
+              </section>
+              <mat-error *ngIf="surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched">
+                Please select at least one platform.
+              </mat-error>
+            </div>
+          </div>
+
+          <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('importanceOfPassiveIncome')?.invalid && surveyForm.get('importanceOfPassiveIncome')?.touched}">
+            <mat-label>How important is passive income to you? </mat-label>
+            <mat-select formControlName="importanceOfPassiveIncome">
+              <mat-option value="Very important">Very important</mat-option>
+              <mat-option value="Somewhat important">Somewhat important</mat-option>
+              <mat-option value="Neutral">Neutral</mat-option>
+              <mat-option value="Not very important">Not very important</mat-option>
+              <mat-option value="Not important at all">Not important at all</mat-option>
               <mat-option value="cant say">Can't say</mat-option>
             </mat-select>
-            <mat-error *ngIf="surveyForm.get('doYouFeelNeedForChange')?.hasError('required') ">
+            <mat-error *ngIf="surveyForm.get('importanceOfPassiveIncome')?.hasError('required') ">
                 This answer is required
               </mat-error>
           </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>What's your work situation? </mat-label>
+
+          <div class="form-wrapper">
+            <div class="range">
+              <h4>How often do you make purchases online? </h4>
+              <mat-radio-group aria-label="Select an purchase range" formControlName="onlinePurchaseSchedule" 
+              [ngClass]="{'invalid-field': surveyForm.get('onlinePurchaseSchedule')?.invalid && surveyForm.get('onlinePurchaseSchedule')?.touched}">
+                <mat-radio-button value="Multiple times a week">Multiple times a week</mat-radio-button>
+                <mat-radio-button value="Once a week">Once a week</mat-radio-button>
+                <mat-radio-button value="A few times a month">A few times a month</mat-radio-button>
+                <mat-radio-button value="Once a month">Once a month</mat-radio-button>
+                <mat-radio-button value="Rarely">Rarely</mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="surveyForm.get('onlinePurchaseSchedule')?.invalid && surveyForm.get('onlinePurchaseSchedule')?.touched">
+                Please select an option
+              </mat-error>
+            </div>
+
+            <div class="range">
+              <h4>What is your primary motivation for joining online business opportunities? </h4>
+              <mat-radio-group aria-label="Select an primary motivation range" formControlName="primaryOnlineBusinessMotivation"
+              [ngClass]="{'invalid-field': surveyForm.get('primaryOnlineBusinessMotivation')?.invalid && surveyForm.get('primaryOnlineBusinessMotivation')?.touched}">
+                <mat-radio-button value="Additional income">Additional income</mat-radio-button>
+                <mat-radio-button value="Financial freedom">Financial freedom</mat-radio-button>
+                <mat-radio-button value="Flexible work hours">Flexible work hours</mat-radio-button>
+                <mat-radio-button value="Personal growth">Personal growth</mat-radio-button>
+                <mat-radio-button value="Being part of a community">Being part of a community</mat-radio-button>
+                <mat-radio-button value="Its something else">Its something else</mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="surveyForm.get('primaryOnlineBusinessMotivation')?.invalid && surveyForm.get('primaryOnlineBusinessMotivation')?.touched">
+                Please select an option
+              </mat-error>
+            </div>
+          </div>
+
+          <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('employedStatus')?.invalid && surveyForm.get('employedStatus')?.touched}">
+            <mat-label>What's your employment status? </mat-label>
             <mat-select formControlName="employedStatus">
-              <mat-option value="employed">Employed</mat-option>
-              <mat-option value="self-employed">Self-employed</mat-option>
+              <mat-option value="Full-time employed">Full-time employed</mat-option>
+              <mat-option value="Part-time employed">Part-time employed</mat-option>
+              <mat-option value="Self-employed">Self-employed</mat-option>
+              <mat-option value="Student">Student</mat-option>
               <mat-option value="Unemployed">Unemployed</mat-option>
+              <mat-option value="Retired">Retired</mat-option>
             </mat-select>
             <mat-error *ngIf="surveyForm.get('employedStatus')?.hasError('required') ">
             This answer is required
               </mat-error>
           </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Want to make extra money? </mat-label>
-            <mat-select formControlName="interestedInEarningAdditionaIcome">
-            <mat-option value="Yes">Yes</mat-option>
-              <mat-option value="No">No</mat-option>
-              <mat-option value="cant say">Can't say</mat-option>
-            </mat-select>
-            <mat-error *ngIf="surveyForm.get('interestedInEarningAdditionaIcome')?.hasError('required') ">
-            This answer is required
+
+
+          <div class="form-wrapper">
+            <div class="range">
+              <h4>How comfortable are you with technology and digital tools?</h4>
+              <mat-radio-group aria-label="Select a comfort with technology" formControlName="comfortWithTech"
+              [ngClass]="{'invalid-field': surveyForm.get('comfortWithTech')?.invalid && surveyForm.get('comfortWithTech')?.touched}">
+                <mat-radio-button value="Very comfortable">Very comfortable</mat-radio-button>
+                <mat-radio-button value="Somewhat comfortable">Somewhat comfortable</mat-radio-button>
+                <mat-radio-button value="Neutral">Neutral</mat-radio-button>
+                <mat-radio-button value="Somewhat uncomfortable">Somewhat uncomfortable</mat-radio-button>
+                <mat-radio-button value="Very uncomfortable">Very uncomfortable</mat-radio-button>
+                <mat-radio-button value="Cant say">Cant say</mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="surveyForm.get('comfortWithTech')?.invalid && surveyForm.get('comfortWithTech')?.touched">
+                Please select an option
               </mat-error>
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Can more skills help you reach your goals? </mat-label>
-            <mat-select formControlName="doYouBelieveInTraining">
-              <mat-option value="Yes">Yes</mat-option>
-              <mat-option value="No">No</mat-option>
-              <mat-option value="cant say">Can't say</mat-option>
-            </mat-select>
-            <mat-error *ngIf="surveyForm.get('doYouBelieveInTraining')?.hasError('required') ">
-            This answer is required
+            </div>
+
+            <div class="range">
+              <h4>How much time can you dedicate to an online business each week?</h4>
+              <mat-radio-group aria-label="Select an purchase range" formControlName="onlineBusinessTimeDedication"
+              [ngClass]="{'invalid-field': surveyForm.get('onlineBusinessTimeDedication')?.invalid && surveyForm.get('onlineBusinessTimeDedication')?.touched}">
+                <mat-radio-button value="Less than 5 hours">Less than 5 hours</mat-radio-button>
+                <mat-radio-button value="5-10 hours">5-10 hours</mat-radio-button>
+                <mat-radio-button value="11-20 hours">11-20 hours</mat-radio-button>
+                <mat-radio-button value="21-30 hours">21-30 hours</mat-radio-button>
+                <mat-radio-button value="More than 30 hours">More than 30 hours</mat-radio-button>
+                <mat-radio-button value="Can't say">Can't say</mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="surveyForm.get('onlineBusinessTimeDedication')?.invalid && surveyForm.get('onlineBusinessTimeDedication')?.touched">
+                Please select an option
               </mat-error>
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Are you open to coaching? </mat-label>
-            <mat-select formControlName="areYouOpenToBeCoached">
-              <mat-option value="Yes">Yes</mat-option>
-              <mat-option value="No">No</mat-option>
-              <mat-option value="cant say">Can't say</mat-option>
-            </mat-select>
-            <mat-error *ngIf="surveyForm.get('areYouOpenToBeCoached')?.hasError('required') ">
-            This answer is required
-              </mat-error>
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Would you be interested in an online session?</mat-label>
-            <mat-select formControlName="ifSessionIsSet">
-              <mat-option value="Yes">Yes</mat-option>
-              <mat-option value="No">No</mat-option>
-              <mat-option value="cant say">Can't say</mat-option>
-            </mat-select>
-            <mat-error *ngIf="surveyForm.get('ifSessionIsSet')?.hasError('required') ">
-            This answer is required
-              </mat-error>
-          </mat-form-field>
+            </div>
+          </div>
   
           <div class="form-wrapper">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline"  [ngClass]="{'invalid-field': surveyForm.get('phoneNumber')?.invalid && surveyForm.get('phoneNumber')?.touched}">
               <mat-label>What's your phone number?</mat-label>
               <input matInput formControlName="phoneNumber">
               <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('required') ">
                 Your phone number is required
               </mat-error>
-              <!-- <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('pattern')">
-                Please enter a valid phone number starting with 0 and containing 11 digits.
-              </mat-error> -->
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>What's your email address?</mat-label>
@@ -114,7 +172,7 @@
           </div>
   
           <div class="form-wrapper">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('name')?.invalid && surveyForm.get('name')?.touched}">
               <mat-label>Name</mat-label>
               <input matInput formControlName="name">
               <mat-error *ngIf="surveyForm.get('name')?.hasError('required') ">
@@ -130,7 +188,7 @@
             </mat-form-field>
           </div>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline"  [ngClass]="{'invalid-field': surveyForm.get('referral')?.invalid && surveyForm.get('referral')?.touched}">
             <mat-label>How did you hear about us?</mat-label>
             <mat-select formControlName="referral">
             <mat-option value="Search Engine">Search Engine (Google, Bing, etc.)</mat-option>
@@ -154,10 +212,10 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="surveyForm.get('referral')?.value === 'Referral'">
-            <mat-label>Referral names</mat-label>
+            <mat-label>Referral Name</mat-label>
             <input matInput formControlName="referralCode">
             <mat-error *ngIf="surveyForm.get('referralCode')?.hasError('required') ">
-            Code is required
+            This value is required
             </mat-error>
         </mat-form-field>
 

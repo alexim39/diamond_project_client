@@ -1,14 +1,18 @@
+// get-started.interface.ts
 export interface SurveyFormData {
-    doYouFeelNeedForChange: string;
+    ageRange: string;
+    socialMedia: string[];
+    importanceOfPassiveIncome: string;
+    onlinePurchaseSchedule: string;
+    primaryOnlineBusinessMotivation: string;
     employedStatus: string;
-    interestedInEarningAdditionaIcome: string;
-    doYouBelieveInTraining: string;
-    areYouOpenToBeCoached: string;
-    ifSessionIsSet: string;
+    comfortWithTech: string;
+    onlineBusinessTimeDedication: string;
     phoneNumber: string;
     email: string;
     name: string;
     surname: string;
-    userDevice: string;
-    username: string;
-}
+    referral: string;
+    referralCode: string;
+  }
+  
