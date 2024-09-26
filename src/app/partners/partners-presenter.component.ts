@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { BrandsComponent } from './brands.component';
 import { WhyWeExistComponent } from './why-we-exist/why-we-exist.component';
 import { PartnerInterface } from '../_common/interface/partner.interface';
+import { CommonModule } from '@angular/common';
 
 /**
  * @title Partners
@@ -12,21 +13,21 @@ import { PartnerInterface } from '../_common/interface/partner.interface';
 @Component({
   selector: 'async-partners-presentation',
   standalone: true,
-  imports: [RouterModule, AboutWhyYouShouldJoinComponent, MatButtonModule, BrandsComponent, WhyWeExistComponent],
+  imports: [CommonModule, RouterModule, AboutWhyYouShouldJoinComponent, MatButtonModule, BrandsComponent, WhyWeExistComponent],
   templateUrl: 'partners-presenter.component.html',
-  styleUrls: ['partners-presenter.component.scss']
+  styleUrls: ['partners-presenter.component.scss', 'partners-presenter.mobile.scss']
 })
 export class PartnersPresenterComponent implements OnInit {
 
     @Input() partner!: PartnerInterface;
 
+
     constructor(
       
-    ) {
-    }
+    ) { }
 
     ngOnInit() {
-        //console.log('partner ',this.partner)      
+        console.log('partner ',this.partner)      
     }
 
      // scroll to top when clicked

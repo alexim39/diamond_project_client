@@ -23,11 +23,11 @@
           <h3 class="big-title">What we are <span class="obvious">offering is a system</span> <br>for creating a residual income stream online</h3>
 
           <div class="messages">
-            <p>Are you worried about your retirement savings? Feeling overwhelmed by debt?</p>
+            <p>Are you worried about always being broke? Feeling overwhelmed by debt?</p>
           
-            <p>Our online business model can help you create a personalized plan to secure your financial future and become debt-free.         </p> 
+            <p>Our online business model can help you begin your journey to a secure financial future and achieve debt freedom</p> 
             
-            <p>Book a session now to get more information about our business</p>
+            <p>Start your online business journey with us today!</p>
 
             <!-- <a mat-flat-button color="accent" routerLink="../one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A One-On-One</a> -->
             <a mat-flat-button color="accent" routerLink="../get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a>
@@ -40,8 +40,6 @@
           <div class="steps">
             <async-index-why-we-exist></async-index-why-we-exist>
           </div>
-
-    
         </article>
 
         <article class="partner-banner">
@@ -56,32 +54,78 @@
 
             </div>
 
-            <h2>Join Our Community Today And Get Mentored Into A New Life</h2>
+            <h5>Join Our Community Today And Get Mentored Into A New Life</h5>
 
             <div class="comments-container">
-                <p class="intro">Building a successful business takes dedication and hard work, but it's incredibly rewarding! Here at Diamond Project, we're proud to see our team members achieving amazing things.</p>
+                <h4 style="font-size: 1.5em; margin-bottom: -20px;">
+                    <!-- Building a successful business takes dedication and hard work, but it's incredibly rewarding! Here at Diamond Project, we're proud to see our team members achieving amazing things. -->
+                    Business Partners Testimonial
+                </h4>
+            
+                <div class="comment" *ngIf="partner.testimonial">
+                    <div class="comments" >
+                        <strong>{{partner.name}} {{partner.surname}} <small style="color: gray;" *ngIf="partner.jobTitle"> - {{partner.jobTitle}}</small> </strong> 
+                        <blockquote class="quote">
+                            {{partner.testimonial}}
+                        </blockquote>
+                    </div>
+                    <!-- Social Media Icons -->
+                    <div class="social-links">
+                        <a *ngIf="partner.facebookPage" href="{{partner.facebookPage}}" class="fa fa-facebook" title="Facebook" target="_blank"></a>
 
-                <p class="comments">
-                    <strong>Ichebadu Woko - Recent College Graduate:</strong> "The job market after graduation was brutal.  
-                    Diamond Project gave me an opportunity to leverage my skills and build a career path without limitations.  
-                    
-                </p>
+                        <a *ngIf="partner.twitterPage" href="{{partner.twitterPage}}" class="fa fa-twitter" title="Twitter" target="_blank"></a>
 
-                <p class="comments">
-                    <strong>Veronica Umoh - Professional Nurse: </strong> "I was drowning in daycare costs and missing precious moments with my kids.  
-                    Now I have the flexibility to be there for them while creating an income stream. 
-                    I contribute financially and have more time with my family.
-                </p>
+                        <a *ngIf="partner.linkedinPage" href="{{partner.linkedinPage}}" class="fa fa-linkedin" title="Linkedin" target="_blank"></a>
 
-                <p class="comments">
-                    <strong>Frank Okwo - Corporate Sales Manager: </strong> "I was tired of the corporate grind and the feeling of being stuck.  
-                    Diamond Project offered a chance to be my own boss and build something meaningful.   I'm finally in control of my future!"
-                </p>
+                        <a *ngIf="partner.youtubePage" href="{{partner.youtubePage}}" class="fa fa-youtube" title="Youtube" target="_blank"></a>
 
-                <p class="comments">
-                    <a mat-flat-button color="accent" routerLink="../get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">START AN ONLINE BUSINESS TODAY</a>
+                        <a *ngIf="partner.instagramPage" href="{{partner.instagramPage}}" class="fa fa-instagram" title="Instagram" target="_blank"></a>
+
+                        <a *ngIf="partner.tiktokPage" href="{{partner.tiktokPage}}" class="fa fa-tiktok" title="Tiktok" target="_blank">Tiktok</a>
+
+                    </div>
+                </div>
+            
+                <div class="comment">
+                    <div class="comments">
+                        <strong>Adeyemi Temitope <small style="color: gray;"> - Entrepreneur & Mentor</small> </strong> 
+                        <blockquote class="quote">
+                            The job market after graduation was brutal and the drowning, daily work activities made me miss precious moments with my family.  
+                            Now I have the flexibility to be there for them while creating an income stream.  
+                            I am financially stable and have more time with my family.
+                        </blockquote>
+                    </div>
+                    <!-- Social Media Icons -->
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/adeyemitemitopesanya" class="fa fa-facebook" title="Facebook" target="_blank"></a>
+                        <a href="https://www.linkedin.com/in/temitope-sanya-adeyemi-siirsm-79ab2963/" class="fa fa-linkedin" title="Linkedin" target="_blank"></a>
+                    </div>
+                </div>
+            
+                <div class="comment">
+                    <div class="comments">
+                        <strong>Imenwo Alex <small style="color: gray;"> - Chief Technology Officer</small> </strong> 
+                        <blockquote class="quote">
+                            I was tired of the corporate grind and the feeling of being stuck.  
+                            Diamond Project offered a chance to be my own boss and build something meaningful. I'm finally in control of my future!
+                        </blockquote>
+                    </div>
+                    <!-- Social Media Icons -->
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/imenwo?_rdc=1&_rdr" class="fa fa-facebook" title="Facebook" target="_blank"></a>
+                        <a href="https://x.com/ImenwoAlex" class="fa fa-twitter" title="Twitter" target="_blank"></a>
+                        <a href="https://www.linkedin.com/in/alex-imenwo-2b38b298/" class="fa fa-linkedin" title="Linkedin" target="_blank"></a>
+
+                    </div>
+                </div>
+            
+                <p style="text-align: center; margin: 1em 0;">
+                    <a mat-flat-button color="accent" routerLink="../get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">
+                        START AN ONLINE BUSINESS TODAY
+                    </a>
                 </p>
             </div>
+            
 
 
 
@@ -101,17 +145,17 @@
                     <ul>  
                         <li>  
                             <h4> Join as a Partner</h4>  
-                            <p>Become a partner in our success by signing up and joining our community.</p>  
+                            <p>Become a partner by signing up and joining our community.</p>  
                         </li>  
                         
                         <li>  
                             <h4> Get Your Personalized Link</h4>  
-                            <p>Receive a unique link to build your online business and access our platform.</p>  
+                            <p>Receive a unique link to build your business and access our software platform.</p>  
                         </li>  
         
                         <li>  
                             <h4> Promote & Grow</h4>  
-                            <p>Our system supports your growth by simplifying promotion and management.</p>  
+                            <p>The software system supports your growth by scaling your effort, automating, and simplifying promotion and management.</p>  
                         </li>  
         
                         <li>  
@@ -139,7 +183,7 @@
     
     </section>
 
-    <async-why-you-should-join></async-why-you-should-join>
+    <async-why-you-should-join [partnerWhatsappGroupLink]="partner.whatsappGroupLink"></async-why-you-should-join>
 
     <!-- <div class="icon"></div> -->
 

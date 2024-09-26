@@ -105,13 +105,91 @@
         }
     
         .comments-container {
+         .comment {
           .comments {
             display: flex;
             flex-direction: column;
             margin: 3em 0; /* Removed horizontal margins to prevent overflow */
             font-size: 1em;
             text-align: justify;
+            margin-left: 30px;
+            .quote {
+              font-size: 18px; /* Increase font size */
+              font-style: italic;
+              color: #333; /* Slightly darker color for the text */
+              border-left: 6px solid #007BFF; /* Thicker blue border */
+              padding-left: 20px;
+              margin: 15px 0;
+              background-color: #f5f5f5; /* Light gray background */
+              border-radius: 8px; /* Rounded corners */
+              box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+              position: relative;
+              padding: 1em;
+              
           }
+          
+          .quote::before, .quote::after {
+              content: "”"; /* Add quotation mark styling */
+              font-size: 40px;
+              position: absolute;
+              color: #007BFF; /* Color for the decorative quotes */
+          }
+          
+          .quote::before {
+              content: "“"; /* Left quote */
+              left: 0px;
+              top: -10px;
+              margin-top: 10px;
+          }
+          
+          .quote::after {
+              content: "”"; /* Right quote */
+              right: 10px;
+              bottom: -10px;
+          }
+          
+          .end-quote {
+              vertical-align: bottom;
+          }
+          }
+
+          .social-links {
+            border-bottom: 1px dotted gray;
+            margin: -25px 10px 0 0;
+            a {
+              display: inline-block;
+              margin: 0 10px 10px 0;
+              text-decoration: none;
+
+              width: 24px;
+              height: 24px;
+              transition: transform 0.3s ease;
+            }
+
+            a:hover {
+              transform: scale(1.1);
+            }
+
+            .fa-facebook {
+              color: #4267B2;
+            }
+            .fa-twitter {
+              color: #1da1f2;
+            }
+            .fa-linkedin {
+              color: #0e76a8;
+            }
+          }
+        
+        /* Optional: Add some padding around the icons */
+        .social-links a img {
+            padding: 5px;
+            border-radius: 50%;
+            background-color: #f0f0f0; /* Light background for better visibility */
+        }
+
+        
+         }
         }
       }
     }
@@ -130,131 +208,6 @@
         }
      }
 }
-
-
-
-
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .partners-background {
-        .head {
-            article {
-              width: 100%;
-              padding: 1em;
-              h2 {
-                font-size: 1.4em;
-              }
-              h3 {
-                font-size: 1em;
-                padding-right: 2em;
-              }
-              p {
-                width: 90%;
-              }
-            }
-        }
-
-        .body {
-            flex-direction: column;
-            .writeup, .banner {
-              flex: 0 0 100%; /* Each element takes full width on small screens */
-              .messages {
-                p {
-                  width: 100%;
-                }
-              }
-              .b-img {
-                img {
-                    width: 100%;
-                }
-              }
-
-            }
-
-           
-
-            .partner-banner {
-              padding: 2em;
-              min-height: 64em;
-              .comments-container {
-                .comments {
-                    margin: 3em 0.4em;
-                }
-            }
-            }
-           
-           
-        }
-    }
-    
-}
-
-
-/* iPads/tablet (portrait and landscape) */
-@media only screen and (min-device-width: 601px) and (max-device-width: 1024px) {
- 
-  .partners-background {
-    .head {
-        article {
-          width: 100%;
-          padding: 1em;
-          h2 {
-            font-size: 1.4em;
-          }
-          h3 {
-            font-size: 1em;
-            padding-right: 2em;
-          }
-          p {
-            width: 90%;
-          }
-        }
-    }
-
-    .body {
-        flex-direction: column;
-        .writeup, .banner {
-          flex: 0 0 100%; /* Each element takes full width on small screens */
-          .messages {
-            p {
-              width: 100%;
-            }
-          }
-          .b-img {
-            img {
-                width: 100%;
-            }
-          }
-
-        }
-
-       
-
-        .partner-banner {
-          padding: 2em;
-          min-height: 30em;
-          .comments-container {
-            .comments {
-                margin: 3em 0.4em;
-            }
-        }
-        }
-       
-       
-    }
-}
-
-}
-
-
-
-
-
-
-
-
-
 
 .how-it-works {  
   padding: 1rem; /* Padding for the section */  

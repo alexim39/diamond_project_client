@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -82,7 +82,15 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['why-you-should-join.component.scss']
 })
 export class AboutWhyYouShouldJoinComponent {
+
+  @Input() partnerWhatsappGroupLink!: string | undefined;
+
   lunchWhatsAppGroup() {
-    window.open('https://chat.whatsapp.com/EO6Xl6zsDwwA9yZrcVUwP2', '_blank');
+    if (this.partnerWhatsappGroupLink) {
+      window.open(this.partnerWhatsappGroupLink, '_blank');
+    } else {
+      window.open('https://chat.whatsapp.com/EO6Xl6zsDwwA9yZrcVUwP2', '_blank');
+    }
+    
   }
 }
