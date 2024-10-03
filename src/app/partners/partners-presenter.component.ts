@@ -27,7 +27,7 @@ export class PartnersPresenterComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log('partner ',this.partner)      
+        //console.log('partner ',this.partner)      
     }
 
      // scroll to top when clicked
