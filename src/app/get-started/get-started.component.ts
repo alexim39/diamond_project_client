@@ -65,26 +65,6 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     
   }
 
-/*   ngOnInit(): void {
-    this.surveyForm = this.fb.group({
-      doYouFeelNeedForChange: ['', Validators.required],
-      employedStatus: ['', Validators.required],
-      interestedInEarningAdditionaIcome: ['', Validators.required],
-      doYouBelieveInTraining: ['', Validators.required],
-      areYouOpenToBeCoached: ['', Validators.required],
-      ifSessionIsSet: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, minDigitsValidator(6)]],
-      //phoneNumber: ['', Validators.required, Validators.pattern('0\\d{10}')],
-      email: ['', [Validators.email]],
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      referralCode: ['',],
-      referral: ['', Validators.required],
-      userDevice: this.userDevice,
-      username: this.username
-    });
-  } */
-
     ngOnInit(): void {
       this.surveyForm = this.fb.group({
         ageRange: ['', Validators.required],

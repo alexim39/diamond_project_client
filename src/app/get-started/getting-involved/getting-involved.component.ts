@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { GettingInvolvedVideosComponent } from './getting-involved-vid.component';
 import { CountryDataService } from '../country-share.service';
 import { countryVideos } from './country-vid';
+import { Subscription } from 'rxjs';
+import { PartnerInterface } from '../../_common/interface/partner.interface';
+import { UsernameCheckService } from '../../_common/services/username-check';
 
 export interface Video {
   title: string;
@@ -26,7 +29,7 @@ export interface Video {
 @Component({
   selector: 'async-getting-involved',
   standalone: true,
-  providers: [],
+  providers: [UsernameCheckService],
   imports: [MatButtonModule, CommonModule, MatButtonModule, MatDialogModule, RouterModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   template: `
   <section class="head">
@@ -325,7 +328,7 @@ iframe {
 }
 `]
 })
-export class GettingInvolvedComponent implements OnInit {
+export class GettingInvolvedComponent implements OnInit, OnDestroy {
 
    // Define videos for each country
    countryVideos: { [country: string]: Video[] } = countryVideos;
@@ -333,11 +336,46 @@ export class GettingInvolvedComponent implements OnInit {
   selectedCountry: string = '';
   videos: Video[] = [];
 
+  //username: string = '';
+  partner!: PartnerInterface;
+  subscriptions: Subscription[] = [];
+
   constructor(
     private router: Router, 
     public dialog: MatDialog,
-    private dataService: CountryDataService
-  ) {}
+    private dataService: CountryDataService,
+    private usernameCheckService: UsernameCheckService
+  ) {
+    const storedUsername = localStorage.getItem('username');
+    // Retrieve the data from local storage
+    if (storedUsername) {
+      //this.username = storedUsername;
+      //console.log('Retrieved data from local storage:', this.username);
+
+       // check if username exist
+       this.subscriptions.push(
+        this.usernameCheckService.checkUsernameAvailability(storedUsername).subscribe(
+          (returnedObject) => {
+            if (returnedObject.username == storedUsername) {
+              // Store the extracted data in local storage
+             // localStorage.setItem('username', username);
+              this.partner = returnedObject;
+            }
+          }, (error) => {
+            if (error.error.code == 400) {
+              // No partner with provided username
+              // show page not found
+              this.router.navigate(['/page/not-found/']);
+              localStorage.removeItem('username');
+            }
+          }
+        )
+      )    
+
+    } else {
+      //console.log('Data not found in local storage');
+    }
+  }
 
   ngOnInit() {
     this.dataService.selectedCountry$.subscribe(country => {
@@ -348,7 +386,13 @@ export class GettingInvolvedComponent implements OnInit {
 
   onNext(): void {
    // window.open('https://wa.me/message/I5F2NKYKO7JNB1', '_blank'); // Adeyemi
-    window.open(' https://wa.me/message/GQ6P3GATFO4IB1', '_blank');
+    //window.open(' https://wa.me/message/GQ6P3GATFO4IB1', '_blank');
+
+    if (this.partner.whatsappChatLink) {
+      window.open(this.partner.whatsappChatLink, '_blank');
+    } else {
+      window.open(' https://wa.me/message/GQ6P3GATFO4IB1', '_blank');
+    }
   }
 
   moreInfo(): void {
@@ -381,5 +425,12 @@ export class GettingInvolvedComponent implements OnInit {
   private loadVideosForCountry(country: string): void {
     // Load videos based on the selected country
     this.videos = this.countryVideos[country] || [];
+  }
+
+  ngOnDestroy() {
+    // unsubscribe list
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
   }
 }

@@ -8,11 +8,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { Video } from './getting-involved.component';
 import { MatIconModule } from '@angular/material/icon';
 
-
-
-
 /**
- * @title Injecting data when opening a dialog
+ * @title 
  */
 @Component({
     selector: 'async-getting-involved-vedios',
