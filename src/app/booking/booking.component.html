@@ -75,7 +75,7 @@
               <mat-option value="Wealth Mindset">Wealth Mindset</mat-option>
               <mat-option value="Business Guidance">Business Guidance</mat-option>
               <mat-option value="General Financial Planning">General Financial Planning</mat-option>
-              <mat-option value="Diamond Project Business Principles">Diamond Project Business Principles</mat-option>
+              <mat-option value="About Diamond Project Business">About Diamond Project Business</mat-option>
               <mat-option value="cant say">Can't say</mat-option>
             </mat-select>
             <mat-error *ngIf="bookinForm.get('reason')?.hasError('required') ">
@@ -84,11 +84,9 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label> Leave a brief Description/Questions</mat-label>
+            <mat-label> Leave a brief Description/Questions (Optional)</mat-label>
             <textarea matInput formControlName="description"></textarea>
           </mat-form-field>
-
-
 
           
           <div class="form-wrapper">

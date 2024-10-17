@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   template: `
     <a [routerLink]="['/']" [style.color]="color">
       <span><!-- <mat-icon [style.margin-top]="marginTop">sync</mat-icon> -->
-        <img src="./assets/img/logo.PNG">
+        <img src="./assets/img/logo.PNG" alt="Diamond Project Logo">
         Diamond Project (Online)
       </span>
     </a>

@@ -391,7 +391,7 @@ export class GettingInvolvedComponent implements OnInit, OnDestroy {
     if (this.partner.whatsappChatLink) {
       window.open(this.partner.whatsappChatLink, '_blank');
     } else {
-      window.open(' https://wa.me/message/GQ6P3GATFO4IB1', '_blank');
+      window.open('https://wa.me/message/GQ6P3GATFO4IB1', '_blank');
     }
   }
 
