@@ -49,7 +49,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     <a class="view-on-desktop" mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
     <!-- <a class="view-on-desktop" mat-button [matMenuTriggerFor]="signup">Sign Up <i class="fa fa-angle-double-down"></i></a> -->
     <!-- <a class="view-on-desktop" mat-stroked-button routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Get Started</a> -->
-    <a class="view-on-desktop" color="accent" mat-raised-button routerLink="one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A One-On-One Session</a>
+    <a class="view-on-desktop" color="accent" mat-raised-button routerLink="one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book 1:1 Session</a>
+    <a class="view-on-desktop" mat-stroked-button href="http://partners.diamondprojectonline.com" target="_blank">Partners Platform</a>
     
 
 
@@ -76,7 +77,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
       <a mat-button [matMenuTriggerFor]="resources">Resources <i class="fa fa-angle-double-down"></i></a>
       <a mat-button [matMenuTriggerFor]="support">Support <i class="fa fa-angle-double-down"></i></a>
       <!-- <a mat-button [matMenuTriggerFor]="signup">Sign Up <i class="fa fa-angle-double-down"></i></a> -->
-      <a color="accent" mat-raised-button routerLink="one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book A 1:1 Session</a>
+      <a class="mobile-btn" color="accent" mat-raised-button routerLink="one-on-one-booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Book 1:1 Session</a>
+      <a class="mobile-btn partners" mat-stroked-button href="http://partners.diamondprojectonline.com" target="_blank">Partners Platform</a>
 
       
       <span class="spacer"></span>
@@ -113,7 +115,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
      <!-- <a mat-menu-item routerLink="ebooks" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">eBooks</a> -->
       <a mat-menu-item routerLink="videos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Videos</a>
       <a mat-menu-item routerLink="pre-approach-download" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Download pre-approach doc</a>
-      <a mat-menu-item href="http://partners.diamondprojectonline.com" target="_blank">Partners platform</a>
+      <!-- <a mat-menu-item href="http://partners.diamondprojectonline.com" target="_blank">Partners platform</a> -->
     </mat-menu>
 
    <!-- about -->
@@ -123,7 +125,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     </mat-menu>
 
   `,
-  styleUrls: [`nav.component.scss`]
+  styleUrls: [`nav.component.scss`, `nav.mobile.scss`]
 })
 export class NavComponent implements OnInit, OnDestroy {
   // init subscriptions list
