@@ -12,14 +12,14 @@ import { NavComponent } from './nav/nav.component';
       <async-nav id="nav"></async-nav>
       <router-outlet id="outlet"></router-outlet>
       <async-footer id="footer"></async-footer>
-      <div class="whatsapp-chat">
+      <!-- <div class="whatsapp-chat">
         <a href="https://wa.link/xm8alj" target="_blank" class="whatsapp-button" aria-label="Chat on WhatsApp">
           <i class="fa fa-whatsapp"></i>
         </a>
         <div class="chat-tooltip">
           Chat with us on WhatsApp!
         </div>
-      </div>
+      </div> -->
     </div>
   `,
   styles: [`
