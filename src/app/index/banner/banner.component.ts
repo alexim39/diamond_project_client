@@ -1,74 +1,391 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TypingComponent } from './typing/typing.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'async-index-banner',
-    imports: [MatToolbarModule, CommonModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, TypingComponent],
-    template: `
-    <section>
-      <header>
-        <aside>
-          <video autoplay muted loop [poster]="posterSource">
-            <source [src]="videoSource" type="video/webm">
-          </video>
+  selector: 'async-index-banner',
+  imports: [CommonModule, MatButtonModule, RouterModule],
+  template: `
+<div class="banner-container">
+    <div class="top-nav">
+      <div class="logo">
+        <img src="/assets/images/icon.png" alt="Diamond Project Logo" />
+      </div>
+      <div class="menu-toggle" (click)="toggleMenu()">MENU <span class="hamburger">&#9776;</span></div>
+    </div>
+  
+    <div class="banner-content">
+      <h1>Discover Your <br />
+        <span class="sliding-word" *ngFor="let word of words; let i = index" [class.active]="i === wordIndex">{{ word }}</span>
+      </h1>
+      <br />
+      <span class="line"></span>
 
-          <article>
-            <h1>
-              Diamond Project: Your personal and financial growth journey, fueled by mentorship and online entrepreneurship.
-            </h1>
+      <p>
+        Our transformative platform empowers individuals to elevate lives
+        through a multifaceted approach.
+      </p>
 
-            <br><br>
+      <a mat-flat-button class="get-started" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a>
+    </div>
 
-            <h3>
-              <async-typing></async-typing>
-            </h3>
+    <div class="front-menu">
+      <ul>
+        <li><span class="dot"></span> ABOUT US <br /><small>who we are</small></li>
+        <li><span class="dot"></span> OUR PILLARS <br /><small>what we do</small></li>
+        <li><span class="dot"></span> CONTACT US <br /><small>get in touch</small></li>
+      </ul>
+    </div>
+  
+    <div class="sidebar-menu" [class.open]="menuOpen">
+      <div class="close-menu" (click)="closeMenu()">&#10005;</div>
 
-            <div class="btn">
-              <!-- <a id="get-account" mat-raised-button href="tel:+2349130311019">GIVE US A CALL NOW</a> -->
-              <a id="book-now" mat-raised-button color="accent" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">GET STARTED</a>
-            </div>
-          </article>
+      <img src="/assets/images/icon.png" alt="Diamond Project Logo" />
 
-        </aside>
-      </header>
-    </section>
+      <ul>
+        <li>
+            <a href="">
+                <span class="number">01.</span> Home
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="number">02.</span> About Us
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="number">03.</span> Our Pillars 
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <span class="number">04.</span> Contact Us
+            </a>
+        </li>
+      </ul>
+
+      <div class="menu-description">
+        <p>
+          We are dedicated to guiding our partners towards becoming the ultimate versions of themselves.
+        </p>
+      </div>
+    </div>
+</div>
   `,
-    styleUrls: [`banner.component.scss`]
-})
-export class BannerComponent implements OnInit, OnDestroy  {
-  subscriptions: Subscription[] = [];
-
-  posterSource: string = 'assets/img/bck1.png';
-  videoSource: string = 'assets/vid/bck1.mp4';
-
-  constructor() {}
+  styles: [`
 
 
-  ngOnInit(): void {}
+.banner-container {
+  position: relative;
+  height: 100vh;
+  background: url('/assets/images/hero-bg2.jpg') center/cover no-repeat;
+  color: white;
+  overflow: hidden;
 
-  lunchWhatsAppGroup() {
-    window.open('https://wa.me/message/BQ4PN6TYXNE5D1', '_blank');
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
   }
 
-   // scroll to top when clicked
-   scrollToTop() {
+  .top-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        width: 200px;
+        height: auto;
+      }
+    }
+
+    .menu-toggle {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+
+      .hamburger {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 2;
+    top: 40%;
+    transform: translateY(-50%);
+    text-align: center;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      line-height: 1.2;
+      margin-bottom: 1em;
+      span {
+        display: inline-block;
+        min-height: 1.2em; /* Ensures consistent height for the text */
+        margin-left: -3em;
+      }
+    }
+
+    .line {
+      display: block;
+      width: 100px;
+      height: 4px;
+      background-color: rgb(106, 81, 4);
+      margin: 20px auto;
+    }
+
+    p {
+      margin-top: 1em;
+      font-size: 1.6rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .get-started {
+      width: 10%;
+      font-size: 1.1em;
+      margin-top: 2em;
+      background: #ffc107;
+    }
+  }
+
+
+
+.front-menu {
+    position: absolute;
+    right: 20px;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 20em;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 0.85rem;
+        border-bottom: 1px solid rgb(43, 43, 43);
+        border-top: 1px solid rgb(43, 43, 43);
+        padding: 2em;
+        transition: background-color 0.3s, color 0.3s;
+        border-radius: 20px;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: #ffc107;
+        }
+
+        &:first-child {
+          border-bottom: none;
+        }
+
+        &:last-child {
+          border-top: none;
+        }
+
+        .dot {
+          display: inline-block;
+          width: 6px;
+          height: 6px;
+          background: #ffc107;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+
+        small {
+          display: block;
+          font-size: 1rem;
+          opacity: 0.7;
+          margin-left: 1em;
+          padding-top: 0.4em;
+          color: rgb(209, 209, 209);
+        }
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
+
+
+
+  .sidebar-menu {
+    position: fixed;
+    right: -100%; /* Hidden off-screen initially */
+    top: 0;
+    height: 100%;
+    width: 20em;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    z-index: 3;
+    transition: right 0.3s ease-in-out; /* Smooth slide-in/out animation */
+    padding: 20px;
+
+    &.open {
+      right: 0; /* Slide into view when the 'open' class is added */
+    }
+
+    .close-menu {
+      font-size: 1.5rem;
+      text-align: right;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 12em;
+      display: block; /* Makes the image a block element */
+      margin: 0 auto; /* Centers the image horizontally */
+      padding-bottom: 2em;
+    }
+
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 0.85rem;
+        //border-bottom: 1px solid rgb(43, 43, 43);
+        border-top: 1px solid rgb(43, 43, 43);
+        padding: 1em;
+        transition: background-color 0.3s, color 0.3s;
+        border-radius: 10px;
+        margin-bottom: 1em;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: #ffc107;
+        }
+
+        &:first-child {
+         // border-bottom: none;
+        }
+
+        &:last-child {
+         //border-top: none;
+        }
+
+        .number {
+          display: inline-block;
+          //width: 6px;
+          //height: 6px;
+          color:rgb(59, 66, 70);
+          //border-radius: 50%;
+          margin-right: 2em;
+        }
+
+      
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .menu-description {
+    display: block; /* Makes the image a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+    
+    margin-top: 3em;
+    font-size: 0.9rem;
+    color: rgb(121, 121, 121);
+    line-height: 1.5;
+    width: 18em;
+    font-weight: bolder;
+  }
+
+  .sliding-word {
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+    transform: translateY(100%); /* Start below */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .sliding-word.active {
+    opacity: 1;
+    transform: translateY(0); /* Slide into view */
+  }
+
+  .sliding-word:not(.active) {
+    opacity: 0;
+    transform: translateY(-100%); /* Slide out above */
+  }
+
+}
+
+
+/* Media Query for Mobile Screens */
+@media (max-width: 1400px) {
+  .banner-container {
+
+    .front-menu {
+      display: none;
+    }
+    .banner-content {
+      .get-started {
+        width: 30%;
+        font-size: 0.8em;
+        margin-top: 2em;
+        background: #ffc107;
+      }
+    }
+
+  }
+ 
+ 
+}
+
+`]
+})
+export class BannerComponent {
+  menuOpen = false;
+
+  words = ['True Potential.', 'Greatness.', 'Success.', 'Innovation.'];
+  wordIndex = 0;
+
+  ngOnInit(): void {
+    this.startSlidingWords();
+  }
+
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu(): void {
+    this.menuOpen = false;
+  }
+
+  startSlidingWords(): void {
+    setInterval(() => {
+      this.wordIndex = (this.wordIndex + 1) % this.words.length; // Cycle through words
+    }, 5000); // Each word stays for 5 seconds
+  }
+
+  // scroll to top when clicked
+  scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  
-  ngOnDestroy(): void {
-    // unsubscribe list
-    this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe();
-    });
-  }
-
 }

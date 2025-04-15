@@ -8,7 +8,7 @@ import { NavComponent } from './nav/nav.component';
     imports: [RouterModule, FooterComponent, NavComponent],
     template: `
     <div id="container">
-      <async-nav id="nav"></async-nav>
+      <!-- <async-nav id="nav"></async-nav> -->
       <router-outlet id="outlet"></router-outlet>
       <async-footer id="footer"></async-footer>
       <!-- <div class="whatsapp-chat">

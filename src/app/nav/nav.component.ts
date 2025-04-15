@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 // declare jquery as any
 declare const $: any;
 import { MatDialogModule } from '@angular/material/dialog';
-import { NotificationBannerComponent } from './notification-banner/notification-banner.component';
 import { Emitters } from '../_common/emitters/emitters';
 import {} from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -22,12 +21,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 @Component({
     selector: 'async-nav',
     providers: [],
-    imports: [MatToolbarModule, MatProgressBarModule, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent,
+    imports: [MatToolbarModule, MatProgressBarModule, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule,
     ],
     template: `
-  
-  <!-- THIS IS A TEMPORARY NOTIFICATION BANNER - FOR TRAILING EVENT -->
-  <!-- <async-notification-banner></async-notification-banner> -->
 
 
    <mat-toolbar class="nav">
