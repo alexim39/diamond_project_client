@@ -17,11 +17,12 @@
       "prefix": "async",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/diamondproject",
+            "outputPath": {
+              "base": "dist/diamondproject"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -39,7 +40,8 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -58,9 +60,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "diamondproject:build:production"
+              "buildTarget": "diamondproject:build:production"
             },
             "development": {
-              "browserTarget": "diamondproject:build:development"
+              "buildTarget": "diamondproject:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "diamondproject:build"
+            "buildTarget": "diamondproject:build"
           }
         },
         "test": {

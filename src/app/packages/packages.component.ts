@@ -21,11 +21,10 @@ import { CommonModule } from '@angular/common';
  * @title Packages component
  */
 @Component({
-  selector: 'async-packages',
-  templateUrl: 'packages.component.html',
-  styleUrls: ['packages.component.scss', 'packages.mobile.scss'],
-  standalone: true,
-  imports: [MatButtonModule, CommonModule, MatDividerModule, PaymentDialogComponent, MatDialogModule, MatCardModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+    selector: 'async-packages',
+    templateUrl: 'packages.component.html',
+    styleUrls: ['packages.component.scss', 'packages.mobile.scss'],
+    imports: [MatButtonModule, CommonModule, MatDividerModule, PaymentDialogComponent, MatDialogModule, MatCardModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule]
 })
 export class PackagesComponent {
 

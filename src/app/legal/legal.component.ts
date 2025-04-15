@@ -6,10 +6,9 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'async-legal',
-  standalone: true,
-  imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
-  template: `
+    selector: 'async-legal',
+    imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
+    template: `
     <section class="legal">
       
       <div class="legal-menu">
@@ -34,7 +33,7 @@ import { RouterModule } from '@angular/router';
       </div>
     </section>
   `,
-  styles: [`
+    styles: [`
     .legal {
       padding: 0 4em;
       display: flex;

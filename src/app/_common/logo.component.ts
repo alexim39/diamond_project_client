@@ -3,10 +3,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'async-logo',
-  standalone: true,
-  imports: [MatIconModule, RouterModule],
-  template: `
+    selector: 'async-logo',
+    imports: [MatIconModule, RouterModule],
+    template: `
     <a [routerLink]="['/']" [style.color]="color">
       <span><!-- <mat-icon [style.margin-top]="marginTop">sync</mat-icon> -->
         <img src="./assets/img/logo.PNG" alt="Diamond Project Logo">
@@ -14,7 +13,7 @@ import { RouterModule } from '@angular/router';
       </span>
     </a>
   `,
-  styles: [`
+    styles: [`
     a {
       text-decoration: none;
       span {

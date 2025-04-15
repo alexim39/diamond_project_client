@@ -7,10 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 
 /** @title Async why you should join page */
 @Component({
-  selector: 'async-why-you-should-join',
-  standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatSelectModule],
-  template: `
+    selector: 'async-why-you-should-join',
+    imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatSelectModule],
+    template: `
     <div class="training-approach">
       <h1>Why You Should Join?</h1>
 
@@ -79,7 +78,7 @@ import { MatButtonModule } from '@angular/material/button';
       </section>
     </div>
   `,
-  styleUrls: ['why-you-should-join.component.scss']
+    styleUrls: ['why-you-should-join.component.scss']
 })
 export class AboutWhyYouShouldJoinComponent {
 

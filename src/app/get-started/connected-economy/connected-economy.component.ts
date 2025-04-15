@@ -28,12 +28,11 @@ export interface Video {
  * @title Customer feedback
  */
 @Component({
-  selector: 'async-connected-economy',
-  standalone: true,
-  providers: [],
-  imports: [MatButtonModule, CommonModule, FormsModule, MatDialogModule, MatDividerModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
-  templateUrl: 'connected-economy.component.html',
-  styleUrls: ['connected-economy.component.scss']
+    selector: 'async-connected-economy',
+    providers: [],
+    imports: [MatButtonModule, CommonModule, FormsModule, MatDialogModule, MatDividerModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+    templateUrl: 'connected-economy.component.html',
+    styleUrls: ['connected-economy.component.scss']
 })
 export class ConnectedEconomyComponent {
   selectedCountry: string = '';

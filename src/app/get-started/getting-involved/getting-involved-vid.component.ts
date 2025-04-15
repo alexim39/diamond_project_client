@@ -14,7 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
     selector: 'async-getting-involved-vedios',
     imports: [MatButtonModule, MatDialogModule, CommonModule, MatIconModule, MatButtonModule, RouterModule],
-    standalone: true,
     template: `
     <div class="dialog-title">
         <h2 mat-dialog-title>{{ video.title }}</h2>
@@ -57,8 +56,7 @@ import { MatIconModule } from '@angular/material/icon';
     }
 }
     `]
-    
-  })
+})
   export class GettingInvolvedVideosComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<GettingInvolvedVideosComponent>,

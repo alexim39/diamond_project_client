@@ -15,11 +15,10 @@ import {MatSelectModule} from '@angular/material/select';
 import { Platform } from '@angular/cdk/platform';
 
 @Component({
-  selector: 'async-footer-connected',
-  standalone: true,
-  providers: [FooterService],
-  imports: [MatToolbarModule, CommonModule, MatSelectModule, RouterModule, MatProgressBarModule, ReactiveFormsModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule],
-  template: `
+    selector: 'async-footer-connected',
+    providers: [FooterService],
+    imports: [MatToolbarModule, CommonModule, MatSelectModule, RouterModule, MatProgressBarModule, ReactiveFormsModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule],
+    template: `
       <section>
         <h2>Stay Connected</h2>
 
@@ -60,7 +59,7 @@ import { Platform } from '@angular/cdk/platform';
 
       </section>
   `,
-  styles: [`
+    styles: [`
     section {
       display: flex;
       flex-direction: column;

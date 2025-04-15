@@ -17,7 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
     selector: 'async-testimonial-vedios',
     imports: [MatButtonModule, MatDialogModule, MatIconModule, CommonModule, MatButtonModule],
-    standalone: true,
     template: `
    <div class="dialog-title">
         <h2 mat-dialog-title>{{ video.title }}</h2>
@@ -59,8 +58,7 @@ import { MatIconModule } from '@angular/material/icon';
     }
 }
     `]
-    
-  })
+})
   export class TestimonialsVideosComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<TestimonialsVideosComponent>,

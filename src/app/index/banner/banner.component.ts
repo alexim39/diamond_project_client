@@ -11,10 +11,9 @@ import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'async-index-banner',
-  standalone: true,
-  imports: [MatToolbarModule, CommonModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, TypingComponent],
-  template: `
+    selector: 'async-index-banner',
+    imports: [MatToolbarModule, CommonModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, TypingComponent],
+    template: `
     <section>
       <header>
         <aside>
@@ -43,7 +42,7 @@ import { CommonModule } from '@angular/common';
       </header>
     </section>
   `,
-  styleUrls: [`banner.component.scss`],
+    styleUrls: [`banner.component.scss`]
 })
 export class BannerComponent implements OnInit, OnDestroy  {
   subscriptions: Subscription[] = [];

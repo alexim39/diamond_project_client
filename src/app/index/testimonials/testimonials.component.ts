@@ -8,11 +8,10 @@ import { takeUntil } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'async-index-testimonials',
-  standalone: true,
-  styleUrls: ['testimonials.component.scss'],
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, RouterModule, CommonModule],
-  template: `
+    selector: 'async-index-testimonials',
+    styleUrls: ['testimonials.component.scss'],
+    imports: [MatButtonModule, MatDividerModule, MatIconModule, RouterModule, CommonModule],
+    template: `
    <article class="testimonial">
       <h1>Testimonials</h1>
 
@@ -41,7 +40,7 @@ import { RouterModule } from '@angular/router';
         </button>
       </div>
     </article>
-  `,
+  `
 })
 export class TestimonialsComponent implements OnInit, OnDestroy {
   testimonials = [

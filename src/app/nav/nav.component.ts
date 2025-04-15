@@ -20,12 +20,11 @@ import { ThemeTogglerService } from '../_common/services/theme-toggler.service';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
-  selector: 'async-nav',
-  standalone: true,
-  providers: [],
-  imports: [MatToolbarModule, MatProgressBarModule, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent, 
-],
-  template: `
+    selector: 'async-nav',
+    providers: [],
+    imports: [MatToolbarModule, MatProgressBarModule, MatDialogModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, CommonModule, MatMenuModule, NotificationBannerComponent,
+    ],
+    template: `
   
   <!-- THIS IS A TEMPORARY NOTIFICATION BANNER - FOR TRAILING EVENT -->
   <!-- <async-notification-banner></async-notification-banner> -->
@@ -89,7 +88,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
   `,
-  styleUrls: [`nav.component.scss`, `nav.mobile.scss`]
+    styleUrls: [`nav.component.scss`, `nav.mobile.scss`]
 })
 export class NavComponent implements OnInit, OnDestroy {
   // init subscriptions list

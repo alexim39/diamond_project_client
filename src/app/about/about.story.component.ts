@@ -6,10 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 
 /** @title Simple form field */
 @Component({
-  selector: 'async-about-story',
-  standalone: true,
-  imports: [MatFormFieldModule, MatInputModule,MatIconModule, MatSelectModule,],
-  template: `
+    selector: 'async-about-story',
+    imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule,],
+    template: `
 
 
 
@@ -50,7 +49,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 
   `,
-  styles: [`
+    styles: [`
 
       .our-story {
         display: flex;
@@ -102,6 +101,6 @@ import { MatIconModule } from '@angular/material/icon';
     }
   }
 }
-  `],
+  `]
 })
 export class AboutStoryComponent {}

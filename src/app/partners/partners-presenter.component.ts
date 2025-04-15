@@ -11,11 +11,10 @@ import { CommonModule } from '@angular/common';
  * @title Partners
  */
 @Component({
-  selector: 'async-partners-presentation',
-  standalone: true,
-  imports: [CommonModule, RouterModule, AboutWhyYouShouldJoinComponent, MatButtonModule, BrandsComponent, WhyWeExistComponent],
-  templateUrl: 'partners-presenter.component.html',
-  styleUrls: ['partners-presenter.component.scss', 'partners-presenter.mobile.scss']
+    selector: 'async-partners-presentation',
+    imports: [CommonModule, RouterModule, AboutWhyYouShouldJoinComponent, MatButtonModule, BrandsComponent, WhyWeExistComponent],
+    templateUrl: 'partners-presenter.component.html',
+    styleUrls: ['partners-presenter.component.scss', 'partners-presenter.mobile.scss']
 })
 export class PartnersPresenterComponent implements OnInit {
 

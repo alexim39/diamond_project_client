@@ -15,12 +15,11 @@ import { VideoAdsComponent } from './video-ads/video-ads.component';
 
 
 @Component({
-  selector: 'async-index',
-  standalone: true,
-  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, BannerComponent, 
-    WhyWeExistComponent, TestimonialsComponent,  AboutWhyYouShouldJoinComponent, VideoAdsComponent
-  ],
-  template: `
+    selector: 'async-index',
+    imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, BannerComponent,
+        WhyWeExistComponent, TestimonialsComponent, AboutWhyYouShouldJoinComponent, VideoAdsComponent
+    ],
+    template: `
     
     <async-index-banner></async-index-banner>
     <async-index-why-we-exist></async-index-why-we-exist>
@@ -28,7 +27,7 @@ import { VideoAdsComponent } from './video-ads/video-ads.component';
     <async-why-you-should-join></async-why-you-should-join>
     <async-index-testimonials></async-index-testimonials>
   `,
-  styles: [`
+    styles: [`
   `]
 })
 export class IndexComponent { 

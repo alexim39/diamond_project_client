@@ -22,12 +22,11 @@ import { CommonModule } from '@angular/common';
  * @title Customer feedback
  */
 @Component({
-  selector: 'async-contacts',
-  standalone: true,
-  providers: [ContactService],
-  imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
-  templateUrl: "contacts.component.html",
-  styleUrls: ['contacts.component.scss']
+    selector: 'async-contacts',
+    providers: [ContactService],
+    imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+    templateUrl: "contacts.component.html",
+    styleUrls: ['contacts.component.scss']
 })
 export class ContactComponent implements OnInit, OnDestroy {
 

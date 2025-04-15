@@ -11,10 +11,9 @@ import { MissionCorevaluesComponent } from './about.mission.component';
 
 /** @title Simple form field */
 @Component({
-  selector: 'async-about',
-  standalone: true,
-  imports: [MatFormFieldModule, MatInputModule,MatIconModule, MatSelectModule, AboutTrainingComponent, AboutAsyncComponent, AboutStoryComponent, AboutApproachComponent, MissionCorevaluesComponent],
-  template: `
+    selector: 'async-about',
+    imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, AboutTrainingComponent, AboutAsyncComponent, AboutStoryComponent, AboutApproachComponent, MissionCorevaluesComponent],
+    template: `
     <div class="about-wrapper">
 
       <async-about-async></async-about-async>
@@ -25,7 +24,7 @@ import { MissionCorevaluesComponent } from './about.mission.component';
 
     </div>
   `,
-  styles: [`
+    styles: [`
     .about-wrapper {
       display: flex;
       flex-direction: column;
@@ -40,6 +39,6 @@ import { MissionCorevaluesComponent } from './about.mission.component';
 
   }
 }
-  `],
+  `]
 })
 export class AboutComponent {}

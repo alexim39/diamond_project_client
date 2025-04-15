@@ -13,10 +13,9 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'async-mission-corevalues',
-  standalone: true,
-  imports: [MatCardModule, MatIconModule, NgForOf, NgClass],
-  template: `
+    selector: 'async-mission-corevalues',
+    imports: [MatCardModule, MatIconModule, NgForOf, NgClass],
+    template: `
     <div class="core-mv-container">
       <section class="hero">
         <h1>Empowering Your Journey</h1>
@@ -56,7 +55,7 @@ import {
       </section>
     </div>
   `,
-  styles: [`
+    styles: [`
     :host {
       display: block;
     }
@@ -190,28 +189,28 @@ import {
       }
     }
   `],
-  animations: [
-    trigger('cardAnimation', [
-      state('default', style({ transform: 'scale(1)' })),
-      state('hovered', style({ transform: 'scale(1.05)' })),
-      transition('default => hovered', animate('200ms ease-out')),
-      transition('hovered => default', animate('200ms ease-in'))
-    ]),
-    trigger('pillarAnimation', [
-      state('default', style({ transform: 'translateY(0)' })),
-      state('hovered', style({ transform: 'translateY(-10px)' })),
-      transition('default => hovered', animate('200ms ease-out')),
-      transition('hovered => default', animate('200ms ease-in'))
-    ]),
-    trigger('staggerAnimation', [
-      transition('* => *', [
-        query(':enter', style({ opacity: 0, transform: 'translateY(50px)' }), { optional: true }),
-        query(':enter', stagger('100ms', [
-          animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
-        ]), { optional: true })
-      ])
-    ])
-  ]
+    animations: [
+        trigger('cardAnimation', [
+            state('default', style({ transform: 'scale(1)' })),
+            state('hovered', style({ transform: 'scale(1.05)' })),
+            transition('default => hovered', animate('200ms ease-out')),
+            transition('hovered => default', animate('200ms ease-in'))
+        ]),
+        trigger('pillarAnimation', [
+            state('default', style({ transform: 'translateY(0)' })),
+            state('hovered', style({ transform: 'translateY(-10px)' })),
+            transition('default => hovered', animate('200ms ease-out')),
+            transition('hovered => default', animate('200ms ease-in'))
+        ]),
+        trigger('staggerAnimation', [
+            transition('* => *', [
+                query(':enter', style({ opacity: 0, transform: 'translateY(50px)' }), { optional: true }),
+                query(':enter', stagger('100ms', [
+                    animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+                ]), { optional: true })
+            ])
+        ])
+    ]
 })
 export class MissionCorevaluesComponent {
   cards = [

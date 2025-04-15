@@ -7,11 +7,9 @@ import {MatIconModule} from '@angular/material/icon';
  * @title Brands Logo
  */
 @Component({
-  selector: 'async-brands-logos',
-  standalone: true,
-  imports: [MatButtonModule, MatIconModule, CommonModule],
-
-  template: `
+    selector: 'async-brands-logos',
+    imports: [MatButtonModule, MatIconModule, CommonModule],
+    template: `
 
     <div class="brand-display-container" (mouseover)="stopScroll()" (mouseleave)="startScroll()">
         <button mat-icon-button class="nav-button" (click)="scrollLeft()">
@@ -33,8 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 
   `,
-
-  styles: `
+    styles: `
   
   .brand-display-container {
     display: flex;

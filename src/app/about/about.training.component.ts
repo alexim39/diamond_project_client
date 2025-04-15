@@ -6,10 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 
 /** @title Simple form field */
 @Component({
-  selector: 'async-about-training',
-  standalone: true,
-  imports: [MatFormFieldModule, MatInputModule,MatIconModule, MatSelectModule],
-  template: `
+    selector: 'async-about-training',
+    imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
+    template: `
 
       <div class="about-async">
 
@@ -40,7 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 
   `,
-  styles: [`
+    styles: [`
 
 
     .about-async {
@@ -94,6 +93,6 @@ import { MatIconModule } from '@angular/material/icon';
     }
   }
 }
-  `],
+  `]
 })
 export class AboutTrainingComponent {}

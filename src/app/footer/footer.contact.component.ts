@@ -6,10 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'async-footer-contact',
-  standalone: true,
-  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule],
-  template: `
+    selector: 'async-footer-contact',
+    imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule],
+    template: `
       <section>
         <h2>Contact Us</h2>
 
@@ -34,7 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
       </section>
   `,
-  styles: [`
+    styles: [`
     section {
       display: flex;
       flex-direction: column;

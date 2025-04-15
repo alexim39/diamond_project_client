@@ -7,11 +7,10 @@ import { RouterModule } from '@angular/router';
 
 
 @Component({
-  selector: 'async-cookies',
-  templateUrl: './cookies.component.html',
-  standalone: true,
-  imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
-  styles: [`
+    selector: 'async-cookies',
+    templateUrl: './cookies.component.html',
+    imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
+    styles: [`
     .content {
       p {
         text-align: justify;

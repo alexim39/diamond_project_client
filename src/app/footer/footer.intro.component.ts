@@ -9,10 +9,9 @@ import { FooterContactComponent } from './footer.contact.component';
 import { FooterConnectedComponent } from './footer.connected.component';
 
 @Component({
-  selector: 'async-footer-intro',
-  standalone: true,
-  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, FooterContactComponent, FooterConnectedComponent],
-  template: `
+    selector: 'async-footer-intro',
+    imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, FooterContactComponent, FooterConnectedComponent],
+    template: `
  
       <section>
         <async-logo color="white" marginTop="0"></async-logo>
@@ -32,7 +31,7 @@ import { FooterConnectedComponent } from './footer.connected.component';
       </section>
       
   `,
-  styles: [`
+    styles: [`
     section {
         width: 20em;
         text-align: left;

@@ -27,10 +27,9 @@ export interface Video {
  * @title Customer feedback
  */
 @Component({
-  selector: 'async-testimonials',
-  standalone: true,
-  imports: [MatButtonModule, CommonModule, MatDialogModule, MatDividerModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
-  template: `
+    selector: 'async-testimonials',
+    imports: [MatButtonModule, CommonModule, MatDialogModule, MatDividerModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+    template: `
   <section class="head">
 
   <article>
@@ -79,7 +78,7 @@ export interface Video {
 
    </section>
   `,
-  styleUrls: ['testimonials.component.scss']
+    styleUrls: ['testimonials.component.scss']
 })
 export class TestimonialsComponent {
   videos: Video[] = videos;

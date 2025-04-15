@@ -6,11 +6,10 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'async-privacy',
-  templateUrl: './privacy.component.html',
-  standalone: true,
-  imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
-  styles: [`
+    selector: 'async-privacy',
+    templateUrl: './privacy.component.html',
+    imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
+    styles: [`
     .content {
       p {
         text-align: justify;

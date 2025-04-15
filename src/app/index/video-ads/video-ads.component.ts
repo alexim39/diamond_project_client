@@ -7,10 +7,9 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'async-index-video-ads',
-  standalone: true,
-  imports: [RouterModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, CommonModule],
-  template: `
+    selector: 'async-index-video-ads',
+    imports: [RouterModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, CommonModule],
+    template: `
     <section class="video-ads-container">
       <div class="content-wrapper">
         <div class="left-content">
@@ -37,7 +36,7 @@ import { CommonModule } from '@angular/common';
       </div>
     </section>
   `,
-  styles: [`
+    styles: [`
   section {
     padding: 2em;
     display: flex;
@@ -128,7 +127,7 @@ import { CommonModule } from '@angular/common';
       }
     }
   }
-  `],
+  `]
 })
 export class VideoAdsComponent implements OnInit {
   constructor() {}

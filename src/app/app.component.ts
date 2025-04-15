@@ -4,10 +4,9 @@ import { FooterComponent } from './footer/footer.component';
 import { NavComponent } from './nav/nav.component';
 
 @Component({
-  selector: 'async-root',
-  standalone: true,
-  imports: [ RouterModule, FooterComponent, NavComponent],
-  template: `
+    selector: 'async-root',
+    imports: [RouterModule, FooterComponent, NavComponent],
+    template: `
     <div id="container">
       <async-nav id="nav"></async-nav>
       <router-outlet id="outlet"></router-outlet>
@@ -22,7 +21,7 @@ import { NavComponent } from './nav/nav.component';
       </div> -->
     </div>
   `,
-  styles: [`
+    styles: [`
     #container {
       animation: fadeInAnimation ease 3s;
       position: relative;

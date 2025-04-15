@@ -19,10 +19,9 @@ import { FilterPipe } from './filter.pipe';
  */
 @Component({
     selector: 'async-faqs',
-    standalone: true,
     imports: [MatButtonModule, RouterModule, MatDividerModule, FormsModule, FilterPipe, CommonModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
     styleUrls: ['faq.component.scss'],
-    templateUrl: 'faq.component.html',
+    templateUrl: 'faq.component.html'
 })
 export class faqsComponent implements OnInit {
   faqs = FAQS;

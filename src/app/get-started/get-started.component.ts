@@ -25,12 +25,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
  * @title Survey form for getting started
  */
 @Component({
-  selector: 'async-feedback',
-  standalone: true,
-  providers: [SurveyService],
-  imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
-  templateUrl: 'get-started.component.html',
-  styleUrls: ['get-started.component.scss', 'get-started.mobile.scss']
+    selector: 'async-feedback',
+    providers: [SurveyService],
+    imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+    templateUrl: 'get-started.component.html',
+    styleUrls: ['get-started.component.scss', 'get-started.mobile.scss']
 })
 export class GetStartedComponent implements OnInit, OnDestroy {
 

@@ -6,10 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 
 /** @title Async training approach page */
 @Component({
-  selector: 'async-about-approach',
-  standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
-  template: `
+    selector: 'async-about-approach',
+    imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
+    template: `
 
       <div class="training-approach">
 
@@ -71,7 +70,7 @@ import { MatIconModule } from '@angular/material/icon';
       </div>
 
   `,
-  styles: [`
+    styles: [`
     .training-approach {
       background-color: #050111;
       //background-color: #00838F;
@@ -129,6 +128,6 @@ import { MatIconModule } from '@angular/material/icon';
       }
   }
 }
-  `],
+  `]
 })
 export class AboutApproachComponent { }

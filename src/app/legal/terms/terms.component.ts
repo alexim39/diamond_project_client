@@ -6,11 +6,10 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'async-terms',
-  templateUrl: './terms.component.html',
-  standalone: true,
-  imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
-  styles: [`
+    selector: 'async-terms',
+    templateUrl: './terms.component.html',
+    imports: [MatButtonModule, MatDividerModule, CommonModule, MatListModule, RouterModule],
+    styles: [`
     .content {
     p {
        text-align: justify;

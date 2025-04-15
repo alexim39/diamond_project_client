@@ -27,11 +27,10 @@ export interface Video {
  * @title Customer feedback
  */
 @Component({
-  selector: 'async-getting-involved',
-  standalone: true,
-  providers: [UsernameCheckService],
-  imports: [MatButtonModule, CommonModule, MatButtonModule, MatDialogModule, RouterModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule],
-  template: `
+    selector: 'async-getting-involved',
+    providers: [UsernameCheckService],
+    imports: [MatButtonModule, CommonModule, MatButtonModule, MatDialogModule, RouterModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+    template: `
   <section class="head">
 
   <article>
@@ -88,7 +87,7 @@ export interface Video {
 
    </section>
   `,
-  styles: [`
+    styles: [`
 .head {
   //background: #00838F;
   background: #050111;

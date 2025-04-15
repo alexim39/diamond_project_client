@@ -17,7 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
     selector: 'async-connected-economy-vedios',
     imports: [MatButtonModule, MatDialogModule, MatIconModule, CommonModule, MatButtonModule],
-    standalone: true,
     template: `
     <div class="dialog-title">
         <h2 mat-dialog-title>{{ video.title }}</h2>
@@ -36,7 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 
     `,
-styles: [`
+    styles: [`
 .dialog-title {
     display: flex;
     justify-content: space-between;
@@ -51,8 +50,7 @@ video {
     height: 100%;
 }
 `]
-    
-  })
+})
   export class ConnectedEconomyVideosComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<ConnectedEconomyVideosComponent>,

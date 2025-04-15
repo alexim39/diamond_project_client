@@ -10,10 +10,9 @@ import { FooterConnectedComponent } from './footer.connected.component';
 import { FooterIntroComponent } from './footer.intro.component';
 
 @Component({
-  selector: 'async-footer',
-  standalone: true,
-  imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, FooterContactComponent, FooterConnectedComponent, FooterIntroComponent],
-  template: `
+    selector: 'async-footer',
+    imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, FooterContactComponent, FooterConnectedComponent, FooterIntroComponent],
+    template: `
    <footer>
     <article>
       <async-footer-intro></async-footer-intro>
@@ -33,7 +32,7 @@ import { FooterIntroComponent } from './footer.intro.component';
     
    </footer>
   `,
-  styles: [`
+    styles: [`
     footer {
       background: #050111;
      // background: #0e0e2c;

@@ -10,13 +10,12 @@ import { PartnerInterface } from '../_common/interface/partner.interface';
  * @title Partners
  */
 @Component({
-  selector: 'async-partners-container',
-  standalone: true,
-  imports: [PartnersPresenterComponent, CommonModule],
-  providers: [UsernameCheckService],
-  template: `
+    selector: 'async-partners-container',
+    imports: [PartnersPresenterComponent, CommonModule],
+    providers: [UsernameCheckService],
+    template: `
     <async-partners-presentation *ngIf="partner" [partner]="partner"></async-partners-presentation>
-  `,
+  `
 })
 export class PartnersContainerComponent implements OnInit, OnDestroy {
 

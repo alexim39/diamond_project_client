@@ -20,10 +20,9 @@ import Swal from 'sweetalert2';
  * @title Payment Dialog
  */
 @Component({
-  selector: 'async-payment-dialog',
-  standalone: true,
-  imports: [ MatDialogModule, CommonModule, MatInputModule, MatFormFieldModule, MatButtonModule, FormsModule],
-  template: `
+    selector: 'async-payment-dialog',
+    imports: [MatDialogModule, CommonModule, MatInputModule, MatFormFieldModule, MatButtonModule, FormsModule],
+    template: `
 
 <h2 mat-dialog-title>Plans Payment</h2>  
 <mat-dialog-content>  
@@ -72,7 +71,7 @@ import Swal from 'sweetalert2';
 
 </mat-dialog-content>
   `,
-  styles: `
+    styles: `
 form {
   display: flex;
   flex-direction: column;

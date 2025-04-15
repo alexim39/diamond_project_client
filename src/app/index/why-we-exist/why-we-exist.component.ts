@@ -8,10 +8,9 @@ import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'async-index-why-we-exist',
-  standalone: true,
-  imports: [RouterModule, MatIconModule, MatButtonModule,  MatFormFieldModule, MatInputModule, CommonModule],
-  template: `
+    selector: 'async-index-why-we-exist',
+    imports: [RouterModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, CommonModule],
+    template: `
     <aside class="why-we-exist">
       <div>
 
@@ -44,7 +43,7 @@ import { CommonModule } from '@angular/common';
       <!-- <a mat-flat-button color="primary" routerLink="plans" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Start Your Own Business Now</a> -->
     </aside>
   `,
-  styles: [`
+    styles: [`
   aside {
     padding: 3em 1em;
     display: flex;
@@ -109,7 +108,7 @@ import { CommonModule } from '@angular/common';
     }
   }
 }
-  `],
+  `]
 })
 export class WhyWeExistComponent implements OnInit{
   // init subscriptions list
