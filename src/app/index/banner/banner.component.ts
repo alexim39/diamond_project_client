@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
@@ -32,9 +32,21 @@ import { RouterModule } from '@angular/router';
 
     <div class="front-menu">
       <ul>
-        <li><span class="dot"></span> ABOUT US <br /><small>who we are</small></li>
-        <li><span class="dot"></span> OUR PILLARS <br /><small>what we do</small></li>
-        <li><span class="dot"></span> CONTACT US <br /><small>get in touch</small></li>
+        <li>
+          <a>
+          <span class="dot"></span> ABOUT US <br /><small>who we are</small>
+          </a>
+        </li>
+        <li>
+          <a>
+          <span class="dot"></span> OUR PILLARS <br /><small>what we do</small>
+          </a>
+        </li>
+        <li>
+          <a>
+          <span class="dot"></span> CONTACT US <br /><small>get in touch</small>
+          </a>
+        </li>
       </ul>
     </div>
   
@@ -55,7 +67,7 @@ import { RouterModule } from '@angular/router';
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="#four_pillers">
                 <span class="number">03.</span> Our Pillars 
             </a>
         </li>
@@ -63,6 +75,9 @@ import { RouterModule } from '@angular/router';
             <a href="">
                 <span class="number">04.</span> Contact Us
             </a>
+        </li>
+        <li>
+          <a href="http://partners.diamondprojectonline.com" target="_blank"><span class="number">05.</span> Partners Platform</a>
         </li>
       </ul>
 
@@ -223,6 +238,7 @@ import { RouterModule } from '@angular/router';
         a {
           text-decoration: none;
           color: white;
+          cursor:pointer;
         }
       }
     }
@@ -341,6 +357,17 @@ import { RouterModule } from '@angular/router';
 @media (max-width: 1400px) {
   .banner-container {
 
+    .banner-content {
+      h1 {
+        span {
+          display: inline-block;
+          min-height: 1.2em; /* Ensures consistent height for the text */
+          margin-left: -3.5em;
+          font-size: 0.8em;
+        }
+      }
+    }
+
     .front-menu {
       display: none;
     }
@@ -361,9 +388,12 @@ import { RouterModule } from '@angular/router';
 `]
 })
 export class BannerComponent {
+
+  @ViewChild('four_pillers') fourPillarsSection!: ElementRef;
+  
   menuOpen = false;
 
-  words = ['True Potential.', 'Greatness.', 'Success.', 'Innovation.'];
+  words = ['True Potential.', 'Greatness Within.', 'Success Path.', 'Ultimate Version.'];
   wordIndex = 0;
 
   ngOnInit(): void {
@@ -388,4 +418,5 @@ export class BannerComponent {
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
 }

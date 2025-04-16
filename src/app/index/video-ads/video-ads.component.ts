@@ -13,14 +13,15 @@ import { CommonModule } from '@angular/common';
     <section class="video-ads-container">
       <div class="content-wrapper">
         <div class="left-content">
-          <h1>We Are Offering You a System to <br><span>Create Residual Income Stream Online</span></h1>
-          <p>Are you concerned about your retirement savings or feeling overwhelmed by debt?</p>
-          <p>Our online platform is designed to help you secure your financial future and achieve debt freedom.</p>
-          <p>Schedule a session with us to explore how our online business model can support your financial goals.</p>
+          <h1>We are dedicated to guiding our partners <br><span>towards becoming the ultimate versions of themselves.</span></h1>
+
+          <p>Through personalized mentorship, rigorous training, and the cultivation of financial leverage systems, we enable you to break barriers and achieve unprecedented success. </p>
+           <p> Our holistic approach addresses every facet of personal growth, from mental fortitude to physical vitality, ensuring you emerge as a diamond – refined, resilient, and radiant.</p>
+
           <a mat-flat-button color="primary"
             href="../about-our-business"   
             class="cta-button"  
-            (click)="scrollToTop()">Learn More About Our Business
+            (click)="scrollToTop()">Get Started to Learn More
           </a>
         </div>
         
@@ -36,12 +37,15 @@ import { CommonModule } from '@angular/common';
       </div>
     </section>
   `,
-    styles: [`
+styles: [`
   section {
     padding: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background: url('/assets/images/about-bg.jpg') center/cover no-repeat;
+    overflow: hidden;
   }
 
   .content-wrapper {
@@ -62,7 +66,7 @@ import { CommonModule } from '@angular/common';
       font-size: 2rem;
       margin-bottom: 1em;
       span {
-        color: #ffab40;
+        color:rgb(224, 128, 3);
       }
     }
     p {

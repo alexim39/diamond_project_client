@@ -10,19 +10,17 @@ import { BannerComponent } from './banner/banner.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
 import { AboutWhyYouShouldJoinComponent } from './why-you-should-join/why-you-should-join.component';
-import { WhyWeExistComponent } from './why-we-exist/why-we-exist.component';
 import { VideoAdsComponent } from './video-ads/video-ads.component';
 
 
 @Component({
     selector: 'async-index',
     imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, BannerComponent,
-        WhyWeExistComponent, TestimonialsComponent, AboutWhyYouShouldJoinComponent, VideoAdsComponent
+        TestimonialsComponent, AboutWhyYouShouldJoinComponent, VideoAdsComponent
     ],
     template: `
     
     <async-index-banner></async-index-banner>
-    <async-index-why-we-exist></async-index-why-we-exist>
     <async-index-video-ads></async-index-video-ads>
     <async-why-you-should-join></async-why-you-should-join>
     <async-index-testimonials></async-index-testimonials>
