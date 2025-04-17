@@ -10,7 +10,9 @@ import { CommonModule } from '@angular/common';
     selector: 'async-about',
     imports: [RouterModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, CommonModule],
     template: `
+
     <section id="about_us">
+
 
       <div class="content-wrapper">
 

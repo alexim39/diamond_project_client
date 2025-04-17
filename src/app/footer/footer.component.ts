@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'async-footer',
-  imports: [RouterModule, MatButtonModule],
+  imports: [RouterModule, MatButtonModule, MatIconModule],
   template: `
     <div class="footer-wrapper" id="footer">
       <div class="footer-content">
@@ -16,17 +17,30 @@ import { RouterModule } from '@angular/router';
         </h1>
 
         <p class="description">
-        Get in touch with us using the button below and a consultant nearest to your location will reach out to you.
-        Begin your journey to self-improvement with the Diamond Project.
+          Get in touch with us using the button below and a consultant nearest to your location will reach out to you.
+          Begin your journey to self-improvement with the Diamond Project.
         </p>
 
         <div class="form-container">
-          <!-- <input type="text" placeholder="Enter Reservation Code Here" /> -->
           <button mat-flat-button class="btn" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">I'M READY!</button>
         </div>
 
         <footer>
-          Diamond Project © {{ currentYear }} All rights reserved.
+         
+          <p class="contact-email">
+            Contact us: <a href="mailto:contacts@diamondprojectonline.com">contacts&#64;diamondprojectonline.com</a>
+          </p>
+
+      
+          <p class="copyright">
+            Diamond Project © {{ currentYear }} All rights reserved.
+          </p>
+
+          <div class="footer-links">
+            <a routerLink="legal/terms" rel="noopener noreferrer" (click)="scrollToTop()">Terms</a>
+            <span class="separator">|</span>
+            <a routerLink="legal/privacy" rel="noopener noreferrer" (click)="scrollToTop()">Privacy</a>
+          </div>
         </footer>
       </div>
 
@@ -34,7 +48,7 @@ import { RouterModule } from '@angular/router';
         <img src="assets/images/icon.png" alt="Diamond Logo" />
       </div>
 
-      <div class="back-to-top" (click)="scrollToTop()">BACK TO TOP</div>
+      <div class="back-to-top" (click)="scrollToTop()">BACK TO TOP <mat-icon>arrow_forward</mat-icon></div>
     </div>
   `,
   styles: [`
@@ -122,7 +136,7 @@ import { RouterModule } from '@angular/router';
         background: #ffc107;
       }
 
-     /*  button {
+     /* button {
         margin-left: 1rem;
         padding: 0.75rem 2rem;
         background-color: #b7892f;
@@ -145,6 +159,7 @@ import { RouterModule } from '@angular/router';
       flex-shrink: 0;
 
       @media (max-width: 768px) {
+        /* Keep the logo hidden on mobile if that's the desired behavior */
         display: none;
       }
 
@@ -164,9 +179,13 @@ import { RouterModule } from '@angular/router';
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       cursor: pointer;
+      display: block; /* Make it visible by default */
 
       @media (max-width: 768px) {
-        display: none;
+        /* Adjust position and styling for mobile if needed */
+        right: 1rem;
+        bottom: 1rem;
+        font-size: 0.6rem;
       }
     }
 
@@ -174,12 +193,69 @@ import { RouterModule } from '@angular/router';
       margin-top: 4rem;
       font-size: 0.75rem;
       color: #666;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      color: #666;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #d4a941;
+    }
+
+    .separator {
+      color: #444;
+    }
+
+    .copyright {
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    .contact-email {
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    .contact-email a {
+      color: #d4a941;
+      text-decoration: none;
+    }
+
+    .contact-email a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
       .footer-wrapper {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      footer {
+        align-items: flex-start;
+      }
+
+      .footer-links {
+        order: 1; /* Move links above copyright on smaller screens if desired */
+      }
+
+      .copyright {
+        order: 2;
+      }
+
+      .contact-email {
+        order: 3;
       }
     }
   `]
