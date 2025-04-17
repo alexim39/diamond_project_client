@@ -22,7 +22,7 @@ import { takeUntil } from 'rxjs/operators';
                 </blockquote>
                 <div class="author-info">
                   <div class="author-image">
-                    <img [src]="testimonial?.author?.image || 'assets/img/default_pp.png'" alt="Author Image" />
+                    <img [src]="testimonial?.author?.image || 'assets/images/default_pp.png'" alt="Author Image" />
                   </div>
                   <div class="author-details">
                     <h5 class="author-name">{{ testimonial.author.name }}</h5>
@@ -256,25 +256,25 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
       quote: `
         The Diamond Project has been a game-changer for me. The mentorship and training programs have equipped me with the skills and confidence I needed to excel in my career. The financial leverage systems have empowered me to take control of my financial future. I am now a more confident, skilled, and financially stable individual, all thanks to the Diamond Project.
       `,
-      author: { name: "Adeyemi Sanya", facebook: "...", image: '' },
+      author: { name: "Adeyemi Sanya", facebook: "https://www.facebook.com/adeyemitemitopesanya", image: '' },
     },
     {
       quote: `
         Joining the Diamond Project was one of the best decisions I’ve ever made. The capacity-building training programs have helped me unlock my potential and become the best version of myself. The financial leverage systems have given me the tools to achieve financial independence. The Diamond Project has not just transformed me; it has transformed my life.
       `,
-      author: { name: "Imenwo Alex", facebook: "...", image: '' },
+      author: { name: "Imenwo Alex", facebook: "https://www.facebook.com/imenwo/", image: '' },
     },
     {
       quote: `
         The Diamond Project has had a profound impact on my life. The mentorship program has provided me with invaluable guidance and support, helping me navigate my personal and professional journey. The financial leverage systems have taught me about financial planning and investments, enabling me to build a strong financial foundation. I am grateful for the Diamond Project and the positive changes it has brought to my life.
       `,
-      author: { name: "Ozoemenam Angela", facebook: "...", image: '' },
+      author: { name: "Ozoemenam Angela", facebook: "https://www.facebook.com/angela.nnaamani", image: '' },
     },
     {
       quote: `
         I will always recommend this project to anyone who needs training for reliable sources of income
       `,
-      author: { name: "Linda Adeyemi", facebook: "...", image: '' },
+      author: { name: "Linda Adeyemi", facebook: "https://www.facebook.com/linda.aaron.75", image: '' },
     },
   ];
 
