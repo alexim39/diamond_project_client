@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
@@ -9,9 +9,9 @@ import { RouterModule } from '@angular/router';
   template: `
 <div class="banner-container">
     <div class="top-nav">
-      <div class="logo">
+      <a class="logo" routerLink="/">
         <img src="/assets/images/icon.png" alt="Diamond Project Logo" />
-      </div>
+      </a>
       <div class="menu-toggle" (click)="toggleMenu()">MENU <span class="hamburger">&#9776;</span></div>
     </div>
   
@@ -27,23 +27,23 @@ import { RouterModule } from '@angular/router';
         through a multifaceted approach.
       </p>
 
-      <a mat-flat-button class="get-started" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a>
+      <a mat-flat-button class="get-started" routerLink="{{uriLink}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Get Started</a>
     </div>
 
     <div class="front-menu">
       <ul>
         <li>
-          <a>
+          <a href="#about_us" >
           <span class="dot"></span> ABOUT US <br /><small>who we are</small>
           </a>
         </li>
         <li>
-          <a>
+          <a  href="#four_pillers">
           <span class="dot"></span> OUR PILLARS <br /><small>what we do</small>
           </a>
         </li>
         <li>
-          <a>
+          <a href="#footer">
           <span class="dot"></span> CONTACT US <br /><small>get in touch</small>
           </a>
         </li>
@@ -57,27 +57,27 @@ import { RouterModule } from '@angular/router';
 
       <ul>
         <li>
-            <a href="">
+            <a routerLink="/" (click)="scrollToTop()" (click)=closeMenu()>
                 <span class="number">01.</span> Home
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="#about_us" (click)=closeMenu()>
                 <span class="number">02.</span> About Us
             </a>
         </li>
         <li>
-            <a href="#four_pillers">
+            <a href="#four_pillers" (click)=closeMenu()>
                 <span class="number">03.</span> Our Pillars 
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="#footer" (click)=closeMenu()>
                 <span class="number">04.</span> Contact Us
             </a>
         </li>
         <li>
-          <a href="http://partners.diamondprojectonline.com" target="_blank"><span class="number">05.</span> Partners Platform</a>
+          <a  (click)=closeMenu() href="http://partners.diamondprojectonline.com" target="_blank"><span class="number">05.</span> Partners Platform</a>
         </li>
       </ul>
 
@@ -389,7 +389,9 @@ import { RouterModule } from '@angular/router';
 })
 export class BannerComponent {
 
-  @ViewChild('four_pillers') fourPillarsSection!: ElementRef;
+  @Input() isUsernamePage = false;
+
+  uriLink = "get-started"
   
   menuOpen = false;
 
@@ -398,6 +400,10 @@ export class BannerComponent {
 
   ngOnInit(): void {
     this.startSlidingWords();
+    
+    if(this.isUsernamePage) {
+      this.uriLink = "../get-started"
+    }
   }
 
   toggleMenu(): void {

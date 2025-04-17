@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 
 /**
@@ -90,4 +90,4 @@ import { RouterModule } from '@angular/router';
 </section>
 `
 })
-export class PageNotFoundComponent {}
+export class PageNotFoundComponent { }

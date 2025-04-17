@@ -2,9 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { SurveyFormData } from './get-started.interface';
 
-
+export interface SurveyFormData {
+  ageRange: string;
+  socialMedia: string[];
+  importanceOfPassiveIncome: string;
+  onlinePurchaseSchedule: string;
+  primaryOnlineBusinessMotivation: string;
+  employedStatus: string;
+  comfortWithTech: string;
+  onlineBusinessTimeDedication: string;
+  phoneNumber: string;
+  email: string;
+  name: string;
+  surname: string;
+  referral: string;
+  referralCode: string;
+}
+  
 
 @Injectable()
 export class SurveyService {

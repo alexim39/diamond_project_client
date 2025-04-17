@@ -219,6 +219,24 @@
             </mat-error>
         </mat-form-field>
 
+        <!-- Country Dropdown -->
+         <mat-form-field appearance="outline">
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="country" (selectionChange)="onCountryChange($event.value)">
+            <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- State Field -->
+        <mat-form-field appearance="outline">
+          <mat-label *ngIf="isNigeria">State</mat-label>
+          <mat-select *ngIf="isNigeria" formControlName="state">
+            <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+          </mat-select>
+          <mat-label *ngIf="!isNigeria">Enter State</mat-label>
+          <input *ngIf="!isNigeria" matInput formControlName="state" placeholder="Enter your state of origin" />
+        </mat-form-field>
+
           <mat-progress-bar mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar><br>
   
           <div class="btn">

@@ -1,114 +1,193 @@
 import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { LogoComponent } from '../_common/logo.component';
-import { FooterContactComponent } from './footer.contact.component';
-import { FooterConnectedComponent } from './footer.connected.component';
-import { FooterIntroComponent } from './footer.intro.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'async-footer',
-    imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, LogoComponent, FooterContactComponent, FooterConnectedComponent, FooterIntroComponent],
-    template: `
-   <footer>
-    <article>
-      <async-footer-intro></async-footer-intro>
-      <async-footer-contact></async-footer-contact>
-      <async-footer-connected></async-footer-connected>
-    </article>
+  selector: 'async-footer',
+  imports: [RouterModule, MatButtonModule],
+  template: `
+    <div class="footer-wrapper" id="footer">
+      <div class="footer-content">
+        <p class="section-label">/ CONTACT US</p>
 
-    <aside>
-      <div class="courtesy">© {{ currentYear }} Diamond Project (Online). All Rights Reserved</div>
-      <div class="policies">
-        <a routerLink="legal/terms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">T&C</a>
-        <a routerLink="legal/privacy" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Privacy</a>
-        <a routerLink="legal/cookies" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Cookies</a>
-        <!-- <a routerLink="terms" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">Security</a> -->
+        <h1 class="heading">
+          Ready to embark on your<br />
+          transformative journey?
+        </h1>
+
+        <p class="description">
+        Get in touch with us using the button below and a consultant nearest to your location will reach out to you.
+        Begin your journey to self-improvement with the Diamond Project.
+        </p>
+
+        <div class="form-container">
+          <!-- <input type="text" placeholder="Enter Reservation Code Here" /> -->
+          <button mat-flat-button class="btn" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">I'M READY!</button>
+        </div>
+
+        <footer>
+          Diamond Project © {{ currentYear }} All rights reserved.
+        </footer>
       </div>
-    </aside>
-    
-   </footer>
+
+      <div class="logo">
+        <img src="assets/images/icon.png" alt="Diamond Logo" />
+      </div>
+
+      <div class="back-to-top" (click)="scrollToTop()">BACK TO TOP</div>
+    </div>
   `,
-    styles: [`
+  styles: [`
+    :host {
+      display: block;
+      background-color: #0f0f0f;
+      color: #ffffff;
+      font-family: 'Helvetica Neue', sans-serif;
+      position: relative;
+      padding: 4rem 1.5rem;
+    }
+
+    .footer-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-content {
+      flex: 1;
+      max-width: 700px;
+    }
+
+    .section-label {
+      color: #d4a941;
+      font-size: 0.875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .heading {
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+
+      @media (min-width: 768px) {
+        font-size: 3rem;
+      }
+    }
+
+    .description {
+      color: #7e7e7e;
+      font-size: 1.125rem;
+      margin-bottom: 2.5rem;
+
+      @media (min-width: 768px) {
+        font-size: 1.25rem;
+      }
+    }
+
+    .form-container {
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+
+      input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        background-color: #181818;
+        border: 1px solid #333;
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+
+        &::placeholder {
+          color: #777;
+        }
+
+        &:focus {
+          border-color: #d4a941;
+          box-shadow: 0 0 0 2px #d4a94144;
+        }
+      }
+
+      .btn {
+        width: 50%;
+        //font-size: 1.1em;
+        //margin-top: 2em;
+        background: #ffc107;
+      }
+
+     /*  button {
+        margin-left: 1rem;
+        padding: 0.75rem 2rem;
+        background-color: #b7892f;
+        color: white;
+        font-size: 0.875rem;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #d4a941;
+        }
+      } */
+    }
+
+    .logo {
+      flex-shrink: 0;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+
+      img {
+        height: 3rem;
+        width: auto;
+      }
+    }
+
+    .back-to-top {
+      position: absolute;
+      right: 0.5rem;
+      bottom: 1.5rem;
+      font-size: 0.75rem;
+      color: #444;
+      letter-spacing: 0.15em;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      cursor: pointer;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
     footer {
-      background: #050111;
-     // background: #0e0e2c;
-      text-align: center;
-      
-      article {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 4em 10em;
-        text-align: left;
-      }
-      aside {
-        color: #ccc;
-        font-size: 0.6em;
-        display: flex;
-        justify-content: space-around;
-        padding-bottom: 1em;
-        .courtesy {
-          color: white;
-        }
-        .policies {
-          
-          a {
-            color: white;
-            text-decoration: none;
-            margin-left: 2em;
-          }
-        }
-      }
-      
+      margin-top: 4rem;
+      font-size: 0.75rem;
+      color: #666;
     }
 
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-  footer {
-    article {
-      display: flex;
-      flex-direction: column;
-      padding: 1em;
-    }
-    aside {
-      display: flex;
-      flex-direction: column;
-      .policies {
-        margin-top: 1em;
+    @media (max-width: 768px) {
+      .footer-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
-  }
-}
-
-/* iPads/tablet (portrait and landscape) */
-@media only screen and (min-device-width: 601px) and (max-device-width: 1024px) {
-  footer {
-    article {
-      display: flex;
-      flex-direction: column;
-      padding: 1em;
-      
-    }
-  }
-}
-
-`]
+  `]
 })
 export class FooterComponent {
-  currentYear: number;
+  currentYear: number = new Date().getFullYear();
 
-  constructor() {
-    this.currentYear = new Date().getFullYear();
-  }
-
-  // scroll to top when clicked
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  
 }

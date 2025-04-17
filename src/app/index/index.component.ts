@@ -9,21 +9,22 @@ import { MatInputModule } from '@angular/material/input';
 import { BannerComponent } from './banner/banner.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
-import { AboutWhyYouShouldJoinComponent } from './why-you-should-join/why-you-should-join.component';
-import { VideoAdsComponent } from './video-ads/video-ads.component';
+import { FourPillarsnComponent } from './four-pillars/four-pillars.component';
+import { AboutComponent } from './about/about.component';
+import { BrandsComponent } from '../partners/brands.component';
 
 
 @Component({
     selector: 'async-index',
     imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, BannerComponent,
-        TestimonialsComponent, AboutWhyYouShouldJoinComponent, VideoAdsComponent
+        TestimonialsComponent, FourPillarsnComponent, AboutComponent, BrandsComponent
     ],
     template: `
-    
-    <async-index-banner></async-index-banner>
-    <async-index-video-ads></async-index-video-ads>
-    <async-why-you-should-join></async-why-you-should-join>
-    <async-index-testimonials></async-index-testimonials>
+    <async-index-banner/>
+    <async-about/>
+    <async-four-pillars/>
+    <async-index-testimonials/>
+    <async-brands-logos/>
   `,
     styles: [`
   `]

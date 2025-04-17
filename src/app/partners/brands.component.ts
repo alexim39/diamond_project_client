@@ -16,9 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
             <mat-icon>chevron_left</mat-icon>
         </button>
 
-    
         <div class="brand-display-wrapper" #brandWrapper>
-
             <div class="brand-logo" *ngFor="let brand of brands">
             <img [src]="brand.logo" [alt]="brand.name" />
             </div>
@@ -92,15 +90,13 @@ export class BrandsComponent implements AfterViewInit {
     @ViewChild('brandWrapper') brandWrapper!: ElementRef;
 
     brands = [
-      { name: 'DSM', logo: 'assets/img/partner1.png' },
-      { name: 'Empowered Consumerism', logo: 'assets/img/partner2.png' },
-      { name: 'Weider Global Nutrition', logo: 'assets/img/partner3.png' },
-      { name: 'Natures Way', logo: 'assets/img/partner4.png' },
-      { name: 'Access Bank PLC', logo: 'assets/img/partner5.png' },
-      /* { name: 'Brand 4', logo: 'assets/img/access.png' },
-      { name: 'Brand 4', logo: 'assets/img/access.png' }, */
-
-
+      { name: 'DSM', logo: 'assets/images/partner1.png' },
+      { name: 'Empowered Consumerism', logo: 'assets/images/partner2.png' },
+      { name: 'Weider Global Nutrition', logo: 'assets/images/partner3.png' },
+      { name: 'Natures Way', logo: 'assets/images/partner4.png' },
+      { name: 'Access Bank PLC', logo: 'assets/images/partner5.png' },
+      /* { name: 'Brand 4', logo: 'assets/images/access.png' },
+      { name: 'Brand 4', logo: 'assets/images/access.png' }, */
 
       // Add more brands as needed
     ];
