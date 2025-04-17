@@ -5,6 +5,7 @@ import { UsernameCheckService } from '../_common/services/username-check';
 import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { PartnerInterface } from '../_common/interface/partner.interface';
+import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
 
 /**
  * @title Partners
@@ -17,7 +18,7 @@ import { PartnerInterface } from '../_common/interface/partner.interface';
     <async-partners-presentation *ngIf="partner" [partner]="partner"></async-partners-presentation>
   `
 })
-export class PartnersContainerComponent implements OnInit, OnDestroy {
+export class PartnersContainerComponent implements OnDestroy {
 
   partner!: PartnerInterface;
   subscriptions: Subscription[] = [];
@@ -40,23 +41,24 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
 
       // check if username exist
       this.subscriptions.push(
-        this.usernameCheckService.checkUsernameAvailability(username).subscribe(
-          (returnedObject) => {
+        this.usernameCheckService.checkUsernameAvailability(username).subscribe({
+          next: (returnedObject) => {
             if (returnedObject.username == username) {
               // Store the extracted data in local storage
               localStorage.setItem('username', username);
               this.partner = returnedObject;
-
+      
               // Capture the channel from the query parameters
               this.route.queryParams.subscribe(params => {
                 this.channel = params['utm_source'] || 'unknown';
                 //console.log('Traffic source - Urchin Tracking Module (channel):', this.channel);
-
+      
                 // You can send the captured information to your backend or analytics service here
                 this.recordVisit(username, this.channel);
               });
             }
-          }, (error) => {
+          },
+          error: (error: HttpErrorResponse) => {
             if (error.error.code == 400) {
               // No partner with provided username
               // show page not found
@@ -64,24 +66,21 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
               localStorage.removeItem('username');
             }
           }
-        )
+        })
       )      
-    }
-
-    ngOnInit() {
     }
 
     private recordVisit(username: string | null, channel: string | null): void {
 
       this.subscriptions.push(
-        this.usernameCheckService.recordVisit(username, channel).subscribe(
-          response => {
+        this.usernameCheckService.recordVisit(username, channel).subscribe({
+          next: (response) => {
             //console.log('Visit recorded:', response);
           },
-          error => {
+          error: (error: HttpErrorResponse) => {
             //console.error('Error recording visit:', error);
           }
-        )
+        })
       )
     }
 
