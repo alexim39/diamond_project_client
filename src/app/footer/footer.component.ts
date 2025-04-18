@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-
+import { FooterService } from './footer.service';
+import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { Platform } from '@angular/cdk/platform';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'async-footer',
-  imports: [RouterModule, MatButtonModule, MatIconModule],
+  imports: [RouterModule, MatButtonModule, CommonModule, MatIconModule, MatInputModule, FormsModule, MatProgressBarModule],
+  providers: [FooterService],
   template: `
     <div class="footer-wrapper" id="footer">
       <div class="footer-content">
@@ -30,6 +38,18 @@ import { RouterModule } from '@angular/router';
           <p class="contact-email">
             Contact us: <a href="mailto:contacts@diamondprojectonline.com">contacts&#64;diamondprojectonline.com</a>
           </p>
+
+          <div class="subscription-container">
+          
+            <input [(ngModel)]="email" placeholder="Enter your email" class="email-input">
+
+            <button mat-flat-button color="primary" (click)="subscribe()">Subscribe</button>
+
+          </div>
+
+          <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+
 
       
           <p class="copyright">
@@ -155,6 +175,17 @@ import { RouterModule } from '@angular/router';
       } */
     }
 
+    .subscription-container {
+      display: flex;
+      gap: 1rem;
+     
+      input {
+        border-radius: 12px;
+        min-width: 60%;
+        border-color: #d4a941;
+      }
+    }
+
     .logo {
       flex-shrink: 0;
 
@@ -246,24 +277,87 @@ import { RouterModule } from '@angular/router';
         align-items: flex-start;
       }
 
-      .footer-links {
-        order: 1; /* Move links above copyright on smaller screens if desired */
-      }
-
-      .copyright {
-        order: 2;
-      }
-
-      .contact-email {
-        order: 3;
-      }
+     
     }
   `]
 })
-export class FooterComponent {
+export class FooterComponent implements OnDestroy {
   currentYear: number = new Date().getFullYear();
+  email: string = '';
+  subscriptions: Subscription[] = [];
+  isLoading = false;
+  userDevice = '';
+  username: string = 'business';
+  
+  constructor(
+    private footerService: FooterService,
+    private platform: Platform
+  ) {
+    if (this.platform.ANDROID || this.platform.IOS) {
+      //console.log('User is using a mobile device.');
+      this.userDevice = 'mobile'
+    } else {
+      //console.log('User is using a desktop device.');
+      this.userDevice = 'desktop'
+    }
 
+    const storedUsername = localStorage.getItem('username');
+    // Retrieve the data from local storage
+    if (storedUsername) {
+      this.username = storedUsername;
+      //console.log('Retrieved data from local storage:', this.username);
+    } else {
+      //console.log('Data not found in local storage');
+    }
+  }
+
+
+  
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  subscribe() {
+    if (this.email) {
+      this.isLoading = true;
+
+      const object = {
+        email: this.email,
+        userDevice: this.userDevice,
+        username: this.username
+      }
+
+      this.subscriptions.push(
+        this.footerService.submit(object).subscribe({
+          next: (response) => {
+            Swal.fire({
+              position: 'bottom',
+              icon: 'success',
+              text: response.message,
+              confirmButtonColor: 'rgb(5, 1, 17)',
+              timer: 4000,
+            });
+
+            this.isLoading = false;
+          },
+          error: () => {
+            Swal.fire({
+              position: 'bottom',
+              icon: 'error',
+              text: 'Server error occurred, please try again',
+              showConfirmButton: false,
+              timer: 4000,
+            });
+
+            this.isLoading = false;
+          },
+        })
+      )
+    }
+  }
+
+  
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }
