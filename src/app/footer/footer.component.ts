@@ -41,7 +41,7 @@ import { CommonModule } from '@angular/common';
 
           <div class="subscription-container">
           
-            <input [(ngModel)]="email" placeholder="Enter your email" class="email-input">
+            <input [(ngModel)]="email" placeholder="Enter your email to subscribe" class="email-input">
 
             <button mat-flat-button color="primary" (click)="subscribe()">Subscribe</button>
 
