@@ -336,12 +336,12 @@ export class GetStartedComponent implements OnInit, OnDestroy {
         employedStatus: ['', Validators.required],
         comfortWithTech: ['', Validators.required],
         onlineBusinessTimeDedication: ['', Validators.required],
-        phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-        email: ['', [Validators.required, Validators.email]],
-        name: ['', Validators.required],
-        surname: ['', Validators.required],
+        phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{11,}$')]],
+        email: ['', [Validators.required, Validators.minLength(10), Validators.email]],
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        surname: ['', [Validators.required, Validators.minLength(3)]],
         referral: ['', Validators.required],
-        referralCode: ['', Validators.required],
+        referralCode: ['', [Validators.required, Validators.minLength(3)]],
         userDevice: this.userDevice,
         username: this.username,
 
@@ -412,12 +412,12 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       const formData: SurveyFormData = this.surveyForm.value;
       this.subscriptions.push(
         this.surveyService.submit(formData).subscribe({
-          next: () => {
-
+          next: (response) => {
+            this.isSpinning = false;
             Swal.fire({
               position: "bottom",
               icon: 'success',
-              text: 'Thank you for completing the survey form. Your responses have been submitted, and we will be in touch with you soon',
+              text: response.message,
               showConfirmButton: true,
               timer: 10000,
               confirmButtonColor: "#ffab40",
@@ -426,15 +426,18 @@ export class GetStartedComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('/');
           },
           error: (error: HttpErrorResponse) => {
-
             this.isSpinning = false;
+            let errorMessage = 'Server error occurred, please try again.'; // default error message.
+            if (error.error && error.error.message) {
+              errorMessage = error.error.message; // Use backend's error message if available.
+            }
             Swal.fire({
               position: "bottom",
               icon: 'error',
-              text: 'Server error occured, please try again',
+              text: errorMessage,
               showConfirmButton: false,
               timer: 4000
-            });
+            });  
 
           }
         })

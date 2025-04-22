@@ -15,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
     imports: [PartnersPresenterComponent, CommonModule],
     providers: [UsernameCheckService],
     template: `
-    <async-partners-presentation *ngIf="partner" [partner]="partner"></async-partners-presentation>
+    <async-partners-presentation *ngIf="partner" [partner]="partner"/>
   `
 })
 export class PartnersContainerComponent implements OnDestroy {

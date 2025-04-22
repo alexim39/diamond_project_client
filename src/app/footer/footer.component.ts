@@ -65,7 +65,9 @@ import { CommonModule } from '@angular/common';
       </div>
 
       <div class="logo">
+        <a routerLink="/">
         <img src="assets/images/icon.png" alt="Diamond Logo" />
+        </a>
       </div>
 
       <div class="back-to-top" (click)="scrollToTop()">BACK TO TOP <mat-icon>arrow_forward</mat-icon></div>
