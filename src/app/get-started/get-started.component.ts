@@ -25,10 +25,10 @@ import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
  * @title Survey form for getting started
  */
 @Component({
-    selector: 'async-feedback',
-    providers: [SurveyService],
-    imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
-    templateUrl: 'get-started.component.html',
+selector: 'async-feedback',
+providers: [SurveyService],
+imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+templateUrl: 'get-started.component.html',
 styles: [`
 
   
