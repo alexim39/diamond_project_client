@@ -42,29 +42,28 @@ export class PartnersContainerComponent implements OnDestroy {
       // check if username exist
       this.subscriptions.push(
         this.usernameCheckService.checkUsernameAvailability(username).subscribe({
-          next: (returnedObject) => {
-            if (returnedObject.username == username) {
-              // Store the extracted data in local storage
-              localStorage.setItem('username', username);
-              this.partner = returnedObject;
-      
-              // Capture the channel from the query parameters
-              this.route.queryParams.subscribe(params => {
-                this.channel = params['utm_source'] || 'unknown';
-                //console.log('Traffic source - Urchin Tracking Module (channel):', this.channel);
-      
-                // You can send the captured information to your backend or analytics service here
-                this.recordVisit(username, this.channel);
-              });
+          next: (response) => {
+            if (response.success) {
+              if (response.partner.username == username) {
+                // Store the extracted data in local storage
+                localStorage.setItem('username', username);
+                this.partner = response.partner;
+        
+                // Capture the channel from the query parameters
+                this.route.queryParams.subscribe(params => {
+                  this.channel = params['utm_source'] || 'unknown';
+                  //console.log('Traffic source - Urchin Tracking Module (channel):', this.channel);
+        
+                  // You can send the captured information to your backend or analytics service here
+                  this.recordVisit(username, this.channel);
+                });
+              }
             }
           },
           error: (error: HttpErrorResponse) => {
-            if (error.error.code == 400) {
-              // No partner with provided username
-              // show page not found
-              this.router.navigate(['/page/not-found/']);
-              localStorage.removeItem('username');
-            }
+            localStorage.removeItem('username');
+            localStorage.clear();
+            this.router.navigate(['/']);
           }
         })
       )      
@@ -75,10 +74,10 @@ export class PartnersContainerComponent implements OnDestroy {
       this.subscriptions.push(
         this.usernameCheckService.recordVisit(username, channel).subscribe({
           next: (response) => {
-            //console.log('Visit recorded:', response);
+            console.log('Visit recorded:', response);
           },
           error: (error: HttpErrorResponse) => {
-            //console.error('Error recording visit:', error);
+            console.error('Error recording visit:', error);
           }
         })
       )
@@ -86,8 +85,6 @@ export class PartnersContainerComponent implements OnDestroy {
 
     ngOnDestroy() {
       // unsubscribe list
-      this.subscriptions.forEach(subscription => {
-        subscription.unsubscribe();
-      });
+      this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 }

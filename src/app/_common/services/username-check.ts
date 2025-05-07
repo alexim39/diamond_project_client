@@ -1,30 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { PartnerInterface } from '../interface/partner.interface';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { ApiService } from './api.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UsernameCheckService {
-  // Define API
-  api = 'https://diamondprojectapi-y6u04o8b.b4a.run/';
-  //api = 'http://localhost:3000';
+  constructor(private apiService: ApiService) {}
 
-  
-
-  constructor(private http: HttpClient) {}
-  
-
-  checkUsernameAvailability(username: string): Observable<PartnerInterface> {
-    // Make a request to your backend API to check username availability
-    return this.http.get<PartnerInterface>(this.api + `/partners/check-username/${username}`);
+  checkUsernameAvailability(username: string): Observable<any> {
+    return this.apiService.get<PartnerInterface>(`partners/check-username/${username}`, undefined, undefined, true);
   }
 
   recordVisit(username: string | null, channel: string | null): Observable<any> {
-    return this.http.post(this.api + `/campaign/visits`, { username, channel });
+    return this.apiService.post<any>(`campaign/visits`, { username, channel }, undefined, true);
   }
 }
 

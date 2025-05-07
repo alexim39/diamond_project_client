@@ -107,7 +107,7 @@ import { AboutComponent } from '../index/about/about.component';
 </section>
     
     `,
-  styles: [`
+styles: [`
 
 .partners-background {
 
