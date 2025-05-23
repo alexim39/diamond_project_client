@@ -221,7 +221,7 @@
 
         <!-- Country Dropdown -->
          <mat-form-field appearance="outline">
-          <mat-label>Country</mat-label>
+          <mat-label>Country of Residence</mat-label>
           <mat-select formControlName="country" (selectionChange)="onCountryChange($event.value)">
             <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
           </mat-select>
@@ -229,7 +229,7 @@
 
         <!-- State Field -->
         <mat-form-field appearance="outline">
-          <mat-label *ngIf="isNigeria">State</mat-label>
+          <mat-label *ngIf="isNigeria">State of Residence</mat-label>
           <mat-select *ngIf="isNigeria" formControlName="state">
             <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
           </mat-select>
