@@ -344,9 +344,9 @@ export class FooterComponent implements OnDestroy {
           },
           error: () => {
             Swal.fire({
-              position: 'bottom',
+              position: "bottom",
               icon: 'error',
-              text: 'Server error occurred, please try again',
+              text: 'Could not subscribe — check the email and try again',
               showConfirmButton: false,
               timer: 4000,
             });

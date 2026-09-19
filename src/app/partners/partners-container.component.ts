@@ -32,8 +32,8 @@ export class PartnersContainerComponent implements OnDestroy {
     ) {
       /* 
         url format
-       http://localhost:4200/business?utm_source=6696bbe2e8d1d5d6edd178e0 
-       https://diamondprojectonline.com/business?utm_source=6696bbe2e8d1d5d6edd178e0
+       http://localhost:4201/business?utm_source=6696bbe2e8d1d5d6edd178e0 
+       https://diamondproject.c21fg.online/business?utm_source=6696bbe2e8d1d5d6edd178e0
       */
 
       const url = window.location.pathname;

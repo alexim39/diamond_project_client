@@ -77,7 +77,7 @@ import { RouterModule } from '@angular/router';
             </a>
         </li>
         <li>
-          <a  (click)=closeMenu() href="http://partners.diamondprojectonline.com" target="_blank"><span class="number">05.</span> Partners Platform</a>
+          <a  (click)=closeMenu() href="https://c21fg.online" target="_blank"><span class="number">05.</span> Partners Platform</a>
         </li>
       </ul>
 
