@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 import { ApiService } from '../_common/services/api.service';
+
+export interface PublicPartner {
+  username: string;
+  name: string;
+  surname: string;
+  profileImage?: string;
+  jobTitle?: string;
+  state?: string;
+  city?: string;
+}
 
 export interface SurveyFormData {
   ageRange: string;
@@ -28,6 +39,12 @@ export class SurveyService {
   submit(formObject: SurveyFormData): Observable<any> {
     //console.log('form record', formData);
     return this.apiService.post<SurveyFormData>(`survey/submit`, formObject, undefined, true);
+  }
+
+  // public referral picker — safe fields only, no auth needed
+  searchPartners(q: string): Observable<{ partners: PublicPartner[]; success: boolean }> {
+    const params = new HttpParams().set('q', q);
+    return this.apiService.get<{ partners: PublicPartner[]; success: boolean }>(`partners/public-search`, params, undefined, true);
   }
 
   

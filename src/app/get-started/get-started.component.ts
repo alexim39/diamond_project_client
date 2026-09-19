@@ -10,9 +10,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterModule, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormArray } from '@angular/forms';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import Swal from 'sweetalert2';
-import { Subscription } from 'rxjs';
-import { SurveyFormData, SurveyService } from './get-started.service';
+import { Subscription, of, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, switchMap, catchError, tap } from 'rxjs/operators';
+import { SurveyFormData, SurveyService, PublicPartner } from './get-started.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
@@ -27,7 +29,7 @@ import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
 @Component({
 selector: 'async-feedback',
 providers: [SurveyService],
-imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatAutocompleteModule],
 templateUrl: 'get-started.component.html',
 styles: [`
 
@@ -123,6 +125,12 @@ styles: [`
   border: 1px solid rgb(216, 159, 159);
   border-radius: 4px;
 }
+
+.ref-opt { display: flex; align-items: center; gap: 0.7em; padding: 0.2em 0; }
+.ref-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex: none; }
+.ref-initials { display: inline-flex; align-items: center; justify-content: center; font-weight: 800; color: #111; background: linear-gradient(135deg, #ffc107, #a97f2c); }
+.ref-text { display: flex; flex-direction: column; line-height: 1.2; }
+.ref-text small { color: #6e6e6e; }
   
 
 
@@ -230,6 +238,11 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   isSpinning = false;
   userDevice = '';
   username: string = 'business';
+
+  // Referral picker — searchable partner dropdown with free-text fallback.
+  filteredPartners: PublicPartner[] = [];
+  isSearchingPartners = false;
+  referralSearchFailed = false;
 
 
   countries: string[] = [
@@ -358,8 +371,72 @@ export class GetStartedComponent implements OnInit, OnDestroy {
         this.surveyForm.get('referralCode')?.updateValueAndValidity();
       });
 
+      // Referral picker: debounced public search while Referral is active.
+      // Free-text fallback stays valid — friends/family may not be partners.
+      this.subscriptions.push(
+        (this.surveyForm.get('referralCode')!.valueChanges as Observable<unknown>).pipe(
+          filter(() => this.surveyForm.get('referral')?.value === 'Referral'),
+          tap(() => { this.referralSearchFailed = false; }),
+          debounceTime(300),
+          distinctUntilChanged(),
+          filter((v: unknown): v is string => typeof v === 'string' && v.trim().length >= 2),
+          tap(() => { this.isSearchingPartners = true; }),
+          switchMap((v: string) =>
+            this.surveyService.searchPartners(v.trim()).pipe(
+              catchError(() => {
+                this.referralSearchFailed = true;
+                return of({ partners: [], success: false });
+              })
+            )
+          ),
+        ).subscribe({
+          next: (res) => {
+            this.isSearchingPartners = false;
+            this.filteredPartners = res.partners ?? [];
+          },
+          error: () => {
+            this.isSearchingPartners = false;
+            this.referralSearchFailed = true;
+            this.filteredPartners = [];
+          }
+        })
+      );
+
       // Initialize `isNigeria` based on the default country
       this.isNigeria = this.surveyForm.get('country')?.value === 'Nigeria';
+    }
+
+    /** Label stored on select: verifiable + readable, backward compatible. */
+    referralLabel(p: PublicPartner): string {
+      const full = `${p.name ?? ''} ${p.surname ?? ''}`.trim() || p.username;
+      return `${full} (@${p.username})`;
+    }
+
+    referralInitials(p: PublicPartner): string {
+      const parts = `${p.name ?? ''} ${p.surname ?? ''}`.trim().split(/\s+/).filter(Boolean);
+      if (!parts.length) return (p.username?.[0] ?? '?').toUpperCase();
+      return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+    }
+
+    referralSubtitle(p: PublicPartner): string {
+      return [p.jobTitle, [p.city, p.state].filter(Boolean).join(', ')].filter(Boolean).join(' · ');
+    }
+
+    /** Single-line dropdown caption — avoids `@` control-flow pitfalls in the template. */
+    referralOptionLine(p: PublicPartner): string {
+      const sub = this.referralSubtitle(p);
+      return sub ? `@${p.username} · ${sub}` : `@${p.username}`;
+    }
+
+    onReferralSelected(event: MatAutocompleteSelectedEvent): void {
+      const p = event.option.value as PublicPartner;
+      // Store verifiable label; @username inside keeps upline credit exact.
+      this.surveyForm.get('referralCode')?.setValue(this.referralLabel(p), { emitEvent: false });
+      this.filteredPartners = [p];
+    }
+
+    referralTypedValue(): string {
+      return String(this.surveyForm.get('referralCode')?.value ?? '').trim();
     }
 
     onCountryChange(selectedCountry: string): void {

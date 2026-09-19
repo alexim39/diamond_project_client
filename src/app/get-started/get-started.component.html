@@ -212,8 +212,23 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="surveyForm.get('referral')?.value === 'Referral'">
-            <mat-label>Referral Name</mat-label>
-            <input matInput formControlName="referralCode">
+            <mat-label>Referral Name — start typing to find your referrer</mat-label>
+            <input matInput formControlName="referralCode" [matAutocomplete]="refAuto" placeholder="e.g. Ada Obi">
+            <mat-autocomplete #refAuto="matAutocomplete" (optionSelected)="onReferralSelected($event)">
+              <mat-option *ngFor="let p of filteredPartners" [value]="p">
+                <span class="ref-opt">
+                  <img *ngIf="p.profileImage; else refInit" class="ref-avatar" [src]="p.profileImage" [alt]="p.name" loading="lazy" />
+                  <ng-template #refInit><span class="ref-avatar ref-initials">{{ referralInitials(p) }}</span></ng-template>
+                  <span class="ref-text">
+                    <strong>{{ p.name }} {{ p.surname }}</strong>
+                    <small>{{ referralOptionLine(p) }}</small>
+                  </span>
+                </span>
+              </mat-option>
+              <mat-option *ngIf="!isSearchingPartners && referralTypedValue().length >= 2 && filteredPartners.length === 0 && !referralSearchFailed" disabled>Pick from the list if you see them — otherwise keep your typed name.</mat-option>
+              <mat-option *ngIf="referralSearchFailed" disabled>Search unavailable — keep your typed name.</mat-option>
+            </mat-autocomplete>
+            <mat-hint>Select your referrer if they appear — full name, photo, location and title help you confirm. Otherwise keep typing their name.</mat-hint>
             <mat-error *ngIf="surveyForm.get('referralCode')?.hasError('required') ">
             This value is required
             </mat-error>
