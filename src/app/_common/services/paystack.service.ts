@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
+// Paystack calls MUST go through the backend (the secret key can never
+// live in a frontend bundle — every visitor can read it). The backend
+// holds the key server-side; these helpers stay for the callback URLs.
 const headers = new HttpHeaders({
-  Authorization: `Bearer sk_live_2288514c9d501669926c10dc09cff03b11b3bafa`
+  Authorization: `Bearer ${environment.paystackPublicKey}`,
 });
 
 export interface PaymentInterface {
@@ -16,7 +20,8 @@ export interface PaymentInterface {
 @Injectable()
 export class PaystackService {
   private paystackApiUrl = 'https://api.paystack.co';
-  private apiURL = 'https://asynctrainingapi5-70vtakyj.b4a.run';
+  // Backend URL follows the environment (never a hardcoded host).
+  private apiURL = environment.apiUrl;
   private clientURL = 'https://training.async.ng/';
   //private apiURL = 'http://localhost:3000';
   //private clientURL = 'http://localhost:4200';

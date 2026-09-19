@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, Observable, retry, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private readonly baseUrl = 'https://diamondprojectapi-y6u04o8b.b4a.run';
-  //private readonly baseUrl = 'http://localhost:8080'; // For local testing
+  // Backend comes from the environment (dev → localhost:3000,
+  // prod → live Back4App). Never hardcode a host here — a stale host
+  // silently points a build at the wrong backend (and its CORS list).
+  private readonly baseUrl = environment.apiUrl;
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('Service: An error occurred:', error);
