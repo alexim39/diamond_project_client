@@ -40,6 +40,16 @@
                 "glob": "sitemap.xml",
                 "input": "public",
                 "output": "/"
+              },
+              {
+                "glob": ".htaccess",
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "_redirects",
+                "input": "public",
+                "output": "/"
               }
             ],
             "styles": [
