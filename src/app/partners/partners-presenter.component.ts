@@ -208,7 +208,7 @@ import { BrandsComponent } from './brands.component';
           <a [href]="s.url" target="_blank" rel="noopener" [title]="s.label">{{ s.short }}</a>
         }
       </div>
-      <p>© {{ year }} {{ fullName() }} · Diamond Project Partner · diamondprojectonline.com/{{ partner.username }}</p>
+      <p>© {{ year }} {{ fullName() }} · Diamond Project Partner · diamondproject.c21fg.online/{{ partner.username }}</p>
       <p class="fine">Earnings vary with effort. This page is a personal partner page, not a company income promise.</p>
     </footer>
   </div>
