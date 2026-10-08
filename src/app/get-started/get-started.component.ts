@@ -48,6 +48,18 @@ styles: [`
         color: var(--dp-gold);
         margin: 0 0 0.6em;
       }
+      .back-home {
+        margin-top: 1em;
+        min-height: 44px;
+        color: var(--dp-gold-bright);
+        border: 1px solid var(--dp-gold);
+        border-radius: 999px;
+        padding: 0 1.25em;
+        text-decoration: none;
+      }
+      .back-home:hover {
+        text-decoration: none;
+      }
       h2 {
         font-family: Garamond, serif;
         font-size: 2em;
