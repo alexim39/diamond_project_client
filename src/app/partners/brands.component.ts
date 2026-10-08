@@ -12,18 +12,18 @@ import {MatIconModule} from '@angular/material/icon';
     template: `
 
     <div class="brand-display-container" (mouseover)="stopScroll()" (mouseleave)="startScroll()">
-        <button mat-icon-button class="nav-button" (click)="scrollLeft()">
-            <mat-icon>chevron_left</mat-icon>
+        <button mat-icon-button class="nav-button" (click)="scrollLeft()" aria-label="Scroll brands left">
+            <mat-icon aria-hidden="true">chevron_left</mat-icon>
         </button>
 
         <div class="brand-display-wrapper" #brandWrapper>
             <div class="brand-logo" *ngFor="let brand of brands">
-            <img [src]="brand.logo" [alt]="brand.name" />
+            <img [src]="brand.logo" [alt]="brand.name" loading="lazy" />
             </div>
         </div>
     
-        <button mat-icon-button class="nav-button" (click)="scrollRight()">
-            <mat-icon>chevron_right</mat-icon>
+        <button mat-icon-button class="nav-button" (click)="scrollRight()" aria-label="Scroll brands right">
+            <mat-icon aria-hidden="true">chevron_right</mat-icon>
         </button>
     </div>
 
@@ -41,8 +41,13 @@ import {MatIconModule} from '@angular/material/icon';
   .nav-button {
     position: absolute;
     z-index: 2;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 50%;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     &:first-of-type {
       left: 0;
@@ -62,15 +67,25 @@ import {MatIconModule} from '@angular/material/icon';
     &:hover {
         animation-play-state: paused;
     }
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
 
     .brand-logo {
       flex: 0 0 auto;
       margin: 0 10px;
       img {
-        max-width: 16em;
+        max-width: min(16em, 60vw);
         max-height: 6em;
         display: block;
       }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    @keyframes scroll {
+      0% { transform: none; }
+      100% { transform: none; }
     }
   }
 }

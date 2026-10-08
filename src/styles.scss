@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --dp-gold: #d4a941;
+  --dp-gold-bright: #ffc107;
+  --dp-gold-deep: #b7892f;
+  --dp-gold-soft: #ffab40;
+  --dp-ink: #0f0f0f;
+  --dp-night: #03010f;
+}
 html, body { height: 100%; }
 body { margin: 0;}
-//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 .breadcrumb-wrapper {
     display: flex;

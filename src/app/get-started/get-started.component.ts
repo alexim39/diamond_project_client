@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +21,7 @@ import { Platform } from '@angular/cdk/platform';
 import { minDigitsValidator } from '../_common/services/username-check';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
+import { HttpErrorResponse } from '@angular/common/http';
 
 /**
  * @title Survey form for getting started
@@ -72,7 +72,7 @@ styles: [`
         padding: 2em;
         width: 60%;
         h3 {
-          color: #ffab40;
+          color: var(--dp-gold-soft);
         }
         p {
           text-align: justify;
@@ -239,7 +239,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   userDevice = '';
   username: string = 'business';
 
-  // Referral picker — searchable partner dropdown with free-text fallback.
+  // Referral picker â€” searchable partner dropdown with free-text fallback.
   filteredPartners: PublicPartner[] = [];
   isSearchingPartners = false;
   referralSearchFailed = false;
@@ -301,7 +301,20 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     'United Arab Emirates',
     'Qatar',
     'Kuwait',
-    'Bahrain'
+    'Bahrain',
+    'United Kingdom',
+    'Canada',
+    'Germany',
+    'France',
+    'Netherlands',
+    'Spain',
+    'Italy',
+    'India',
+    'Pakistan',
+    'Philippines',
+    'Malaysia',
+    'Indonesia',
+    'Australia'
   ];
   // Example country list
   states: string[] = [
@@ -321,10 +334,8 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     private platform: Platform
   ) {
     if (this.platform.ANDROID || this.platform.IOS) {
-      //console.log('User is using a mobile device.');
       this.userDevice = 'mobile'
     } else {
-      //console.log('User is using a desktop device.');
       this.userDevice = 'desktop'
     }
 
@@ -332,9 +343,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     // Retrieve the data from local storage
     if (storedUsername) {
       this.username = storedUsername;
-      //console.log('Retrieved data from local storage:', this.username);
     } else {
-      //console.log('Data not found in local storage');
     }
     
   }
@@ -349,12 +358,12 @@ export class GetStartedComponent implements OnInit, OnDestroy {
         employedStatus: ['', Validators.required],
         comfortWithTech: ['', Validators.required],
         onlineBusinessTimeDedication: ['', Validators.required],
-        phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{11,}$')]],
-        email: ['', [Validators.required, Validators.minLength(10), Validators.email]],
-        name: ['', [Validators.required, Validators.minLength(3)]],
-        surname: ['', [Validators.required, Validators.minLength(3)]],
+        phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{7,15}$')]],
+        email: ['', [Validators.required, Validators.email]],
+        name: ['', [Validators.required, Validators.minLength(2)]],
+        surname: ['', [Validators.required, Validators.minLength(2)]],
         referral: ['', Validators.required],
-        referralCode: ['', [Validators.required, Validators.minLength(3)]],
+        referralCode: ['', [Validators.required, Validators.minLength(2)]],
         userDevice: this.userDevice,
         username: this.username,
 
@@ -367,12 +376,15 @@ export class GetStartedComponent implements OnInit, OnDestroy {
           this.surveyForm.get('referralCode')?.setValidators([Validators.required]);
         } else {
           this.surveyForm.get('referralCode')?.clearValidators();
+          // Stale hidden value must not ride along.
+          this.surveyForm.get('referralCode')?.setValue('', { emitEvent: false });
+          this.filteredPartners = [];
         }
         this.surveyForm.get('referralCode')?.updateValueAndValidity();
       });
 
       // Referral picker: debounced public search while Referral is active.
-      // Free-text fallback stays valid — friends/family may not be partners.
+      // Free-text fallback stays valid â€” friends/family may not be partners.
       this.subscriptions.push(
         (this.surveyForm.get('referralCode')!.valueChanges as Observable<unknown>).pipe(
           filter(() => this.surveyForm.get('referral')?.value === 'Referral'),
@@ -419,13 +431,13 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     }
 
     referralSubtitle(p: PublicPartner): string {
-      return [p.jobTitle, [p.city, p.state].filter(Boolean).join(', ')].filter(Boolean).join(' · ');
+      return [p.jobTitle, [p.city, p.state].filter(Boolean).join(', ')].filter(Boolean).join(' Â· ');
     }
 
-    /** Single-line dropdown caption — avoids `@` control-flow pitfalls in the template. */
+    /** Single-line dropdown caption â€” avoids `@` control-flow pitfalls in the template. */
     referralOptionLine(p: PublicPartner): string {
       const sub = this.referralSubtitle(p);
-      return sub ? `@${p.username} · ${sub}` : `@${p.username}`;
+      return sub ? `@${p.username} Â· ${sub}` : `@${p.username}`;
     }
 
     onReferralSelected(event: MatAutocompleteSelectedEvent): void {
@@ -440,11 +452,15 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     }
 
     onCountryChange(selectedCountry: string): void {
+      const wasNigeria = this.isNigeria;
       this.isNigeria = selectedCountry === 'Nigeria';
-  
-      // Reset the state field when the country changes
-      this.surveyForm.get('state')?.reset();
-  
+
+      // Only clear the state when switching between Nigerian states and
+      // free-text mode â€” same-mode changes keep what the user typed.
+      if (wasNigeria !== this.isNigeria) {
+        this.surveyForm.get('state')?.reset();
+      }
+
       // Update validation for the state field
       if (this.isNigeria) {
         this.surveyForm.get('state')?.setValidators([Validators.required]);
@@ -491,16 +507,20 @@ export class GetStartedComponent implements OnInit, OnDestroy {
         this.surveyService.submit(formData).subscribe({
           next: (response) => {
             this.isSpinning = false;
+            // Ads conversion fires on real signup only — never on page view.
+            try {
+              const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+              gtag?.('event', 'conversion', { send_to: 'AW-307794612/pPxdCIWS4osZELSl4pIB' });
+            } catch { /* tracking must never break signup */ }
             Swal.fire({
               position: "bottom",
               icon: 'success',
               text: response.message,
               showConfirmButton: true,
-              timer: 10000,
               confirmButtonColor: "#ffab40",
-            })
-            this.isSpinning = false;
-            this.router.navigateByUrl('/');
+            }).then(() => {
+              this.router.navigateByUrl('/');
+            });
           },
           error: (error: HttpErrorResponse) => {
             this.isSpinning = false;
@@ -512,9 +532,9 @@ export class GetStartedComponent implements OnInit, OnDestroy {
               position: "bottom",
               icon: 'error',
               text: errorMessage,
-              showConfirmButton: false,
-              timer: 4000
-            });  
+              showConfirmButton: true,
+              confirmButtonColor: "#ffab40",
+            });
 
           }
         })
@@ -522,8 +542,20 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     } else {
      this.isSpinning = false;
      this.surveyForm.markAllAsTouched(); // Highlight invalid fields
+     this.scrollToFirstError();
     }
     
+  }
+
+  /** Focus the first invalid field so users see what to fix. */
+  private scrollToFirstError(): void {
+    const invalid = Object.keys(this.surveyForm.controls).find((k) => this.surveyForm.get(k)?.invalid);
+    if (!invalid) return;
+    const el = document.querySelector(`[formControlName="${invalid}"]`);
+    if (el instanceof HTMLElement) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.focus({ preventScroll: true });
+    }
   }
 
   // Helper method to mark all form controls as touched

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
       </div>
 
         <div class="left-content">
-          <h1>We are dedicated to guiding our partners <br><span>towards becoming the ultimate versions of themselves.</span></h1>
+          <h2>We are dedicated to guiding our partners <br><span>towards becoming the ultimate versions of themselves.</span></h2>
 
           <p>
             The Diamond Project is an initiative that seeks to unearth the inherent potential within individuals, much like a diamond waiting to be discovered. 
@@ -36,21 +36,20 @@ import { CommonModule } from '@angular/common';
           </p>
 
            <p> 
-            Our holistic approach addresses every facet of personal growth, from mental fortitude to physical vitality, ensuring you emerge as a diamond – refined, resilient, and radiant.
+            Our holistic approach addresses every facet of personal growth, from mental fortitude to physical vitality, ensuring you emerge as a diamond â€“ refined, resilient, and radiant.
           </p>
 
           <a mat-flat-button color="primary"
-            routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()"
-            class="cta-button"  
-            (click)="scrollToTop()">Get Started to Learn More
+            routerLink="/get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()"
+            class="cta-button">Get Started to Learn More
           </a>
         </div>
         
         <div class="right-content">
-          <h1>Real People, Real Results: Success Stories!</h1>
+          <h2>Real People, Real Results: Success Stories!</h2>
           <div class="video-container">
-            <video controls>
-              <source src="assets/vid/SUCCESS_STORY_OF _DR_ELIJAH_MBA_RETIRED_MEDICAL_DOCTOR.mp4" type="video/mp4">
+            <video controls preload="metadata">
+              <source src="assets/vid/SUCCESS_STORY_OF_DR_ELIJAH_MBA_RETIRED_MEDICAL_DOCTOR.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -72,7 +71,7 @@ styles: [`
       align-items: flex-start;
       width: 100%;
       .section-label {
-        color: #d4a941;
+        color: var(--dp-gold);
         font-size: 0.875rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -97,7 +96,7 @@ styles: [`
   .left-content {
     flex: 1 1 45%;
     margin-right: 2em;
-    h1 {
+    h2 {
       font-size: 2rem;
       margin-bottom: 1em;
       span {
@@ -115,7 +114,7 @@ styles: [`
 
   .right-content {
     flex: 1 1 45%;
-    h1 {
+    h2 {
       font-size: 1.75rem;
       margin-bottom: 1em;
     }
@@ -139,7 +138,7 @@ styles: [`
 
     .left-content, .right-content {
       flex: 1 1 100%;
-      h1 {
+      h2 {
         font-size: 1.5rem;
       }
       p {
@@ -158,7 +157,7 @@ styles: [`
     }
 
     .left-content, .right-content {
-      h1 {
+      h2 {
         font-size: 1.25rem;
       }
       p {

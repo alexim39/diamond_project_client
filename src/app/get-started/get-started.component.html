@@ -67,7 +67,7 @@
               <mat-option value="Neutral">Neutral</mat-option>
               <mat-option value="Not very important">Not very important</mat-option>
               <mat-option value="Not important at all">Not important at all</mat-option>
-              <mat-option value="cant say">Can't say</mat-option>
+              <mat-option value="Can't say">Can't say</mat-option>
             </mat-select>
             <mat-error *ngIf="surveyForm.get('importanceOfPassiveIncome')?.hasError('required') ">
                 This answer is required
@@ -77,7 +77,7 @@
           <div class="form-wrapper">
             <div class="range">
               <h4>How often do you make purchases online? </h4>
-              <mat-radio-group aria-label="Select an purchase range" formControlName="onlinePurchaseSchedule" 
+              <mat-radio-group aria-label="Select a purchase range" formControlName="onlinePurchaseSchedule"
               [ngClass]="{'invalid-field': surveyForm.get('onlinePurchaseSchedule')?.invalid && surveyForm.get('onlinePurchaseSchedule')?.touched}">
                 <mat-radio-button value="Multiple times a week">Multiple times a week</mat-radio-button>
                 <mat-radio-button value="Once a week">Once a week</mat-radio-button>
@@ -92,7 +92,7 @@
 
             <div class="range">
               <h4>What is your primary motivation for joining online business opportunities? </h4>
-              <mat-radio-group aria-label="Select an primary motivation range" formControlName="primaryOnlineBusinessMotivation"
+              <mat-radio-group aria-label="Select a primary motivation" formControlName="primaryOnlineBusinessMotivation"
               [ngClass]="{'invalid-field': surveyForm.get('primaryOnlineBusinessMotivation')?.invalid && surveyForm.get('primaryOnlineBusinessMotivation')?.touched}">
                 <mat-radio-button value="Additional income">Additional income</mat-radio-button>
                 <mat-radio-button value="Financial freedom">Financial freedom</mat-radio-button>
@@ -133,7 +133,7 @@
                 <mat-radio-button value="Neutral">Neutral</mat-radio-button>
                 <mat-radio-button value="Somewhat uncomfortable">Somewhat uncomfortable</mat-radio-button>
                 <mat-radio-button value="Very uncomfortable">Very uncomfortable</mat-radio-button>
-                <mat-radio-button value="Cant say">Cant say</mat-radio-button>
+                <mat-radio-button value="Can't say">Can't say</mat-radio-button>
               </mat-radio-group>
               <mat-error *ngIf="surveyForm.get('comfortWithTech')?.invalid && surveyForm.get('comfortWithTech')?.touched">
                 Please select an option
@@ -142,7 +142,7 @@
 
             <div class="range">
               <h4>How much time can you dedicate to an online business each week?</h4>
-              <mat-radio-group aria-label="Select an purchase range" formControlName="onlineBusinessTimeDedication"
+              <mat-radio-group aria-label="Select a weekly time range" formControlName="onlineBusinessTimeDedication"
               [ngClass]="{'invalid-field': surveyForm.get('onlineBusinessTimeDedication')?.invalid && surveyForm.get('onlineBusinessTimeDedication')?.touched}">
                 <mat-radio-button value="Less than 5 hours">Less than 5 hours</mat-radio-button>
                 <mat-radio-button value="5-10 hours">5-10 hours</mat-radio-button>
@@ -160,30 +160,45 @@
           <div class="form-wrapper">
             <mat-form-field appearance="outline"  [ngClass]="{'invalid-field': surveyForm.get('phoneNumber')?.invalid && surveyForm.get('phoneNumber')?.touched}">
               <mat-label>What's your phone number?</mat-label>
-              <input matInput formControlName="phoneNumber">
+              <input matInput type="tel" inputmode="tel" autocomplete="tel" formControlName="phoneNumber" placeholder="0803 123 4567">
               <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('required') ">
                 Your phone number is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('pattern') ">
+                Digits only, at least 7 characters — no spaces or + sign
               </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>What's your email address?</mat-label>
-              <input matInput type="email" formControlName="email">
+              <input matInput type="email" inputmode="email" autocomplete="email" formControlName="email">
+              <mat-error *ngIf="surveyForm.get('email')?.hasError('required') ">
+                Your email address is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('email')?.hasError('email') ">
+                That email does not look valid
+              </mat-error>
             </mat-form-field>
           </div>
-  
+
           <div class="form-wrapper">
             <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('name')?.invalid && surveyForm.get('name')?.touched}">
-              <mat-label>Name</mat-label>
-              <input matInput formControlName="name">
+              <mat-label>First name</mat-label>
+              <input matInput formControlName="name" autocomplete="given-name">
               <mat-error *ngIf="surveyForm.get('name')?.hasError('required') ">
-                Name is required
+                First name is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('name')?.hasError('minlength') ">
+                At least 2 characters
               </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <mat-label>Surname (Lastname)</mat-label>
-              <input matInput formControlName="surname">
+              <mat-label>Surname (last name)</mat-label>
+              <input matInput formControlName="surname" autocomplete="family-name">
               <mat-error *ngIf="surveyForm.get('surname')?.hasError('required') ">
                 Surname is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('surname')?.hasError('minlength') ">
+                At least 2 characters
               </mat-error>
             </mat-form-field>
           </div>
@@ -204,7 +219,7 @@
               <mat-option value="Radio">Radio</mat-option>
               <mat-option value="TV/Cable Advertisement">TV/Cable Advertisement</mat-option>
               <mat-option value="Magazine/Newspaper">Magazine/Newspaper</mat-option>
-              <mat-option value="cant say">Can't say</mat-option>
+              <mat-option value="Can't say">Can't say</mat-option>
             </mat-select>
             <mat-error *ngIf="surveyForm.get('referral')?.hasError('required') ">
             This answer is required
@@ -230,26 +245,41 @@
             </mat-autocomplete>
             <mat-hint>Select your referrer if they appear — full name, photo, location and title help you confirm. Otherwise keep typing their name.</mat-hint>
             <mat-error *ngIf="surveyForm.get('referralCode')?.hasError('required') ">
-            This value is required
+            Tell us who referred you
+            </mat-error>
+            <mat-error *ngIf="surveyForm.get('referralCode')?.hasError('minlength') ">
+            At least 2 characters
             </mat-error>
         </mat-form-field>
 
         <!-- Country Dropdown -->
          <mat-form-field appearance="outline">
-          <mat-label>Country of Residence</mat-label>
+          <mat-label>Country of residence</mat-label>
           <mat-select formControlName="country" (selectionChange)="onCountryChange($event.value)">
             <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="surveyForm.get('country')?.hasError('required') ">
+            Choose your country
+          </mat-error>
         </mat-form-field>
 
         <!-- State Field -->
         <mat-form-field appearance="outline">
-          <mat-label *ngIf="isNigeria">State of Residence</mat-label>
-          <mat-select *ngIf="isNigeria" formControlName="state">
-            <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
-          </mat-select>
-          <mat-label *ngIf="!isNigeria">Enter State</mat-label>
-          <input *ngIf="!isNigeria" matInput formControlName="state" placeholder="Enter your state of origin" />
+          @if (isNigeria) {
+            <mat-label>State of residence</mat-label>
+            <mat-select formControlName="state">
+              <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+            </mat-select>
+          } @else {
+            <mat-label>State / province of residence</mat-label>
+            <input matInput formControlName="state" autocomplete="address-level1" placeholder="Enter your state or province" />
+          }
+          <mat-error *ngIf="surveyForm.get('state')?.hasError('required') ">
+            Tell us your state
+          </mat-error>
+          <mat-error *ngIf="surveyForm.get('state')?.hasError('minlength') ">
+            At least 2 characters
+          </mat-error>
         </mat-form-field>
 
           <mat-progress-bar mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar><br>

@@ -9,26 +9,26 @@ import { takeUntil } from 'rxjs/operators';
   template: `
     <section class="testimonial-section redesigned">
       <div class="container">
-        <h1 class="section-title">What Our Partners Say</h1>
+        <h2 class="section-title">What Our Partners Say</h2>
 
-        <div class="testimonial-slider"
+        <div class="testimonial-slider" role="region" aria-roledescription="carousel" aria-label="Partner testimonials"
              (mouseenter)="pauseAutoSlide()"
              (mouseleave)="startAutoSlide()">
           <div class="slider-wrapper" [style.transform]="transformStyle">
-            <div class="testimonial-slide" *ngFor="let testimonial of testimonials">
+            <div class="testimonial-slide" *ngFor="let testimonial of testimonials; let i = index" [attr.aria-hidden]="i !== currentIndex" [attr.aria-label]="'Testimonial ' + (i + 1) + ' of ' + testimonials.length">
               <div class="testimonial-card">
                 <blockquote class="quote">
                   <p>{{ testimonial.quote }}</p>
                 </blockquote>
                 <div class="author-info">
                   <div class="author-image">
-                    <img [src]="testimonial?.author?.image || 'assets/images/default_pp.png'" alt="Author Image" />
+                    <img [src]="testimonial?.author?.image || 'assets/images/default_pp.png'" [alt]="testimonial?.author?.name || 'Partner'" loading="lazy" />
                   </div>
                   <div class="author-details">
                     <h5 class="author-name">{{ testimonial.author.name }}</h5>
                     <div class="social-links" *ngIf="testimonial.author.facebook">
-                      <a href="{{ testimonial.author.facebook }}" target="_blank" class="social-icon facebook">
-                        <i class="fa fa-facebook"></i>
+                      <a href="{{ testimonial.author.facebook }}" target="_blank" rel="noopener" [attr.aria-label]="testimonial.author.name + ' on Facebook'" class="social-icon facebook">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
                       </a>
                     </div>
                   </div>
@@ -39,10 +39,13 @@ import { takeUntil } from 'rxjs/operators';
 
           <div class="slider-navigation">
             <button class="nav-button prev" (click)="prevTestimonial()" aria-label="Previous Testimonial">
-              <i class="fa fa-chevron-left"></i>
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
             </button>
+            <div class="slider-dots" role="tablist" aria-label="Choose testimonial">
+              <button *ngFor="let t of testimonials; let i = index" role="tab" class="dot" [class.active]="i === currentIndex" (click)="goToSlide(i)" [attr.aria-label]="'Show testimonial ' + (i + 1)" [attr.aria-selected]="i === currentIndex"></button>
+            </div>
             <button class="nav-button next" (click)="nextTestimonial()" aria-label="Next Testimonial">
-              <i class="fa fa-chevron-right"></i>
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -187,15 +190,57 @@ import { takeUntil } from 'rxjs/operators';
       color: white;
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       font-size: 1.2rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
     }
 
     .nav-button:hover {
       background: rgba(0, 0, 0, 0.6);
+    }
+
+    .slider-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25em;
+    }
+
+    .slider-dots .dot {
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .slider-dots .dot::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(108, 108, 108, 0.45);
+    }
+
+    .slider-dots .dot.active::after {
+      background: var(--dp-gold, #d4a941);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slider-wrapper {
+        transition: none;
+      }
     }
 
     .nav-button.prev {
@@ -229,12 +274,16 @@ import { takeUntil } from 'rxjs/operators';
       }
 
       .slider-navigation {
-        padding: 0 5px;
+        position: static;
+        transform: none;
+        justify-content: center;
+        gap: 0.5em;
+        padding: 0.5em 5px 0;
       }
 
       .nav-button {
-        width: 30px;
-        height: 30px;
+        width: 44px;
+        height: 44px;
         font-size: 1rem;
       }
 

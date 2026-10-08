@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,14 +15,14 @@ import { CommonModule } from '@angular/common';
   imports: [RouterModule, MatButtonModule, CommonModule, MatIconModule, MatInputModule, FormsModule, MatProgressBarModule],
   providers: [FooterService],
   template: `
-    <div class="footer-wrapper" id="footer">
+    <div class="footer-wrapper">
       <div class="footer-content">
         <p class="section-label">/ CONTACT US</p>
 
-        <h1 class="heading">
+        <h2 class="heading">
           Ready to embark on your<br />
           transformative journey?
-        </h1>
+        </h2>
 
         <p class="description">
           Get in touch with us using the button below and a consultant nearest to your location will reach out to you.
@@ -30,7 +30,7 @@ import { CommonModule } from '@angular/common';
         </p>
 
         <div class="form-container">
-          <button mat-flat-button class="btn" routerLink="get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">I'M READY!</button>
+          <button mat-flat-button class="btn" routerLink="/get-started" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="scrollToTop()">I'M READY!</button>
         </div>
 
         <footer>
@@ -39,13 +39,13 @@ import { CommonModule } from '@angular/common';
             Contact us: <a href="mailto:contacts@diamondprojectonline.com">contacts&#64;diamondprojectonline.com</a>
           </p>
 
-          <div class="subscription-container">
-          
-            <input [(ngModel)]="email" placeholder="Enter your email to subscribe" class="email-input">
+          <form class="subscription-container" (ngSubmit)="subscribe()">
+            <label class="visually-hidden" for="footer-subscribe-email">Email address</label>
+            <input id="footer-subscribe-email" [(ngModel)]="email" name="email" type="email" autocomplete="email" required placeholder="Enter your email to subscribe" class="email-input">
 
-            <button mat-flat-button color="primary" (click)="subscribe()">Subscribe</button>
+            <button mat-flat-button color="primary" type="submit">Subscribe</button>
 
-          </div>
+          </form>
 
           <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
@@ -53,13 +53,15 @@ import { CommonModule } from '@angular/common';
 
       
           <p class="copyright">
-            Diamond Project © {{ currentYear }} All rights reserved.
+            Diamond Project Â© {{ currentYear }} All rights reserved.
           </p>
 
           <div class="footer-links">
-            <a routerLink="legal/terms" rel="noopener noreferrer" (click)="scrollToTop()">Terms</a>
+            <a routerLink="/legal/terms" rel="noopener noreferrer" (click)="scrollToTop()">Terms</a>
             <span class="separator">|</span>
-            <a routerLink="legal/privacy" rel="noopener noreferrer" (click)="scrollToTop()">Privacy</a>
+            <a routerLink="/legal/privacy" rel="noopener noreferrer" (click)="scrollToTop()">Privacy</a>
+            <span class="separator">|</span>
+            <a routerLink="/legal/cookies" rel="noopener noreferrer" (click)="scrollToTop()">Cookies</a>
           </div>
         </footer>
       </div>
@@ -70,7 +72,7 @@ import { CommonModule } from '@angular/common';
         </a>
       </div>
 
-      <div class="back-to-top" (click)="scrollToTop()">BACK TO TOP <mat-icon>arrow_forward</mat-icon></div>
+      <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">BACK TO TOP <mat-icon aria-hidden="true">arrow_forward</mat-icon></button>
     </div>
   `,
   styles: [`
@@ -99,7 +101,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .section-label {
-      color: #d4a941;
+      color: var(--dp-gold);
       font-size: 0.875rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -146,7 +148,7 @@ import { CommonModule } from '@angular/common';
         }
 
         &:focus {
-          border-color: #d4a941;
+          border-color: var(--dp-gold);
           box-shadow: 0 0 0 2px #d4a94144;
         }
       }
@@ -155,13 +157,13 @@ import { CommonModule } from '@angular/common';
         width: 50%;
         //font-size: 1.1em;
         //margin-top: 2em;
-        background: #ffc107;
+        background: var(--dp-gold-bright);
       }
 
      /* button {
         margin-left: 1rem;
         padding: 0.75rem 2rem;
-        background-color: #b7892f;
+        background-color: var(--dp-gold-deep);
         color: white;
         font-size: 0.875rem;
         font-weight: bold;
@@ -172,19 +174,33 @@ import { CommonModule } from '@angular/common';
         transition: background-color 0.3s ease;
 
         &:hover {
-          background-color: #d4a941;
+          background-color: var(--dp-gold);
         }
       } */
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .subscription-container {
       display: flex;
       gap: 1rem;
-     
+      flex-wrap: wrap;
+
       input {
         border-radius: 12px;
-        min-width: 60%;
-        border-color: #d4a941;
+        min-width: min(100%, 60%);
+        flex: 1;
+        border-color: var(--dp-gold);
       }
     }
 
@@ -192,8 +208,9 @@ import { CommonModule } from '@angular/common';
       flex-shrink: 0;
 
       @media (max-width: 768px) {
-        /* Keep the logo hidden on mobile if that's the desired behavior */
-        display: none;
+        img {
+          height: 2.2rem;
+        }
       }
 
       img {
@@ -207,12 +224,16 @@ import { CommonModule } from '@angular/common';
       right: 0.5rem;
       bottom: 1.5rem;
       font-size: 0.75rem;
-      color: #444;
+      color: inherit;
+      background: transparent;
+      border: none;
       letter-spacing: 0.15em;
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       cursor: pointer;
       display: block; /* Make it visible by default */
+      min-width: 44px;
+      min-height: 44px;
 
       @media (max-width: 768px) {
         /* Adjust position and styling for mobile if needed */
@@ -243,7 +264,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .footer-links a:hover {
-      color: #d4a941;
+      color: var(--dp-gold);
     }
 
     .separator {
@@ -261,7 +282,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .contact-email a {
-      color: #d4a941;
+      color: var(--dp-gold);
       text-decoration: none;
     }
 
@@ -296,10 +317,8 @@ export class FooterComponent implements OnDestroy {
     private platform: Platform
   ) {
     if (this.platform.ANDROID || this.platform.IOS) {
-      //console.log('User is using a mobile device.');
       this.userDevice = 'mobile'
     } else {
-      //console.log('User is using a desktop device.');
       this.userDevice = 'desktop'
     }
 
@@ -307,9 +326,7 @@ export class FooterComponent implements OnDestroy {
     // Retrieve the data from local storage
     if (storedUsername) {
       this.username = storedUsername;
-      //console.log('Retrieved data from local storage:', this.username);
     } else {
-      //console.log('Data not found in local storage');
     }
   }
 
@@ -346,7 +363,7 @@ export class FooterComponent implements OnDestroy {
             Swal.fire({
               position: "bottom",
               icon: 'error',
-              text: 'Could not subscribe — check the email and try again',
+              text: 'Could not subscribe â€” check the email and try again',
               showConfirmButton: false,
               timer: 4000,
             });

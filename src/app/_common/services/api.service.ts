@@ -26,9 +26,9 @@ export class ApiService {
     );
   }
 
+  // No retry on writes — a retried POST can double-submit (survey, visits, subscribe).
   post<T>(endpoint: string, data: any, headers?: HttpHeaders, withCredentials: boolean = false): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, data, { headers, withCredentials }).pipe(
-      retry({ count: 1, delay: 0 }),
       catchError(this.handleError)
     );
   }
@@ -48,7 +48,9 @@ export class ApiService {
   }
 
   patch<T>(endpoint: string, data: any, headers?: HttpHeaders, withCredentials: boolean = false): Observable<T> {
-    return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, data, { headers, withCredentials });
+    return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, data, { headers, withCredentials }).pipe(
+      catchError(this.handleError)
+    );
   }
 
   head<T>(endpoint: string, params?: HttpParams, headers?: HttpHeaders, withCredentials: boolean = false): Observable<T> {

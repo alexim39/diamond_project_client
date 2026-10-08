@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,22 +10,22 @@ import { MatButtonModule } from '@angular/material/button';
     selector: 'async-four-pillars',
     imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatSelectModule],
     template: `
-    <div class="training-approach" id="four_pillers">
-      <!-- <h1>Our Pillars</h1> -->
+    <div class="training-approach" id="four_pillars">
+      <!-- <h2>Our Pillars</h2> -->
 
       <div class="label-title">
         <p class="section-label">/ OUR PILLARS</p>
       </div>
 
-      <h3>
+      <p class="intro">
       Our four foundational principles serve as the bedrock upon which we build your journey to greatness.
-      </h3>
+      </p>
 
       <section class="approach-cards">
         <div class="approach-card">
           <div class="title">
             <mat-icon fontIcon="psychology"></mat-icon>
-            <h1>Mentorship & Capacity Building</h1>
+            <h2>Mentorship & Capacity Building</h2>
           </div>
           <div class="content">
             <p>
@@ -37,7 +37,7 @@ import { MatButtonModule } from '@angular/material/button';
         <div class="approach-card">
           <div class="title">
             <mat-icon>how_to_reg</mat-icon>
-            <h1>Discipline, Regimentation & Stoicism</h1>
+            <h2>Discipline, Regimentation & Stoicism</h2>
           </div>
           <div class="content">
             <p>
@@ -49,7 +49,7 @@ import { MatButtonModule } from '@angular/material/button';
         <div class="approach-card">
           <div class="title">
             <mat-icon fontIcon="health_and_safety"></mat-icon>
-            <h1>Health Optimization</h1>
+            <h2>Health Optimization</h2>
           </div>
           <div class="content">
             <p>
@@ -61,7 +61,7 @@ import { MatButtonModule } from '@angular/material/button';
         <div class="approach-card">
           <div class="title">
             <mat-icon fontIcon="account_balance"></mat-icon>
-            <h1>Financial Leverage Mastery</h1>
+            <h2>Financial Leverage Mastery</h2>
           </div>
           <div class="content">
             <p>
@@ -80,7 +80,7 @@ import { MatButtonModule } from '@angular/material/button';
           <mat-icon>arrow_downward</mat-icon>
         </div>
 
-        <button mat-raised-button (click)="lunchWhatsAppGroup()">
+        <button mat-raised-button (click)="launchWhatsAppGroup()">
           <span class="fa fa-whatsapp"></span> WhatsApp Group
         </button>
       </section>
@@ -99,7 +99,7 @@ styles: [`
       justify-content: center;
       width: 60%;
       .section-label {
-        color: #d4a941;
+        color: var(--dp-gold);
         font-size: 0.875rem;
         letter-spacing: 0.15em;
         text-transform: uppercase;
@@ -107,19 +107,21 @@ styles: [`
       }
     }
   
-    h1 {
+    h2 {
       margin-bottom: 1em;
       text-align: center;
     }
 
-    h3 {
+    .intro {
       text-align: center;
       margin-bottom: 2em;
+      font-size: 1.17em;
+      font-weight: bold;
     }
   
     .approach-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
       grid-gap: 2em;
   
       .approach-card {
@@ -133,7 +135,7 @@ styles: [`
           justify-content: center;
           align-items: center;
   
-          h1 {
+          h2 {
             font-size: 1em;
             margin-top: -0.2em;
             font-family: system-ui;
@@ -165,7 +167,7 @@ styles: [`
   
       p {
         font-size: 1.5em;
-        color: #ffab40;
+        color: var(--dp-gold-soft);
         text-align: center;
         max-width: 600px;
       }
@@ -195,6 +197,12 @@ styles: [`
       opacity: 1;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .down-arrow {
+      animation: none;
+    }
+  }
   
   /* Media Queries */
   @media only screen and (max-width: 768px) {
@@ -220,12 +228,8 @@ export class FourPillarsnComponent {
 
   @Input() partnerWhatsappGroupLink!: string | undefined;
 
-  lunchWhatsAppGroup() {
-    if (this.partnerWhatsappGroupLink) {
-      window.open(this.partnerWhatsappGroupLink, '_blank');
-    } else {
-      window.open('https://chat.whatsapp.com/EO6Xl6zsDwwA9yZrcVUwP2', '_blank');
-    }
-    
+  launchWhatsAppGroup() {
+    const link = this.partnerWhatsappGroupLink || 'https://chat.whatsapp.com/EO6Xl6zsDwwA9yZrcVUwP2';
+    window.open(link, '_blank', 'noopener');
   }
 }

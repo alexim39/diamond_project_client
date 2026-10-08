@@ -30,13 +30,17 @@ import { RouterModule } from '@angular/router';
 
   
 
-.four_zero_four_bg{ 
+.four_zero_four_bg{
     background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    background-color: var(--dp-gold-soft, #f3e8d2);
     height: 400px;
-    width: 45%;
+    width: min(45%, 100%);
+    max-width: 640px;
     background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
     h1{
-        font-size:80px; 
+        font-size:80px;
         text-align: center;
     }
  }
@@ -59,11 +63,14 @@ import { RouterModule } from '@angular/router';
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .contant_box_404{ 
+    .four_zero_four_bg{
+        height: 240px;
+        width: 100%;
+    }
+    .contant_box_404{
         padding: 1em;
         h3 {
-            font-family: Cursive;
-            font-size:20px; 
+            font-size:20px;
         }
         p {
             padding: 1em 0;
@@ -83,7 +90,7 @@ import { RouterModule } from '@angular/router';
     </div>
 
     <div class="contant_box_404">
-        <h3 class="h2">It looks like you have clicked on the wrong link</h3>
+        <h2 class="h2">It looks like you have clicked on the wrong link</h2>
         <p>The page you are looking for is not available!</p>
         <button  mat-flat-button color="accent" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Go to Home</button>
     </div>

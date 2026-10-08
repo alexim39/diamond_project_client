@@ -1,26 +1,43 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PartnersPresenterComponent } from './partners-presenter.component';
 import { UsernameCheckService } from '../_common/services/username-check';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { PartnerInterface } from '../_common/interface/partner.interface';
-import { HttpErrorResponse } from '@angular/common/module.d-CnjH8Dlt';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 /**
  * @title Partners
  */
 @Component({
     selector: 'async-partners-container',
-    imports: [PartnersPresenterComponent, CommonModule],
+    imports: [PartnersPresenterComponent, CommonModule, MatProgressBarModule, RouterModule],
     providers: [UsernameCheckService],
     template: `
-    <async-partners-presentation *ngIf="partner" [partner]="partner"/>
-  `
+    @if (partner) {
+      <async-partners-presentation [partner]="partner"/>
+    } @else if (failed) {
+      <section class="partner-missing">
+        <h1>This partner page could not be found</h1>
+        <p>The link may be mistyped. <a routerLink="/" (click)="back()">Back to Diamond Project home</a></p>
+      </section>
+    } @else {
+      <mat-progress-bar mode="indeterminate" aria-label="Loading partner page"></mat-progress-bar>
+    }
+  `,
+    styles: [`
+      .partner-missing { text-align: center; padding: 4em 1.5em; }
+      .partner-missing h1 { font-size: 1.6rem; margin: 0 0 0.5em; }
+      .partner-missing p { margin: 0; }
+      .partner-missing a { color: inherit; font-weight: 700; }
+    `]
 })
-export class PartnersContainerComponent implements OnDestroy {
+export class PartnersContainerComponent implements OnInit, OnDestroy {
 
-  partner!: PartnerInterface;
+  partner: PartnerInterface | null = null;
+  failed = false;
   subscriptions: Subscription[] = [];
 
   channel: string | null = null;
@@ -29,15 +46,15 @@ export class PartnersContainerComponent implements OnDestroy {
       private router: Router,
       private route: ActivatedRoute,
       private usernameCheckService: UsernameCheckService
-    ) {
-      /* 
-        url format
-       http://localhost:4201/business?utm_source=6696bbe2e8d1d5d6edd178e0 
-       https://diamondproject.c21fg.online/business?utm_source=6696bbe2e8d1d5d6edd178e0
-      */
+    ) {}
 
-      const url = window.location.pathname;
-      const username = url.substring(url.lastIndexOf('/') + 1);
+    ngOnInit(): void {
+      // Username comes from the route (handles trailing slashes + SSR-safe).
+      const username = (this.route.snapshot.paramMap.get('partnerUsername') ?? '').trim();
+      if (!username) {
+        this.failed = true;
+        return;
+      }
 
       // check if username exist
       this.subscriptions.push(
@@ -48,38 +65,38 @@ export class PartnersContainerComponent implements OnDestroy {
                 // Store the extracted data in local storage
                 localStorage.setItem('username', username);
                 this.partner = response.partner;
-        
-                // Capture the channel from the query parameters
-                this.route.queryParams.subscribe(params => {
+
+                // Capture the channel from the query parameters (one-shot).
+                this.route.queryParams.pipe(take(1)).subscribe(params => {
                   this.channel = params['utm_source'] || 'unknown';
-                  //console.log('Traffic source - Urchin Tracking Module (channel):', this.channel);
-        
+
                   // You can send the captured information to your backend or analytics service here
                   this.recordVisit(username, this.channel);
                 });
+              } else {
+                this.failed = true;
               }
+            } else {
+              this.failed = true;
             }
           },
           error: (error: HttpErrorResponse) => {
+            // Only our own key — never wipe the whole storage.
             localStorage.removeItem('username');
-            localStorage.clear();
-            this.router.navigate(['/']);
+            this.failed = true;
           }
         })
-      )      
+      )
+    }
+
+    protected back(): void {
+      this.router.navigate(['/']);
     }
 
     private recordVisit(username: string | null, channel: string | null): void {
 
       this.subscriptions.push(
-        this.usernameCheckService.recordVisit(username, channel).subscribe({
-          next: (response) => {
-            console.log('Visit recorded:', response);
-          },
-          error: (error: HttpErrorResponse) => {
-            console.error('Error recording visit:', error);
-          }
-        })
+        this.usernameCheckService.recordVisit(username, channel).subscribe()
       )
     }
 

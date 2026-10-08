@@ -10,11 +10,9 @@ export const legalRoutes: Routes = [
         //component: IndexComponent, 
 
         children: [
-            { path: '', 
-                component: LegalComponent, 
+            { path: '',
+                component: LegalComponent,
                 title: "Diamond Project Legal - Terms and conditions of website use",
-                //redirectTo: 'terms',
-                //pathMatch: 'prefix',
                 children: [
                     { path: 'cookies', 
                         component: CookiesComponent, 
@@ -24,10 +22,12 @@ export const legalRoutes: Routes = [
                         component: TermsComponent, 
                         title: "Legal - Terms of use"
                     },
-                    { path: 'privacy', 
-                        component: PrivacyComponent, 
+                    { path: 'privacy',
+                        component: PrivacyComponent,
                         title: "Legal - Privacy terms of use"
                     },
+                    { path: '', pathMatch: 'full', redirectTo: 'terms' },
+                    { path: '**', redirectTo: 'terms' },
                 ]
             },
            
