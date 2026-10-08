@@ -2,8 +2,8 @@
 <section class="head">
 
     <article>
+        <p class="eyebrow">/ Get Started</p>
         <h2>Getting Started</h2>
-        <!-- <h3>Survey Form</h3> -->
         <p>Kindly fill out this survey to get started with Diamond Project</p>
       </article>
   
@@ -23,6 +23,85 @@
         
         <form [formGroup]="surveyForm" (submit)="onSubmit()">
 
+        <section class="q-section" aria-label="Getting to know you">
+          <p class="q-eyebrow">01 - Getting to know you</p>
+
+          <div class="form-wrapper">
+            <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('name')?.invalid && surveyForm.get('name')?.touched}">
+              <mat-label>First name</mat-label>
+              <input matInput formControlName="name" autocomplete="given-name">
+              <mat-error *ngIf="surveyForm.get('name')?.hasError('required') ">
+                First name is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('name')?.hasError('minlength') ">
+                At least 2 characters
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Surname (last name)</mat-label>
+              <input matInput formControlName="surname" autocomplete="family-name">
+              <mat-error *ngIf="surveyForm.get('surname')?.hasError('required') ">
+                Surname is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('surname')?.hasError('minlength') ">
+                At least 2 characters
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-wrapper">
+            <mat-form-field appearance="outline"  [ngClass]="{'invalid-field': surveyForm.get('phoneNumber')?.invalid && surveyForm.get('phoneNumber')?.touched}">
+              <mat-label>What's your phone number?</mat-label>
+              <input matInput type="tel" inputmode="tel" autocomplete="tel" formControlName="phoneNumber" placeholder="0803 123 4567">
+              <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('required') ">
+                Your phone number is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('pattern') ">
+                Digits only, at least 7 characters — no spaces or + sign
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>What's your email address?</mat-label>
+              <input matInput type="email" inputmode="email" autocomplete="email" formControlName="email">
+              <mat-error *ngIf="surveyForm.get('email')?.hasError('required') ">
+                Your email address is required
+              </mat-error>
+              <mat-error *ngIf="surveyForm.get('email')?.hasError('email') ">
+                That email does not look valid
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Country Dropdown -->
+           <mat-form-field appearance="outline">
+            <mat-label>Country of residence</mat-label>
+            <mat-select formControlName="country" (selectionChange)="onCountryChange($event.value)">
+              <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="surveyForm.get('country')?.hasError('required') ">
+              Choose your country
+            </mat-error>
+          </mat-form-field>
+
+          <!-- State Field -->
+          <mat-form-field appearance="outline">
+            @if (isNigeria) {
+              <mat-label>State of residence</mat-label>
+              <mat-select formControlName="state">
+                <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
+              </mat-select>
+            } @else {
+              <mat-label>State / province of residence</mat-label>
+              <input matInput formControlName="state" autocomplete="address-level1" placeholder="Enter your state or province" />
+            }
+            <mat-error *ngIf="surveyForm.get('state')?.hasError('required') ">
+              Tell us your state
+            </mat-error>
+            <mat-error *ngIf="surveyForm.get('state')?.hasError('minlength') ">
+              At least 2 characters
+            </mat-error>
+          </mat-form-field>
+
           <div class="form-wrapper">
             <div class="range">
               <h4>What is your age range?</h4>
@@ -38,26 +117,26 @@
                 Please select your age range.
               </mat-error>
             </div>
-
-            <div class="range">
-              <h4>Which social media platforms do you use most frequently?</h4>
-              <section [ngClass]="{'invalid-field': surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched}">
-                <mat-checkbox (change)="onCheckboxChange($event)" value="Facebook">Facebook</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="Instagram">Instagram</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="LinkedIn">LinkedIn</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="Youtube">Youtube</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="Twitter">Twitter</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="TikTok">TikTok</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="Pinterest">Pinterest</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="Snapchat">Snapchat</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="WhatsApp">WhatsApp</mat-checkbox>
-                <mat-checkbox (change)="onCheckboxChange($event)" value="Telegram">Telegram</mat-checkbox>
-              </section>
-              <mat-error *ngIf="surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched">
-                Please select at least one platform.
-              </mat-error>
-            </div>
           </div>
+
+          <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('employedStatus')?.invalid && surveyForm.get('employedStatus')?.touched}">
+            <mat-label>What's your employment status? </mat-label>
+            <mat-select formControlName="employedStatus">
+              <mat-option value="Full-time employed">Full-time employed</mat-option>
+              <mat-option value="Part-time employed">Part-time employed</mat-option>
+              <mat-option value="Self-employed">Self-employed</mat-option>
+              <mat-option value="Student">Student</mat-option>
+              <mat-option value="Unemployed">Unemployed</mat-option>
+              <mat-option value="Retired">Retired</mat-option>
+            </mat-select>
+            <mat-error *ngIf="surveyForm.get('employedStatus')?.hasError('required') ">
+            This answer is required
+              </mat-error>
+          </mat-form-field>
+        </section>
+
+        <section class="q-section" aria-label="Your online habits">
+          <p class="q-eyebrow">02 - Your online habits</p>
 
           <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('importanceOfPassiveIncome')?.invalid && surveyForm.get('importanceOfPassiveIncome')?.touched}">
             <mat-label>How important is passive income to you? </mat-label>
@@ -107,22 +186,6 @@
             </div>
           </div>
 
-          <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('employedStatus')?.invalid && surveyForm.get('employedStatus')?.touched}">
-            <mat-label>What's your employment status? </mat-label>
-            <mat-select formControlName="employedStatus">
-              <mat-option value="Full-time employed">Full-time employed</mat-option>
-              <mat-option value="Part-time employed">Part-time employed</mat-option>
-              <mat-option value="Self-employed">Self-employed</mat-option>
-              <mat-option value="Student">Student</mat-option>
-              <mat-option value="Unemployed">Unemployed</mat-option>
-              <mat-option value="Retired">Retired</mat-option>
-            </mat-select>
-            <mat-error *ngIf="surveyForm.get('employedStatus')?.hasError('required') ">
-            This answer is required
-              </mat-error>
-          </mat-form-field>
-
-
           <div class="form-wrapper">
             <div class="range">
               <h4>How comfortable are you with technology and digital tools?</h4>
@@ -156,52 +219,31 @@
               </mat-error>
             </div>
           </div>
-  
-          <div class="form-wrapper">
-            <mat-form-field appearance="outline"  [ngClass]="{'invalid-field': surveyForm.get('phoneNumber')?.invalid && surveyForm.get('phoneNumber')?.touched}">
-              <mat-label>What's your phone number?</mat-label>
-              <input matInput type="tel" inputmode="tel" autocomplete="tel" formControlName="phoneNumber" placeholder="0803 123 4567">
-              <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('required') ">
-                Your phone number is required
-              </mat-error>
-              <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('pattern') ">
-                Digits only, at least 7 characters — no spaces or + sign
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>What's your email address?</mat-label>
-              <input matInput type="email" inputmode="email" autocomplete="email" formControlName="email">
-              <mat-error *ngIf="surveyForm.get('email')?.hasError('required') ">
-                Your email address is required
-              </mat-error>
-              <mat-error *ngIf="surveyForm.get('email')?.hasError('email') ">
-                That email does not look valid
-              </mat-error>
-            </mat-form-field>
-          </div>
 
           <div class="form-wrapper">
-            <mat-form-field appearance="outline" [ngClass]="{'invalid-field': surveyForm.get('name')?.invalid && surveyForm.get('name')?.touched}">
-              <mat-label>First name</mat-label>
-              <input matInput formControlName="name" autocomplete="given-name">
-              <mat-error *ngIf="surveyForm.get('name')?.hasError('required') ">
-                First name is required
+            <div class="range">
+              <h4>Which social media platforms do you use most frequently?</h4>
+              <section [ngClass]="{'invalid-field': surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched}">
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Facebook">Facebook</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Instagram">Instagram</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="LinkedIn">LinkedIn</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Youtube">Youtube</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Twitter">Twitter</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="TikTok">TikTok</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Pinterest">Pinterest</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Snapchat">Snapchat</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="WhatsApp">WhatsApp</mat-checkbox>
+                <mat-checkbox (change)="onCheckboxChange($event)" value="Telegram">Telegram</mat-checkbox>
+              </section>
+              <mat-error *ngIf="surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched">
+                Please select at least one platform.
               </mat-error>
-              <mat-error *ngIf="surveyForm.get('name')?.hasError('minlength') ">
-                At least 2 characters
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Surname (last name)</mat-label>
-              <input matInput formControlName="surname" autocomplete="family-name">
-              <mat-error *ngIf="surveyForm.get('surname')?.hasError('required') ">
-                Surname is required
-              </mat-error>
-              <mat-error *ngIf="surveyForm.get('surname')?.hasError('minlength') ">
-                At least 2 characters
-              </mat-error>
-            </mat-form-field>
+            </div>
           </div>
+        </section>
+
+        <section class="q-section" aria-label="How you found us">
+          <p class="q-eyebrow">03 - How you found us</p>
 
           <mat-form-field appearance="outline"  [ngClass]="{'invalid-field': surveyForm.get('referral')?.invalid && surveyForm.get('referral')?.touched}">
             <mat-label>How did you hear about us?</mat-label>
@@ -251,41 +293,12 @@
             At least 2 characters
             </mat-error>
         </mat-form-field>
-
-        <!-- Country Dropdown -->
-         <mat-form-field appearance="outline">
-          <mat-label>Country of residence</mat-label>
-          <mat-select formControlName="country" (selectionChange)="onCountryChange($event.value)">
-            <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="surveyForm.get('country')?.hasError('required') ">
-            Choose your country
-          </mat-error>
-        </mat-form-field>
-
-        <!-- State Field -->
-        <mat-form-field appearance="outline">
-          @if (isNigeria) {
-            <mat-label>State of residence</mat-label>
-            <mat-select formControlName="state">
-              <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
-            </mat-select>
-          } @else {
-            <mat-label>State / province of residence</mat-label>
-            <input matInput formControlName="state" autocomplete="address-level1" placeholder="Enter your state or province" />
-          }
-          <mat-error *ngIf="surveyForm.get('state')?.hasError('required') ">
-            Tell us your state
-          </mat-error>
-          <mat-error *ngIf="surveyForm.get('state')?.hasError('minlength') ">
-            At least 2 characters
-          </mat-error>
-        </mat-form-field>
+        </section>
 
           <mat-progress-bar mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar><br>
   
           <div class="btn">
-            <button mat-raised-button color="primary" [disabled]="isSpinning">Submit <i class="fa fa-angle-double-right"></i></button>
+            <button mat-raised-button color="primary" [disabled]="isSpinning">Submit <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
           </div>
   
         </form>

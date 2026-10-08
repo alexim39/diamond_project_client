@@ -36,7 +36,7 @@ import { CommonModule } from '@angular/common';
           </p>
 
            <p> 
-            Our holistic approach addresses every facet of personal growth, from mental fortitude to physical vitality, ensuring you emerge as a diamond â€“ refined, resilient, and radiant.
+            Our holistic approach addresses every facet of personal growth, from mental fortitude to physical vitality, ensuring you emerge as a diamond – refined, resilient, and radiant.
           </p>
 
           <a mat-flat-button color="primary"
@@ -65,6 +65,16 @@ styles: [`
     flex-direction: column;
     background: url('/assets/images/about-bg.jpg') center/cover no-repeat;
     overflow: hidden;
+    position: relative;
+    isolation: isolate;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(3,1,15,0.72), rgba(3,1,15,0.55));
+      z-index: -1;
+    }
 
     .label-title {
       display: flex;
@@ -96,16 +106,19 @@ styles: [`
   .left-content {
     flex: 1 1 45%;
     margin-right: 2em;
+    color: #fff;
     h2 {
       font-size: 2rem;
       margin-bottom: 1em;
+      color: #fff;
       span {
-        color:rgb(224, 128, 3);
+        color: var(--dp-gold-bright);
       }
     }
     p {
       font-size: 1.2rem;
       margin-bottom: 1em;
+      color: rgba(255, 255, 255, 0.88);
     }
     .cta-button {
       margin-top: 1em;
@@ -114,18 +127,21 @@ styles: [`
 
   .right-content {
     flex: 1 1 45%;
+    color: #fff;
     h2 {
       font-size: 1.75rem;
       margin-bottom: 1em;
+      color: #fff;
     }
     .video-container {
       width: 100%;
-      border: 1px solid #ddd;
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 8px;
       overflow: hidden;
       video {
         width: 100%;
         height: auto;
+        display: block;
       }
     }
   }

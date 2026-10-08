@@ -9,9 +9,9 @@ import { FooterComponent } from './footer/footer.component';
     <div id="container">
       <a class="skip-link" href="#main">Skip to content</a>
       <main id="main">
-        <router-outlet id="outlet"></router-outlet>
+        <router-outlet id="outlet"/>
       </main>
-      <async-footer id="footer"></async-footer>
+      <async-footer id="footer"/>
     </div>
   `,
     styles: [`

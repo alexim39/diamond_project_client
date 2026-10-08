@@ -56,8 +56,8 @@ import { takeUntil } from 'rxjs/operators';
     /* General Styles */
     .testimonial-section.redesigned {
       padding: 40px 20px;
-      background:rgb(233, 233, 233);
-      color: #333;
+      background: var(--dp-paper);
+      color: var(--dp-text);
       text-align: center;
     }
 
@@ -71,7 +71,7 @@ import { takeUntil } from 'rxjs/operators';
       font-size: 2.5rem;
       font-weight: bold;
       margin-bottom: 30px;
-      color: #2c3e50;
+      color: var(--dp-text);
     }
 
     /* Testimonial Slider */
@@ -79,8 +79,9 @@ import { takeUntil } from 'rxjs/operators';
       position: relative;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(7, 37, 103, 0.1);
-      background: #fff;
+      border: 1px solid var(--dp-line);
+      box-shadow: 0 8px 16px rgba(3, 1, 15, 0.08);
+      background: var(--dp-surface);
       cursor: pointer; /* Indicate interaction */
     }
 
@@ -95,7 +96,7 @@ import { takeUntil } from 'rxjs/operators';
       padding: 30px;
       box-sizing: border-box;
       text-align: left; /* Align content within the slide */
-      background:rgb(232, 232, 232);
+      background: var(--dp-surface);
 
     }
 
@@ -112,7 +113,7 @@ import { takeUntil } from 'rxjs/operators';
       font-size: 1.2rem;
       line-height: 1.7;
       font-style: italic;
-      color: #555;
+      color: var(--dp-text);
       margin-bottom: 15px;
     }
 
@@ -144,7 +145,7 @@ import { takeUntil } from 'rxjs/operators';
     .author-name {
       font-size: 1.1rem;
       font-weight: bold;
-      color: #333;
+      color: var(--dp-text);
       margin-bottom: 5px;
     }
 
@@ -160,8 +161,8 @@ import { takeUntil } from 'rxjs/operators';
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      background:rgb(172, 170, 170);
-      color: #777;
+      background: var(--dp-gold-soft);
+      color: var(--dp-gold-ink);
       font-size: 0.9rem;
       transition: background-color 0.3s ease;
     }

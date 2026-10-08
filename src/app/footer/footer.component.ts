@@ -120,7 +120,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .description {
-      color: #7e7e7e;
+      color: rgba(243, 236, 221, 0.78);
       font-size: 1.125rem;
       margin-bottom: 2.5rem;
 
@@ -134,49 +134,10 @@ import { CommonModule } from '@angular/common';
       align-items: center;
       max-width: 100%;
 
-      input {
-        flex: 1;
-        padding: 0.75rem 1rem;
-        background-color: #181818;
-        border: 1px solid #333;
-        color: #fff;
-        font-size: 1rem;
-        outline: none;
-
-        &::placeholder {
-          color: #777;
-        }
-
-        &:focus {
-          border-color: var(--dp-gold);
-          box-shadow: 0 0 0 2px #d4a94144;
-        }
-      }
-
       .btn {
-        width: 50%;
-        //font-size: 1.1em;
-        //margin-top: 2em;
+        min-height: 48px;
         background: var(--dp-gold-bright);
       }
-
-     /* button {
-        margin-left: 1rem;
-        padding: 0.75rem 2rem;
-        background-color: var(--dp-gold-deep);
-        color: white;
-        font-size: 0.875rem;
-        font-weight: bold;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: var(--dp-gold);
-        }
-      } */
     }
 
     .visually-hidden {
@@ -195,12 +156,31 @@ import { CommonModule } from '@angular/common';
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      align-items: center;
 
       input {
         border-radius: 12px;
         min-width: min(100%, 60%);
         flex: 1;
         border-color: var(--dp-gold);
+        background-color: #181818;
+        color: #fff;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+
+        &::placeholder {
+          color: rgba(243, 236, 221, 0.55);
+        }
+
+        &:focus {
+          border-color: var(--dp-gold);
+          box-shadow: 0 0 0 2px #d4a94144;
+          outline: none;
+        }
+      }
+
+      button {
+        min-height: 48px;
       }
     }
 
@@ -246,7 +226,7 @@ import { CommonModule } from '@angular/common';
     footer {
       margin-top: 4rem;
       font-size: 0.75rem;
-      color: #666;
+      color: rgba(243, 236, 221, 0.7);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -259,7 +239,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .footer-links a {
-      color: #666;
+      color: rgba(243, 236, 221, 0.85);
       text-decoration: none;
     }
 
@@ -268,17 +248,17 @@ import { CommonModule } from '@angular/common';
     }
 
     .separator {
-      color: #444;
+      color: rgba(243, 236, 221, 0.4);
     }
 
     .copyright {
       font-size: 0.75rem;
-      color: #666;
+      color: rgba(243, 236, 221, 0.7);
     }
 
     .contact-email {
       font-size: 0.75rem;
-      color: #666;
+      color: rgba(243, 236, 221, 0.7);
     }
 
     .contact-email a {
@@ -363,7 +343,7 @@ export class FooterComponent implements OnDestroy {
             Swal.fire({
               position: "bottom",
               icon: 'error',
-              text: 'Could not subscribe â€” check the email and try again',
+              text: 'Could not subscribe — check the email and try again',
               showConfirmButton: false,
               timer: 4000,
             });

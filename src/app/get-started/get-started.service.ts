@@ -40,7 +40,7 @@ export class SurveyService {
     return this.apiService.post<SurveyFormData>(`survey/submit`, formObject, undefined, true);
   }
 
-  // public referral picker â€” safe fields only, no auth needed
+  // public referral picker — safe fields only, no auth needed
   searchPartners(q: string): Observable<{ partners: PublicPartner[]; success: boolean }> {
     const params = new HttpParams().set('q', q);
     return this.apiService.get<{ partners: PublicPartner[]; success: boolean }>(`partners/public-search`, params, undefined, true);

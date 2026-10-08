@@ -34,12 +34,20 @@ templateUrl: 'get-started.component.html',
 styles: [`
 
   
-.head {
-    background: #050111;
+  .head {
+    background: radial-gradient(120% 140% at 50% 0%, #1a1440 0%, #050111 55%, #0f0f0f 100%);
     //background: #00838F;
     article {
       color: white;
       padding: 2em 1em 2em 8em;
+      .eyebrow {
+        font-size: 0.78em;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--dp-gold);
+        margin: 0 0 0.6em;
+      }
       h2 {
         font-family: Garamond, serif;
         font-size: 2em;
@@ -83,13 +91,35 @@ styles: [`
           display: flex;
           flex-direction: column;
           padding: 0 1em;
+          .q-section {
+            background: var(--dp-surface, #ffffff);
+            border: 1px solid var(--dp-line, #e4ddcd);
+            border-radius: 10px;
+            padding: 1.25em 1.25em 0.5em;
+            margin-bottom: 1.25em;
+          }
+          .q-eyebrow {
+            font-size: 0.78em;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--dp-gold-ink, #6e5218);
+            margin: 0 0 1em;
+            padding-bottom: 0.6em;
+            border-bottom: 2px solid var(--dp-gold);
+          }
+          /* Standalone rows run full-bleed; pairs share the row 49/49. */
+          mat-form-field {
+            width: 100%;
+          }
           .form-wrapper {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            gap: 0.75em;
             mat-form-field {
-              width: 49%;
-              
+              flex: 1 1 0;
+              min-width: 0;
             }
 
             .range {
@@ -114,6 +144,10 @@ styles: [`
             text-align: center;
             button {
               width: 40%;
+              min-width: 220px;
+              min-height: 48px;
+              font-size: 1.05em;
+              font-weight: 700;
             }
           }
         }
@@ -122,8 +156,9 @@ styles: [`
 
 
 .invalid-field {
-  border: 1px solid rgb(216, 159, 159);
+  border: 1px solid var(--dp-error, #b71c1c);
   border-radius: 4px;
+  background: rgba(183, 28, 28, 0.04);
 }
 
 .ref-opt { display: flex; align-items: center; gap: 0.7em; padding: 0.2em 0; }
@@ -239,7 +274,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   userDevice = '';
   username: string = 'business';
 
-  // Referral picker â€” searchable partner dropdown with free-text fallback.
+  // Referral picker — searchable partner dropdown with free-text fallback.
   filteredPartners: PublicPartner[] = [];
   isSearchingPartners = false;
   referralSearchFailed = false;
@@ -384,7 +419,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       });
 
       // Referral picker: debounced public search while Referral is active.
-      // Free-text fallback stays valid â€” friends/family may not be partners.
+      // Free-text fallback stays valid — friends/family may not be partners.
       this.subscriptions.push(
         (this.surveyForm.get('referralCode')!.valueChanges as Observable<unknown>).pipe(
           filter(() => this.surveyForm.get('referral')?.value === 'Referral'),
@@ -434,7 +469,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       return [p.jobTitle, [p.city, p.state].filter(Boolean).join(', ')].filter(Boolean).join(' Â· ');
     }
 
-    /** Single-line dropdown caption â€” avoids `@` control-flow pitfalls in the template. */
+    /** Single-line dropdown caption — avoids `@` control-flow pitfalls in the template. */
     referralOptionLine(p: PublicPartner): string {
       const sub = this.referralSubtitle(p);
       return sub ? `@${p.username} Â· ${sub}` : `@${p.username}`;
@@ -456,7 +491,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       this.isNigeria = selectedCountry === 'Nigeria';
 
       // Only clear the state when switching between Nigerian states and
-      // free-text mode â€” same-mode changes keep what the user typed.
+      // free-text mode — same-mode changes keep what the user typed.
       if (wasNigeria !== this.isNigeria) {
         this.surveyForm.get('state')?.reset();
       }
