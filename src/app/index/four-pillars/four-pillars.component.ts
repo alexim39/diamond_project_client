@@ -229,7 +229,7 @@ export class FourPillarsnComponent {
   @Input() partnerWhatsappGroupLink!: string | undefined;
 
   launchWhatsAppGroup() {
-    const link = this.partnerWhatsappGroupLink || 'https://chat.whatsapp.com/EO6Xl6zsDwwA9yZrcVUwP2';
+    const link = this.partnerWhatsappGroupLink || 'https://chat.whatsapp.com/Ff5Z07p3sNP8S9WySrZJRm';
     window.open(link, '_blank', 'noopener');
   }
 }
