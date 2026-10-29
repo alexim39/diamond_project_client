@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { SeoService } from '../_common/services/seo.service';
+import { BackHomeComponent } from '../_common/components/back-home.component';
 
 interface FaqItem {
   question: string;
@@ -10,9 +11,10 @@ interface FaqItem {
 
 @Component({
   selector: 'async-faq',
-  imports: [MatButtonModule, RouterModule],
+  imports: [MatButtonModule, RouterModule, BackHomeComponent],
   template: `
     <section class="faq-page">
+      <async-back-home />
       <div class="faq-hero">
         <p class="eyebrow">/ FAQ</p>
         <h1>Questions, answered.</h1>

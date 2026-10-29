@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import { ContactFormData, ContactService } from './contact.service';
 import { ReferralService } from '../_common/services/referral.service';
 import { SeoService } from '../_common/services/seo.service';
+import { BackHomeComponent } from '../_common/components/back-home.component';
 
 @Component({
   selector: 'async-contact',
@@ -26,11 +27,13 @@ import { SeoService } from '../_common/services/seo.service';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    BackHomeComponent
   ],
   providers: [ContactService],
   template: `
     <section class="contact-page">
+      <async-back-home />
       <div class="contact-hero">
         <p class="eyebrow">/ CONTACT</p>
         <h1>Let's talk about your next step.</h1>

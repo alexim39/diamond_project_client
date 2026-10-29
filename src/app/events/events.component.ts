@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { SeoService } from '../_common/services/seo.service';
 import { environment } from '../../environments/environment';
+import { BackHomeComponent } from '../_common/components/back-home.component';
 
 interface EventVideo {
   id: string;
@@ -17,9 +18,10 @@ interface EventVideo {
 
 @Component({
   selector: 'async-events',
-  imports: [MatButtonModule, MatIconModule, RouterModule],
+  imports: [MatButtonModule, MatIconModule, RouterModule, BackHomeComponent],
   template: `
     <section class="events-page">
+      <async-back-home />
       <div class="events-hero">
         <p class="eyebrow">/ EVENTS &amp; STORIES</p>
         <h1>Inside the room where it happens.</h1>
