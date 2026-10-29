@@ -36,6 +36,8 @@ import {MatIconModule} from '@angular/material/icon';
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    max-width: 100%;
+    width: 100%;
     position: relative;
 
   .nav-button {
@@ -60,7 +62,8 @@ import {MatIconModule} from '@angular/material/icon';
 
   .brand-display-wrapper {
     display: flex;
-    overflow-x: auto;
+    width: 100%;
+    overflow: hidden;
     scroll-behavior: smooth;
     padding: 10px 0;
     animation: scroll 20s linear infinite;
