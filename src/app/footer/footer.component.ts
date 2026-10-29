@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { FooterService } from './footer.service';
 import { Subscription } from 'rxjs';
 import { ReferralService } from '../_common/services/referral.service';
-import { ConsentService } from '../_common/services/consent.service';
 import Swal from 'sweetalert2';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { Platform } from '@angular/cdk/platform';
@@ -81,8 +80,6 @@ import { CommonModule } from '@angular/common';
             <a routerLink="/legal/privacy" rel="noopener noreferrer" (click)="scrollToTop()">Privacy</a>
             <span class="separator">|</span>
             <a routerLink="/legal/cookies" rel="noopener noreferrer" (click)="scrollToTop()">Cookies</a>
-            <span class="separator">|</span>
-            <button type="button" class="link-button" (click)="consent.open()">Cookie settings</button>
           </div>
         </footer>
       </div>
@@ -279,20 +276,6 @@ import { CommonModule } from '@angular/common';
       color: var(--dp-gold);
     }
 
-    .link-button {
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: rgba(243, 236, 221, 0.85);
-      font: inherit;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    .link-button:hover {
-      color: var(--dp-gold);
-    }
-
     .disclaimer {
       font-size: 0.75rem;
       color: rgba(243, 236, 221, 0.6);
@@ -347,8 +330,7 @@ export class FooterComponent implements OnDestroy {
   constructor(
     private footerService: FooterService,
     private platform: Platform,
-    private referral: ReferralService,
-    public consent: ConsentService
+    private referral: ReferralService
   ) {
     if (this.platform.ANDROID || this.platform.IOS) {
       this.userDevice = 'mobile'

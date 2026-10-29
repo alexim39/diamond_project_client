@@ -51,7 +51,6 @@ import { takeUntil } from 'rxjs/operators';
             </button>
           </div>
         </div>
-        <p class="results-note">Individual results vary. No income is guaranteed.</p>
       </div>
     </section>
   `,
@@ -75,12 +74,6 @@ import { takeUntil } from 'rxjs/operators';
       font-weight: bold;
       margin-bottom: 30px;
       color: var(--dp-text);
-    }
-
-    .results-note {
-      margin: 1rem 0 0;
-      color: var(--dp-muted);
-      font-size: 0.82rem;
     }
 
     /* Testimonial Slider */
