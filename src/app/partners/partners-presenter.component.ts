@@ -8,7 +8,7 @@ import { BrandsComponent } from './brands.component';
 import { environment } from '../../environments/environment';
 
 /**
- * @title Partner public one-pager — /:partnerUsername.
+ * @title Partner public one-pager ï¿½ /:partnerUsername.
  *
  * Professional, expensive, mobile-first. Every section is data-driven from
  * Partner ? Settings ? Landing page with platform fallbacks, so an empty
@@ -41,9 +41,9 @@ import { environment } from '../../environments/environment';
     <!-- Hero -->
     <section class="hero">
       <div class="hero-inner">
-        <p class="badge">{{ partner.heroBadge || 'Diamond Project · Partner Page' }}</p>
+        <p class="badge">{{ partner.heroBadge || 'Diamond Project ï¿½ Partner Page' }}</p>
         <h1>{{ partner.headline || ('Build a flexible income with ' + fullName()) }}</h1>
-        <p class="sub">{{ partner.subHeadline || 'I help everyday people start a flexible online business — mentorship, training, community and health products people reorder.' }}</p>
+        <p class="sub">{{ partner.subHeadline || 'I help everyday people start a flexible online business ï¿½ mentorship, training, community and health products people reorder.' }}</p>
         <div class="cta-row">
           <a mat-flat-button class="cta-gold" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Join with {{ partner.name }} <mat-icon>arrow_forward</mat-icon></a>
           @if (whatsappLink()) {
@@ -62,7 +62,7 @@ import { environment } from '../../environments/environment';
             }
             <span>
               <strong>{{ fullName() }}</strong>
-              <small>{{ partner.jobTitle || 'Entrepreneur & Mentor' }}{{ partner.locationDisplay ? ' · ' + partner.locationDisplay : '' }}</small>
+              <small>{{ partner.jobTitle || 'Entrepreneur & Mentor' }}{{ partner.locationDisplay ? ' ï¿½ ' + partner.locationDisplay : '' }}</small>
             </span>
           </div>
           <div class="points">
@@ -95,11 +95,11 @@ import { environment } from '../../environments/environment';
           @if (partner.locationDisplay) { <p class="loc"><mat-icon>place</mat-icon> {{ partner.locationDisplay }}</p> }
           @if (partner.bio) { <p class="bio">{{ partner.bio }}</p> }
           <div class="contact">
-            @if (partner.displayPhone || partner.phone) {
-              <a [href]="'tel:' + (partner.displayPhone || partner.phone)"><mat-icon>call</mat-icon> {{ partner.displayPhone || partner.phone }}</a>
+            @if (partner.displayPhone) {
+              <a [href]="'tel:' + partner.displayPhone"><mat-icon>call</mat-icon> {{ partner.displayPhone }}</a>
             }
-            @if (partner.displayEmail || partner.email) {
-              <a [href]="'mailto:' + (partner.displayEmail || partner.email)"><mat-icon>mail</mat-icon> {{ partner.displayEmail || partner.email }}</a>
+            @if (partner.displayEmail) {
+              <a [href]="'mailto:' + partner.displayEmail"><mat-icon>mail</mat-icon> {{ partner.displayEmail }}</a>
             }
           </div>
           <div class="socials">
@@ -110,13 +110,13 @@ import { environment } from '../../environments/environment';
         </div>
         <div>
           <h3>My story</h3>
-          <p class="story">{{ partner.aboutStory || 'I started like most people — working hard with little to show for it. Diamond Project gave me mentorship, structure and a health business I am proud of. Today I guide others to do the same, one honest conversation at a time.' }}</p>
+          <p class="story">{{ partner.aboutStory || 'I started like most people ï¿½ working hard with little to show for it. Diamond Project gave me mentorship, structure and a health business I am proud of. Today I guide others to do the same, one honest conversation at a time.' }}</p>
           @if (partner.achievements) {
             <p class="achieve"><mat-icon>emoji_events</mat-icon> {{ partner.achievements }}</p>
           }
           <h3>Why work with me</h3>
           <ul class="ticks">
-            <li><mat-icon>check_circle</mat-icon> You speak directly with me — no bots, no pressure.</li>
+            <li><mat-icon>check_circle</mat-icon> You speak directly with me ï¿½ no bots, no pressure.</li>
             <li><mat-icon>check_circle</mat-icon> Weekly online showcase + WhatsApp support.</li>
             <li><mat-icon>check_circle</mat-icon> Clear first steps, even if you are not tech-savvy.</li>
           </ul>
@@ -130,7 +130,7 @@ import { environment } from '../../environments/environment';
       <h2>Four pillars that build the ultimate version of you</h2>
       <div class="cards">
         <div class="pcard"><mat-icon>psychology</mat-icon><h4>Mentorship &amp; Capacity</h4><p>Expert guidance and tailored training from leaders invested in your growth.</p></div>
-        <div class="pcard"><mat-icon>how_to_reg</mat-icon><h4>Discipline &amp; Stoicism</h4><p>Structure, resilience and steady execution — the quiet edge of winners.</p></div>
+        <div class="pcard"><mat-icon>how_to_reg</mat-icon><h4>Discipline &amp; Stoicism</h4><p>Structure, resilience and steady execution ï¿½ the quiet edge of winners.</p></div>
         <div class="pcard"><mat-icon>health_and_safety</mat-icon><h4>Health Optimization</h4><p>Nutrition, supplementation and habits that keep you sharp and radiant.</p></div>
         <div class="pcard"><mat-icon>account_balance</mat-icon><h4>Financial Leverage</h4><p>Learn to amplify effort into sustainable, compounding income.</p></div>
       </div>
@@ -151,7 +151,7 @@ import { environment } from '../../environments/environment';
         <div class="step"><span>3</span><h4>Chat &amp; attend showcase</h4><p>We talk on WhatsApp and you join a live business showcase.</p></div>
       </div>
       <div class="cta-row">
-        <a mat-flat-button class="cta-gold" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Start now — it takes 2 minutes</a>
+        <a mat-flat-button class="cta-gold" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Start now ï¿½ it takes 2 minutes</a>
         @if (whatsappLink()) {
           <a mat-stroked-button [href]="whatsappLink()" target="_blank" rel="noopener">Join WhatsApp community</a>
         }
@@ -188,9 +188,9 @@ import { environment } from '../../environments/environment';
       <p class="eyebrow">/ HONEST ANSWERS</p>
       <h2>Questions people ask {{ partner.name }}</h2>
       <div class="faq">
-        <details open><summary>Do I need experience or capital to start?</summary><p>No. You need a phone, 5–10 focused hours a week, and willingness to learn. {{ partner.name }} walks you through the first steps on WhatsApp.</p></details>
-        <details><summary>How much time does this take weekly?</summary><p>Most partners start with 5–10 hours alongside work or school. Consistency beats intensity.</p></details>
-        <details><summary>What exactly do I do?</summary><p>Share vetted health products, invite people to the weekly showcase, and mentor buyers — with scripts and training provided.</p></details>
+        <details open><summary>Do I need experience or capital to start?</summary><p>No. You need a phone, 5ï¿½10 focused hours a week, and willingness to learn. {{ partner.name }} walks you through the first steps on WhatsApp.</p></details>
+        <details><summary>How much time does this take weekly?</summary><p>Most partners start with 5ï¿½10 hours alongside work or school. Consistency beats intensity.</p></details>
+        <details><summary>What exactly do I do?</summary><p>Share vetted health products, invite people to the weekly showcase, and mentor buyers ï¿½ with scripts and training provided.</p></details>
         <details><summary>Is this available where I live?</summary><p>Diamond Project supports partners across Nigeria and beyond. Tap Join and {{ partner.name }} will confirm the closest support to you.</p></details>
       </div>
     </section>
@@ -214,7 +214,7 @@ import { environment } from '../../environments/environment';
           <button mat-stroked-button type="button" (click)="shareX()">X</button>
           <button mat-stroked-button type="button" (click)="copyLink()">{{ copied ? 'Link copied' : 'Copy link' }}</button>
         </div>
-        <p class="fine">By joining you agree to be contacted by {{ fullName() }} about Diamond Project. No spam, no pressure — unsubscribe anytime.</p>
+        <p class="fine">By joining you agree to be contacted by {{ fullName() }} about Diamond Project. No spam, no pressure ï¿½ unsubscribe anytime.</p>
       </div>
     </section>
 
@@ -224,7 +224,7 @@ import { environment } from '../../environments/environment';
           <a [href]="s.url" target="_blank" rel="noopener" [title]="s.label">{{ s.short }}</a>
         }
       </div>
-      <p>© {{ year }} {{ fullName() }} · Diamond Project Partner · {{ publicSiteUrl }}/{{ partner.username }}</p>
+      <p>ï¿½ {{ year }} {{ fullName() }} ï¿½ Diamond Project Partner ï¿½ {{ publicSiteUrl }}/{{ partner.username }}</p>
       <p class="fine">Earnings vary with effort. This page is a personal partner page, not a company income promise.</p>
     </footer>
   </div>
@@ -359,7 +359,7 @@ export class PartnersPresenterComponent {
   }
 
   protected shareText(): string {
-    return `${this.fullName()} — Diamond Project Partner`;
+    return `${this.fullName()} ï¿½ Diamond Project Partner`;
   }
 
   protected shareWhatsApp(): void {
@@ -397,7 +397,7 @@ export class PartnersPresenterComponent {
     const custom = (this.partner?.opportunityPoints ?? []).map((s) => String(s).trim()).filter(Boolean);
     if (custom.length) return custom.slice(0, 8);
     return [
-      'Personal mentorship on WhatsApp — direct access to me',
+      'Personal mentorship on WhatsApp ï¿½ direct access to me',
       'Weekly live business showcase you can invite friends to',
       'Step-by-step training, even if you are not tech-savvy',
       'Health & wellness products people actually reorder',

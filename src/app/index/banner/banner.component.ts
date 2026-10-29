@@ -79,12 +79,17 @@ import { RouterModule } from '@angular/router';
             </a>
         </li>
         <li>
-            <a routerLink="/faq" (click)="closeMenu()">
-                <span class="number">05.</span> FAQ
+            <a routerLink="/events" (click)="closeMenu()">
+                <span class="number">05.</span> Events &amp; Stories
             </a>
         </li>
         <li>
-          <a (click)="closeMenu()" href="https://c21fg.online" target="_blank" rel="noopener"><span class="number">06.</span> Partners Platform</a>
+            <a routerLink="/faq" (click)="closeMenu()">
+                <span class="number">06.</span> FAQ
+            </a>
+        </li>
+        <li>
+          <a (click)="closeMenu()" href="https://c21fg.online" target="_blank" rel="noopener"><span class="number">07.</span> Partners Platform</a>
         </li>
       </ul>
 

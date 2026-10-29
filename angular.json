@@ -29,8 +29,24 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "public/assets",
+                "output": "/assets",
+                "ignore": [
+                  "**/*.mp4"
+                ]
+              },
+              {
+                "glob": "SUCCESS_STORY_OF_DR_ELIJAH_MBA_RETIRED_MEDICAL_DOCTOR.mp4",
+                "input": "public/assets/vid",
+                "output": "/assets/vid"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "public",
+                "output": "/"
+              },
               {
                 "glob": "robots.txt",
                 "input": "public",
@@ -80,6 +96,14 @@
                   "maximumError": "12kb"
                 }
               ],
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": false
+              },
               "outputHashing": "all"
             },
             "development": {
@@ -122,8 +146,19 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "favicon.ico",
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "public/assets",
+                "output": "/assets",
+                "ignore": [
+                  "**/*.mp4"
+                ]
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",

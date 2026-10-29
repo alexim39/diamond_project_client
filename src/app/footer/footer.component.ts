@@ -68,6 +68,8 @@ import { CommonModule } from '@angular/common';
           </p>
 
           <div class="footer-links">
+            <a routerLink="/events" (click)="scrollToTop()">Events</a>
+            <span class="separator">|</span>
             <a routerLink="/faq" (click)="scrollToTop()">FAQ</a>
             <span class="separator">|</span>
             <a routerLink="/contact" (click)="scrollToTop()">Contact</a>

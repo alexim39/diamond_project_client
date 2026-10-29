@@ -41,5 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Large video file
+# Large video files
 /src/assets/vid/*
+/public/assets/vid/*
