@@ -53,7 +53,7 @@
           <div class="form-wrapper">
             <mat-form-field appearance="outline"  [ngClass]="{'invalid-field': surveyForm.get('phoneNumber')?.invalid && surveyForm.get('phoneNumber')?.touched}">
               <mat-label>What's your phone number?</mat-label>
-              <input matInput type="tel" inputmode="tel" autocomplete="tel" formControlName="phoneNumber" placeholder="0803 123 4567">
+              <input matInput type="tel" inputmode="tel" autocomplete="tel" formControlName="phoneNumber" placeholder="08031234567">
               <mat-error *ngIf="surveyForm.get('phoneNumber')?.hasError('required') ">
                 Your phone number is required
               </mat-error>
@@ -86,13 +86,12 @@
 
           <!-- State Field -->
           <mat-form-field appearance="outline">
+            <mat-label>{{ isNigeria ? 'State of residence' : 'State / province of residence' }}</mat-label>
             @if (isNigeria) {
-              <mat-label>State of residence</mat-label>
               <mat-select formControlName="state">
                 <mat-option *ngFor="let state of states" [value]="state">{{ state }}</mat-option>
               </mat-select>
             } @else {
-              <mat-label>State / province of residence</mat-label>
               <input matInput formControlName="state" autocomplete="address-level1" placeholder="Enter your state or province" />
             }
             <mat-error *ngIf="surveyForm.get('state')?.hasError('required') ">
@@ -224,7 +223,7 @@
           <div class="form-wrapper">
             <div class="range">
               <h4>Which social media platforms do you use most frequently?</h4>
-              <section [ngClass]="{'invalid-field': surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched}">
+              <section role="group" aria-label="Social media platforms" [ngClass]="{'invalid-field': surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched}">
                 <mat-checkbox (change)="onCheckboxChange($event)" value="Facebook">Facebook</mat-checkbox>
                 <mat-checkbox (change)="onCheckboxChange($event)" value="Instagram">Instagram</mat-checkbox>
                 <mat-checkbox (change)="onCheckboxChange($event)" value="LinkedIn">LinkedIn</mat-checkbox>
@@ -294,6 +293,18 @@
             At least 2 characters
             </mat-error>
         </mat-form-field>
+        </section>
+
+        <section class="consent-block" aria-label="Consent">
+          <mat-checkbox formControlName="consent">I agree to the Privacy Policy and Terms of Service.</mat-checkbox>
+          <p class="consent-links">
+            <a routerLink="/legal/privacy">Privacy Policy</a>
+            <span aria-hidden="true">·</span>
+            <a routerLink="/legal/terms">Terms of Service</a>
+          </p>
+          <p class="consent-error" role="alert" *ngIf="surveyForm.get('consent')?.invalid && surveyForm.get('consent')?.touched">
+            Please agree before submitting.
+          </p>
         </section>
 
           <mat-progress-bar mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar><br>

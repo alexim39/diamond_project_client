@@ -1,16 +1,17 @@
-ï»¿import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { PartnerInterface } from '../_common/interface/partner.interface';
 import { BrandsComponent } from './brands.component';
+import { environment } from '../../environments/environment';
 
 /**
- * @title Partner public one-pager â€” /:partnerUsername.
+ * @title Partner public one-pager — /:partnerUsername.
  *
  * Professional, expensive, mobile-first. Every section is data-driven from
- * Partner â†’ Settings â†’ Landing page with platform fallbacks, so an empty
+ * Partner ? Settings ? Landing page with platform fallbacks, so an empty
  * profile still renders a credible page. Join CTAs route to ../get-started
  * (username attribution rides localStorage set by the container).
  */
@@ -34,17 +35,17 @@ import { BrandsComponent } from './brands.component';
         <button type="button" class="link-btn" (click)="scrollTo('proof')">Results</button>
         <button type="button" class="link-btn" (click)="scrollTo('faq')">FAQ</button>
       </nav>
-      <a mat-flat-button class="join-sm" routerLink="../get-started" (click)="scrollToTop()">Join with {{ partner.name }}</a>
+      <a mat-flat-button class="join-sm" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Join with {{ partner.name }}</a>
     </header>
 
     <!-- Hero -->
     <section class="hero">
       <div class="hero-inner">
-        <p class="badge">{{ partner.heroBadge || 'Diamond Project Ã‚Â· Partner Page' }}</p>
+        <p class="badge">{{ partner.heroBadge || 'Diamond Project · Partner Page' }}</p>
         <h1>{{ partner.headline || ('Build a flexible income with ' + fullName()) }}</h1>
-        <p class="sub">{{ partner.subHeadline || 'I help everyday people start a flexible online business â€” mentorship, training, community and health products people reorder.' }}</p>
+        <p class="sub">{{ partner.subHeadline || 'I help everyday people start a flexible online business — mentorship, training, community and health products people reorder.' }}</p>
         <div class="cta-row">
-          <a mat-flat-button class="cta-gold" routerLink="../get-started" (click)="scrollToTop()">Join with {{ partner.name }} <mat-icon>arrow_forward</mat-icon></a>
+          <a mat-flat-button class="cta-gold" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Join with {{ partner.name }} <mat-icon>arrow_forward</mat-icon></a>
           @if (whatsappLink()) {
             <a mat-stroked-button class="cta-wa" [href]="whatsappLink()" target="_blank" rel="noopener"><span class="fa fa-whatsapp"></span> {{ partner.whatsappCtaText || 'Chat on WhatsApp' }}</a>
           }
@@ -54,10 +55,14 @@ import { BrandsComponent } from './brands.component';
         }
         <div class="trust">
           <div class="mentor-chip">
-            <span class="avatar">{{ initials() }}</span>
+            @if (partner.profileImage) {
+              <img class="avatar" [src]="partner.profileImage" [alt]="fullName()" loading="lazy" />
+            } @else {
+              <span class="avatar">{{ initials() }}</span>
+            }
             <span>
               <strong>{{ fullName() }}</strong>
-              <small>{{ partner.jobTitle || 'Entrepreneur & Mentor' }}{{ partner.locationDisplay ? ' Ã‚Â· ' + partner.locationDisplay : '' }}</small>
+              <small>{{ partner.jobTitle || 'Entrepreneur & Mentor' }}{{ partner.locationDisplay ? ' · ' + partner.locationDisplay : '' }}</small>
             </span>
           </div>
           <div class="points">
@@ -80,7 +85,11 @@ import { BrandsComponent } from './brands.component';
       <p class="eyebrow">/ MEET YOUR MENTOR</p>
       <div class="two">
         <div class="mentor-card">
-          <span class="avatar lg">{{ initials() }}</span>
+          @if (partner.profileImage) {
+            <img class="avatar lg" [src]="partner.profileImage" [alt]="fullName()" loading="lazy" />
+          } @else {
+            <span class="avatar lg">{{ initials() }}</span>
+          }
           <h2>{{ fullName() }}</h2>
           <p class="role">{{ partner.jobTitle || 'Entrepreneur & Mentor' }}</p>
           @if (partner.locationDisplay) { <p class="loc"><mat-icon>place</mat-icon> {{ partner.locationDisplay }}</p> }
@@ -101,13 +110,13 @@ import { BrandsComponent } from './brands.component';
         </div>
         <div>
           <h3>My story</h3>
-          <p class="story">{{ partner.aboutStory || 'I started like most people â€” working hard with little to show for it. Diamond Project gave me mentorship, structure and a health business I am proud of. Today I guide others to do the same, one honest conversation at a time.' }}</p>
+          <p class="story">{{ partner.aboutStory || 'I started like most people — working hard with little to show for it. Diamond Project gave me mentorship, structure and a health business I am proud of. Today I guide others to do the same, one honest conversation at a time.' }}</p>
           @if (partner.achievements) {
             <p class="achieve"><mat-icon>emoji_events</mat-icon> {{ partner.achievements }}</p>
           }
           <h3>Why work with me</h3>
           <ul class="ticks">
-            <li><mat-icon>check_circle</mat-icon> You speak directly with me â€” no bots, no pressure.</li>
+            <li><mat-icon>check_circle</mat-icon> You speak directly with me — no bots, no pressure.</li>
             <li><mat-icon>check_circle</mat-icon> Weekly online showcase + WhatsApp support.</li>
             <li><mat-icon>check_circle</mat-icon> Clear first steps, even if you are not tech-savvy.</li>
           </ul>
@@ -121,7 +130,7 @@ import { BrandsComponent } from './brands.component';
       <h2>Four pillars that build the ultimate version of you</h2>
       <div class="cards">
         <div class="pcard"><mat-icon>psychology</mat-icon><h4>Mentorship &amp; Capacity</h4><p>Expert guidance and tailored training from leaders invested in your growth.</p></div>
-        <div class="pcard"><mat-icon>how_to_reg</mat-icon><h4>Discipline &amp; Stoicism</h4><p>Structure, resilience and steady execution â€” the quiet edge of winners.</p></div>
+        <div class="pcard"><mat-icon>how_to_reg</mat-icon><h4>Discipline &amp; Stoicism</h4><p>Structure, resilience and steady execution — the quiet edge of winners.</p></div>
         <div class="pcard"><mat-icon>health_and_safety</mat-icon><h4>Health Optimization</h4><p>Nutrition, supplementation and habits that keep you sharp and radiant.</p></div>
         <div class="pcard"><mat-icon>account_balance</mat-icon><h4>Financial Leverage</h4><p>Learn to amplify effort into sustainable, compounding income.</p></div>
       </div>
@@ -142,7 +151,7 @@ import { BrandsComponent } from './brands.component';
         <div class="step"><span>3</span><h4>Chat &amp; attend showcase</h4><p>We talk on WhatsApp and you join a live business showcase.</p></div>
       </div>
       <div class="cta-row">
-        <a mat-flat-button class="cta-gold" routerLink="../get-started" (click)="scrollToTop()">Start now â€” it takes 2 minutes</a>
+        <a mat-flat-button class="cta-gold" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Start now — it takes 2 minutes</a>
         @if (whatsappLink()) {
           <a mat-stroked-button [href]="whatsappLink()" target="_blank" rel="noopener">Join WhatsApp community</a>
         }
@@ -179,9 +188,9 @@ import { BrandsComponent } from './brands.component';
       <p class="eyebrow">/ HONEST ANSWERS</p>
       <h2>Questions people ask {{ partner.name }}</h2>
       <div class="faq">
-        <details open><summary>Do I need experience or capital to start?</summary><p>No. You need a phone, 5â€“10 focused hours a week, and willingness to learn. {{ partner.name }} walks you through the first steps on WhatsApp.</p></details>
-        <details><summary>How much time does this take weekly?</summary><p>Most partners start with 5â€“10 hours alongside work or school. Consistency beats intensity.</p></details>
-        <details><summary>What exactly do I do?</summary><p>Share vetted health products, invite people to the weekly showcase, and mentor buyers â€” with scripts and training provided.</p></details>
+        <details open><summary>Do I need experience or capital to start?</summary><p>No. You need a phone, 5–10 focused hours a week, and willingness to learn. {{ partner.name }} walks you through the first steps on WhatsApp.</p></details>
+        <details><summary>How much time does this take weekly?</summary><p>Most partners start with 5–10 hours alongside work or school. Consistency beats intensity.</p></details>
+        <details><summary>What exactly do I do?</summary><p>Share vetted health products, invite people to the weekly showcase, and mentor buyers — with scripts and training provided.</p></details>
         <details><summary>Is this available where I live?</summary><p>Diamond Project supports partners across Nigeria and beyond. Tap Join and {{ partner.name }} will confirm the closest support to you.</p></details>
       </div>
     </section>
@@ -193,12 +202,19 @@ import { BrandsComponent } from './brands.component';
         <h2>Ready to start? Join with {{ fullName() }} today.</h2>
         <p>{{ partner.inviteNote || ('Mention ' + partner.name + ' on the form so I can personally welcome you and add you to our WhatsApp community.') }}</p>
         <div class="cta-row center">
-          <a mat-flat-button class="cta-gold" routerLink="../get-started" (click)="scrollToTop()">Join with {{ partner.name }}</a>
+          <a mat-flat-button class="cta-gold" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Join with {{ partner.name }}</a>
           @if (whatsappLink()) {
             <a mat-stroked-button class="cta-wa-light" [href]="whatsappLink()" target="_blank" rel="noopener">WhatsApp community</a>
           }
         </div>
-        <p class="fine">By joining you agree to be contacted by {{ fullName() }} about Diamond Project. No spam, no pressure â€” unsubscribe anytime.</p>
+        <div class="share-row" aria-label="Share this partner page">
+          <span>Share this page</span>
+          <button mat-stroked-button type="button" (click)="shareWhatsApp()">WhatsApp</button>
+          <button mat-stroked-button type="button" (click)="shareFacebook()">Facebook</button>
+          <button mat-stroked-button type="button" (click)="shareX()">X</button>
+          <button mat-stroked-button type="button" (click)="copyLink()">{{ copied ? 'Link copied' : 'Copy link' }}</button>
+        </div>
+        <p class="fine">By joining you agree to be contacted by {{ fullName() }} about Diamond Project. No spam, no pressure — unsubscribe anytime.</p>
       </div>
     </section>
 
@@ -208,7 +224,7 @@ import { BrandsComponent } from './brands.component';
           <a [href]="s.url" target="_blank" rel="noopener" [title]="s.label">{{ s.short }}</a>
         }
       </div>
-      <p>Ã‚Â© {{ year }} {{ fullName() }} Ã‚Â· Diamond Project Partner Ã‚Â· diamondproject.c21fg.online/{{ partner.username }}</p>
+      <p>© {{ year }} {{ fullName() }} · Diamond Project Partner · {{ publicSiteUrl }}/{{ partner.username }}</p>
       <p class="fine">Earnings vary with effort. This page is a personal partner page, not a company income promise.</p>
     </footer>
   </div>
@@ -243,8 +259,10 @@ import { BrandsComponent } from './brands.component';
     .invite { display: flex; gap: 0.5em; align-items: flex-start; background: rgba(255,193,7,0.12); border: 1px solid #d4a941; border-radius: 10px; padding: 0.8em 1em; max-width: 42em; }
     .trust { display: flex; gap: 1.5em; flex-wrap: wrap; align-items: center; margin-top: 1.5em; }
     .mentor-chip { display: flex; gap: 0.7em; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 0.6em 1em; border-radius: 999px; }
-    .avatar { width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; color: #111; background: linear-gradient(135deg, #ffc107, #a97f2c); flex: none; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; color: #111; background: linear-gradient(135deg, #ffc107, #a97f2c); flex: none; object-fit: cover; }
     .avatar.lg { width: 84px; height: 84px; font-size: 1.6rem; }
+    .share-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5em; margin-top: 1.2em; color: #d9d2c2; font-size: 0.9rem; }
+    .share-row button { border-color: var(--dp-gold) !important; color: var(--dp-gold-bright) !important; min-height: 44px; }
     .points { display: flex; gap: 1em; flex-wrap: wrap; color: #e8e2d6; font-size: 0.92rem; }
     .points mat-icon { color: #25d366; vertical-align: middle; }
     .strip { background: #fff; border-bottom: 1px solid #e4ddcd; padding: 1em 1.5em; text-align: center; }
@@ -298,6 +316,8 @@ import { BrandsComponent } from './brands.component';
 export class PartnersPresenterComponent {
   @Input() partner!: PartnerInterface;
   protected readonly year = new Date().getFullYear();
+  protected readonly publicSiteUrl = environment.publicSiteUrl;
+  protected copied = false;
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -334,11 +354,50 @@ export class PartnersPresenterComponent {
     return this.partner?.whatsappGroupLink || this.partner?.whatsappChatLink || null;
   }
 
+  protected shareUrl(): string {
+    return `${this.publicSiteUrl}/${this.partner.username}`;
+  }
+
+  protected shareText(): string {
+    return `${this.fullName()} — Diamond Project Partner`;
+  }
+
+  protected shareWhatsApp(): void {
+    window.open(`https://wa.me/?text=${encodeURIComponent(`${this.shareText()} ${this.shareUrl()}`)}`, '_blank', 'noopener');
+  }
+
+  protected shareFacebook(): void {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.shareUrl())}`, '_blank', 'noopener');
+  }
+
+  protected shareX(): void {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(this.shareText())}&url=${encodeURIComponent(this.shareUrl())}`, '_blank', 'noopener');
+  }
+
+  protected async copyLink(): Promise<void> {
+    const url = this.shareUrl();
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const textarea = document.createElement('textarea');
+      textarea.value = url;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    this.copied = true;
+    setTimeout(() => this.copied = false, 2500);
+  }
+
   protected opportunityPoints(): string[] {
     const custom = (this.partner?.opportunityPoints ?? []).map((s) => String(s).trim()).filter(Boolean);
     if (custom.length) return custom.slice(0, 8);
     return [
-      'Personal mentorship on WhatsApp â€” direct access to me',
+      'Personal mentorship on WhatsApp — direct access to me',
       'Weekly live business showcase you can invite friends to',
       'Step-by-step training, even if you are not tech-savvy',
       'Health & wellness products people actually reorder',

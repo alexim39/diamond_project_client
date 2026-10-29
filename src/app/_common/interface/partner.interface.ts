@@ -5,6 +5,7 @@ export interface PartnerInterface {
     surname: string;
     userDevice: string;
     username: string;
+    profileImage?: string;
     bio?: string;
     jobTitle?: string;
     businessTagline?: string;

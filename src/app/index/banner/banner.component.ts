@@ -1,5 +1,5 @@
 ﻿import { CommonModule } from '@angular/common';
-import { Component, Input, input } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnDestroy, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
@@ -52,14 +52,14 @@ import { RouterModule } from '@angular/router';
       </ul>
     </div>
   
-    <nav class="sidebar-menu" id="sidebar-menu" [class.open]="menuOpen" aria-label="Site menu">
-      <button class="close-menu" (click)="closeMenu()" aria-label="Close menu">&#10005;</button>
+    <nav class="sidebar-menu" id="sidebar-menu" [class.open]="menuOpen" [attr.aria-hidden]="!menuOpen" [attr.inert]="menuOpen ? null : ''" aria-label="Site menu">
+      <button #closeBtn class="close-menu" (click)="closeMenu()" aria-label="Close menu">&#10005;</button>
 
       <img src="/assets/images/icon.png" alt="Diamond Project Logo" />
 
       <ul>
         <li>
-            <a routerLink="/" (click)="scrollToTop()" (click)="closeMenu()">
+            <a routerLink="/" (click)="closeMenu(); scrollToTop()">
                 <span class="number">01.</span> Home
             </a>
         </li>
@@ -74,12 +74,17 @@ import { RouterModule } from '@angular/router';
             </a>
         </li>
         <li>
-            <a href="#footer" (click)="closeMenu()">
+            <a routerLink="/contact" (click)="closeMenu()">
                 <span class="number">04.</span> Contact Us
             </a>
         </li>
         <li>
-          <a (click)="closeMenu()" href="https://c21fg.online" target="_blank" rel="noopener"><span class="number">05.</span> Partners Platform</a>
+            <a routerLink="/faq" (click)="closeMenu()">
+                <span class="number">05.</span> FAQ
+            </a>
+        </li>
+        <li>
+          <a (click)="closeMenu()" href="https://c21fg.online" target="_blank" rel="noopener"><span class="number">06.</span> Partners Platform</a>
         </li>
       </ul>
 
@@ -97,6 +102,7 @@ import { RouterModule } from '@angular/router';
 .banner-container {
   position: relative;
   height: 100vh;
+  height: 100svh;
   background: url('/assets/images/hero-bg2.jpg') center/cover no-repeat;
   color: white;
   overflow: hidden;
@@ -408,13 +414,15 @@ import { RouterModule } from '@angular/router';
 
 `]
 })
-export class BannerComponent {
+export class BannerComponent implements OnDestroy {
 
   @Input() isUsernamePage = false;
+  @ViewChild('closeBtn') closeBtn?: ElementRef<HTMLButtonElement>;
 
   uriLink = "/get-started"
 
   menuOpen = false;
+  private wordInterval?: ReturnType<typeof setInterval>;
 
   words = ['True Potential.', 'Greatness Within.', 'Success Path.', 'Ultimate Version.'];
   wordIndex = 0;
@@ -425,20 +433,37 @@ export class BannerComponent {
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+    this.syncMenuState();
+    if (this.menuOpen) setTimeout(() => this.closeBtn?.nativeElement.focus());
   }
 
   closeMenu(): void {
     this.menuOpen = false;
+    this.syncMenuState();
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.menuOpen) this.closeMenu();
   }
 
   startSlidingWords(): void {
     if (typeof window !== 'undefined' && typeof window.matchMedia === 'function'
       && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return; // Respect reduced motion — keep the first word static.
+      return;
     }
-    setInterval(() => {
-      this.wordIndex = (this.wordIndex + 1) % this.words.length; // Cycle through words
-    }, 5000); // Each word stays for 5 seconds
+    this.wordInterval = setInterval(() => {
+      this.wordIndex = (this.wordIndex + 1) % this.words.length;
+    }, 5000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.wordInterval) clearInterval(this.wordInterval);
+    document.body.style.overflow = '';
+  }
+
+  private syncMenuState(): void {
+    document.body.style.overflow = this.menuOpen ? 'hidden' : '';
   }
 
   // scroll to top when clicked

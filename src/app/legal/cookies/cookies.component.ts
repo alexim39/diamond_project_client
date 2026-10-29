@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-
+import { SeoService } from '../../_common/services/seo.service';
 
 @Component({
     selector: 'async-cookies',
@@ -24,8 +24,17 @@ import { RouterModule } from '@angular/router';
     }
   `]
 })
-export class CookiesComponent {
-  // scroll to top when clicked
+export class CookiesComponent implements OnInit {
+  constructor(private seo: SeoService) {}
+
+  ngOnInit(): void {
+    this.seo.setPage({
+      title: 'Cookie Policy | Diamond Project',
+      description: 'How Diamond Project uses cookies and how you can control them.',
+      path: '/legal/cookies'
+    });
+  }
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

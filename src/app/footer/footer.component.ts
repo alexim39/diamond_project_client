@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 import { FooterService } from './footer.service';
 import { Subscription } from 'rxjs';
+import { ReferralService } from '../_common/services/referral.service';
+import { ConsentService } from '../_common/services/consent.service';
 import Swal from 'sweetalert2';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { Platform } from '@angular/cdk/platform';
@@ -36,32 +38,47 @@ import { CommonModule } from '@angular/common';
         <footer>
          
           <p class="contact-email">
-            Contact us: <a href="mailto:contacts@diamondprojectonline.com">contacts&#64;diamondprojectonline.com</a>
+            Contact us: <a href="mailto:contacts@c21fg.online">contacts&#64;c21fg.online</a>
           </p>
 
           <form class="subscription-container" (ngSubmit)="subscribe()">
             <label class="visually-hidden" for="footer-subscribe-email">Email address</label>
-            <input id="footer-subscribe-email" [(ngModel)]="email" name="email" type="email" autocomplete="email" required placeholder="Enter your email to subscribe" class="email-input">
+            <input id="footer-subscribe-email" [(ngModel)]="email" name="email" type="email" autocomplete="email" required placeholder="Enter your email for updates" class="email-input">
 
-            <button mat-flat-button color="primary" type="submit">Subscribe</button>
+            <button mat-flat-button color="primary" type="submit" [disabled]="isLoading">Get updates</button>
 
           </form>
+
+          <p class="subscribe-note">
+            We’ll email occasional updates. Confirm via email; unsubscribe anytime.
+            Read our <a routerLink="/legal/privacy">Privacy Policy</a>.
+          </p>
 
           <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
 
 
       
+          <p class="disclaimer">
+            Earnings vary with individual effort and market conditions. No income is guaranteed.
+          </p>
+
           <p class="copyright">
-            Diamond Project Â© {{ currentYear }} All rights reserved.
+            Diamond Project © {{ currentYear }} All rights reserved.
           </p>
 
           <div class="footer-links">
+            <a routerLink="/faq" (click)="scrollToTop()">FAQ</a>
+            <span class="separator">|</span>
+            <a routerLink="/contact" (click)="scrollToTop()">Contact</a>
+            <span class="separator">|</span>
             <a routerLink="/legal/terms" rel="noopener noreferrer" (click)="scrollToTop()">Terms</a>
             <span class="separator">|</span>
             <a routerLink="/legal/privacy" rel="noopener noreferrer" (click)="scrollToTop()">Privacy</a>
             <span class="separator">|</span>
             <a routerLink="/legal/cookies" rel="noopener noreferrer" (click)="scrollToTop()">Cookies</a>
+            <span class="separator">|</span>
+            <button type="button" class="link-button" (click)="consent.open()">Cookie settings</button>
           </div>
         </footer>
       </div>
@@ -184,6 +201,17 @@ import { CommonModule } from '@angular/common';
       }
     }
 
+    .subscribe-note {
+      margin: 0.6em 0 0;
+      color: rgba(243, 236, 221, 0.6);
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .subscribe-note a {
+      color: var(--dp-gold);
+    }
+
     .logo {
       flex-shrink: 0;
 
@@ -247,6 +275,26 @@ import { CommonModule } from '@angular/common';
       color: var(--dp-gold);
     }
 
+    .link-button {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: rgba(243, 236, 221, 0.85);
+      font: inherit;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .link-button:hover {
+      color: var(--dp-gold);
+    }
+
+    .disclaimer {
+      font-size: 0.75rem;
+      color: rgba(243, 236, 221, 0.6);
+      max-width: 42em;
+    }
+
     .separator {
       color: rgba(243, 236, 221, 0.4);
     }
@@ -294,7 +342,9 @@ export class FooterComponent implements OnDestroy {
   
   constructor(
     private footerService: FooterService,
-    private platform: Platform
+    private platform: Platform,
+    private referral: ReferralService,
+    public consent: ConsentService
   ) {
     if (this.platform.ANDROID || this.platform.IOS) {
       this.userDevice = 'mobile'
@@ -302,12 +352,7 @@ export class FooterComponent implements OnDestroy {
       this.userDevice = 'desktop'
     }
 
-    const storedUsername = localStorage.getItem('username');
-    // Retrieve the data from local storage
-    if (storedUsername) {
-      this.username = storedUsername;
-    } else {
-    }
+    this.username = this.referral.getPartner()?.username || 'business';
   }
 
 
@@ -338,6 +383,7 @@ export class FooterComponent implements OnDestroy {
             });
 
             this.isLoading = false;
+            this.email = '';
           },
           error: () => {
             Swal.fire({

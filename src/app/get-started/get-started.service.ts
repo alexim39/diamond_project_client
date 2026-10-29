@@ -28,6 +28,11 @@ export interface SurveyFormData {
   surname: string;
   referral: string;
   referralCode: string;
+  country: string;
+  state: string;
+  userDevice: string;
+  username: string;
+  consent: boolean;
 }
   
 

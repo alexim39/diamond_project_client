@@ -7,7 +7,9 @@ export const routes: Routes = [
   { path: '', component: IndexComponent, title: 'Diamond Project | Network Marketing in Nigeria — Financial Freedom' },
   { path: 'get-started', loadChildren: () => import('./get-started/get-started-routes').then(r => r.getStartedRoutes) },
   { path: 'legal', loadChildren: () => import('./legal/legal-routes').then(r => r.legalRoutes) },
-  { path: ':partnerUsername', loadChildren: () => import('./partners/partners-routes').then(r => r.partnersRoutes) },
+  { path: 'faq', loadComponent: () => import('./faq/faq.component').then(c => c.FaqComponent), title: 'Frequently Asked Questions | Diamond Project' },
+  { path: 'contact', loadComponent: () => import('./contact/contact.component').then(c => c.ContactComponent), title: 'Contact | Diamond Project' },
+  { path: ':partnerUsername', data: { layout: 'partner' }, loadChildren: () => import('./partners/partners-routes').then(r => r.partnersRoutes) },
   { path: '**', component: PageNotFoundComponent, title: 'Page not found | Diamond Project' },
 
 ];

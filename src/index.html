@@ -66,16 +66,7 @@
   }
   </script>
 
-  <!-- Google Analytics and Tracking -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-307794612"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-307794612');
-  </script>
-
-  <!-- Signup conversion fires from the get-started success dialog, not on page view. -->
+  <!-- Analytics loads only after cookie consent (ConsentService). -->
 </head>
 <body class="mat-typography">
   <async-root>
@@ -87,6 +78,4 @@
     </main>
   </async-root>
 </body>
-
-<script src="https://js.paystack.co/v1/inline.js" defer></script>
 </html>

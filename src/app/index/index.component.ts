@@ -12,6 +12,7 @@ import { LoadingSpinnerService } from '../_common/services/loader/spinner.servic
 import { FourPillarsnComponent } from './four-pillars/four-pillars.component';
 import { AboutComponent } from './about/about.component';
 import { BrandsComponent } from '../partners/brands.component';
+import { SeoService } from '../_common/services/seo.service';
 
 
 @Component({
@@ -31,10 +32,16 @@ import { BrandsComponent } from '../partners/brands.component';
 })
 export class IndexComponent { 
   constructor(
-    public loadingSpinnerService: LoadingSpinnerService
+    public loadingSpinnerService: LoadingSpinnerService,
+    private seo: SeoService
   ) {}
   
   ngOnInit(): void {
-    this.loadingSpinnerService.hide()
+    this.loadingSpinnerService.hide();
+    this.seo.setPage({
+      title: 'Diamond Project | Network Marketing in Nigeria — Financial Freedom',
+      description: 'Diamond Project is a transformative platform that empowers you to elevate your financial success through mentorship, training and a leverage-based online business.',
+      path: '/'
+    });
   }
 }

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { SeoService } from '../../_common/services/seo.service';
 
 @Component({
     selector: 'async-terms',
@@ -23,8 +24,17 @@ import { RouterModule } from '@angular/router';
   }
   `]
 })
-export class TermsComponent {
-  // scroll to top when clicked
+export class TermsComponent implements OnInit {
+  constructor(private seo: SeoService) {}
+
+  ngOnInit(): void {
+    this.seo.setPage({
+      title: 'Terms of Service | Diamond Project',
+      description: 'The terms that govern use of the Diamond Project website and services.',
+      path: '/legal/terms'
+    });
+  }
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

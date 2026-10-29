@@ -17,7 +17,7 @@ import {MatIconModule} from '@angular/material/icon';
         </button>
 
         <div class="brand-display-wrapper" #brandWrapper>
-            <div class="brand-logo" *ngFor="let brand of brands">
+            <div class="brand-logo" *ngFor="let brand of displayBrands">
             <img [src]="brand.logo" [alt]="brand.name" loading="lazy" />
             </div>
         </div>
@@ -115,6 +115,8 @@ export class BrandsComponent implements AfterViewInit {
 
       // Add more brands as needed
     ];
+
+    displayBrands = [...this.brands, ...this.brands.map(brand => ({ ...brand }))];
   
     scrollLeft() {
       this.brandWrapper.nativeElement.scrollBy({

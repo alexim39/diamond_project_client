@@ -13,7 +13,9 @@ import { takeUntil } from 'rxjs/operators';
 
         <div class="testimonial-slider" role="region" aria-roledescription="carousel" aria-label="Partner testimonials"
              (mouseenter)="pauseAutoSlide()"
-             (mouseleave)="startAutoSlide()">
+             (mouseleave)="resumeAutoSlide()"
+             (focusin)="pauseAutoSlide()"
+             (focusout)="resumeAutoSlide()">
           <div class="slider-wrapper" [style.transform]="transformStyle">
             <div class="testimonial-slide" *ngFor="let testimonial of testimonials; let i = index" [attr.aria-hidden]="i !== currentIndex" [attr.aria-label]="'Testimonial ' + (i + 1) + ' of ' + testimonials.length">
               <div class="testimonial-card">
@@ -49,6 +51,7 @@ import { takeUntil } from 'rxjs/operators';
             </button>
           </div>
         </div>
+        <p class="results-note">Individual results vary. No income is guaranteed.</p>
       </div>
     </section>
   `,
@@ -72,6 +75,12 @@ import { takeUntil } from 'rxjs/operators';
       font-weight: bold;
       margin-bottom: 30px;
       color: var(--dp-text);
+    }
+
+    .results-note {
+      margin: 1rem 0 0;
+      color: var(--dp-muted);
+      font-size: 0.82rem;
     }
 
     /* Testimonial Slider */
@@ -386,5 +395,10 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
   pauseAutoSlide(): void {
     this.isMouseOver = true;
     this.stopAutoSlide();
+  }
+
+  resumeAutoSlide(): void {
+    this.isMouseOver = false;
+    this.startAutoSlide();
   }
 }

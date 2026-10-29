@@ -1,100 +1,94 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { SeoService } from './_common/services/seo.service';
 
 /**
  * @title Page not found component
  */
 @Component({
     selector: 'async-page-not-found',
-    imports: [MatButtonModule, MatIconModule, RouterModule],
+    imports: [MatButtonModule, RouterModule],
     styles: [`
-* {
-  padding: 0;
-  margin: 0;
-  outline: 0;
-  color: #444;
-  box-sizing: border-box;
-  font-family: 'IBM Plex Sans', sans-serif;
+:host {
+  display: block;
+  background: var(--dp-paper);
+  color: var(--dp-text);
 }
 
-.page_404{ 
-    padding:40px 0; 
-    font-family: 'Arvo', serif;
+.page_404 {
+    padding: 48px 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-  
-
-.four_zero_four_bg{
-    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    background-color: var(--dp-gold-soft, #f3e8d2);
-    height: 400px;
+.four_zero_four_bg {
+    background: radial-gradient(circle at 50% 30%, #1a1440 0%, #050111 60%, #03010f 100%);
+    border: 1px solid var(--dp-gold);
+    height: 360px;
     width: min(45%, 100%);
     max-width: 640px;
-    background-position: center;
-    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
-    h1{
-        font-size:80px;
+    h1 {
+        font-size: 80px;
+        margin: 0;
+        color: var(--dp-gold-bright);
         text-align: center;
-    }
- }
- 
-
-.contant_box_404{ 
-    margin-top:-50px;
-    text-align: center;
-    h3{
-        font-size:30px; 
-    }
-    p {
-        padding: 1em 0;
-    }
-    button {
-        padding: 1em;
     }
 }
 
+.contant_box_404 {
+    margin-top: 1.5em;
+    text-align: center;
+    padding: 1em;
+    h2 {
+        font-size: 1.6rem;
+        margin: 0 0 0.5em;
+    }
+    p {
+        padding: 0.5em 0 1.25em;
+    }
+    button {
+        min-height: 48px;
+        padding: 0 1.5em;
+    }
+}
 
-/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .four_zero_four_bg{
+    .four_zero_four_bg {
         height: 240px;
         width: 100%;
     }
-    .contant_box_404{
-        padding: 1em;
-        h3 {
-            font-size:20px;
-        }
-        p {
-            padding: 1em 0;
-        }
-        button {
-            padding: 1em;
+    .contant_box_404 {
+        h2 {
+            font-size: 1.25rem;
         }
     }
-
 }
-
 `],
     template: `
 <section class="page_404">
     <div class="four_zero_four_bg">
-        <h1 class="text-center">404</h1>
+        <h1>404</h1>
     </div>
 
     <div class="contant_box_404">
-        <h2 class="h2">It looks like you have clicked on the wrong link</h2>
-        <p>The page you are looking for is not available!</p>
-        <button  mat-flat-button color="accent" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Go to Home</button>
+        <h2>It looks like you have clicked on the wrong link</h2>
+        <p>The page you are looking for is not available.</p>
+        <button mat-flat-button color="accent" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Go to Home</button>
     </div>
 </section>
 `
 })
-export class PageNotFoundComponent { }
+export class PageNotFoundComponent implements OnInit {
+  constructor(private seo: SeoService) {}
+
+  ngOnInit(): void {
+    this.seo.setNotFound('Page not found', '/404');
+  }
+}

@@ -1,22 +1,26 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
+import { CookieConsentComponent } from './cookie-consent.component';
 
 @Component({
     selector: 'async-root',
-    imports: [RouterModule, FooterComponent],
+    imports: [RouterModule, FooterComponent, CookieConsentComponent],
     template: `
     <div id="container">
       <a class="skip-link" href="#main">Skip to content</a>
       <main id="main">
         <router-outlet id="outlet"/>
       </main>
-      <async-footer id="footer"/>
+      @if (showFooter) {
+        <async-footer id="footer"/>
+      }
+      <async-cookie-consent/>
     </div>
   `,
     styles: [`
     #container {
-      animation: fadeInAnimation ease 3s;
+      animation: fadeInAnimation ease 0.3s;
       position: relative;
     }
 
@@ -59,4 +63,24 @@ import { FooterComponent } from './footer/footer.component';
     }
   `]
 })
-export class AppComponent {}
+export class AppComponent {
+  showFooter = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) this.updateLayout();
+    });
+    this.updateLayout();
+  }
+
+  private updateLayout(): void {
+    let route: ActivatedRoute | null = this.router.routerState.root;
+    let layout = '';
+    while (route) {
+      const value = route.snapshot?.data?.['layout'];
+      if (typeof value === 'string') layout = value;
+      route = route.firstChild;
+    }
+    this.showFooter = layout !== 'partner';
+  }
+}

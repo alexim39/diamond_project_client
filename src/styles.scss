@@ -14,9 +14,23 @@
   --dp-cream: #f3ecdd;
   --dp-error: #b71c1c;
   --dp-error-bg: #fdecea;
+  --dp-font-display: Garamond, Georgia, 'Times New Roman', serif;
+  --dp-font-body: Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 html, body { height: 100%; }
-body { margin: 0;}
+body {
+  margin: 0;
+  font-family: var(--dp-font-body);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--dp-gold-bright);
+  outline-offset: 2px;
+}
 
 .breadcrumb-wrapper {
     display: flex;
@@ -28,7 +42,7 @@ body { margin: 0;}
         font-size: 0.7em;
         a {
             text-decoration: none;
-            color: #00838F;
+            color: var(--dp-gold-ink);
             padding: 0 0.5em;
         }
         a:hover {

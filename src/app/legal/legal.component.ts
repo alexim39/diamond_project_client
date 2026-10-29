@@ -35,32 +35,38 @@ import { RouterModule } from '@angular/router';
   `,
     styles: [`
     .legal {
-      padding: 0 4em;
+      padding: 2em 4em;
       display: flex;
+      gap: 2em;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--dp-paper);
+      color: var(--dp-text);
       .legal-menu {
-        flex: 20%;
+        flex: 0 0 220px;
         width: 100%;
         padding-right: 2em;
-        border-right: 1px solid #ccc;
+        border-right: 1px solid var(--dp-line);
         mat-list {
           mat-list-item {
             a {
               text-decoration: none;
-              color: rgb(56, 56, 56);
+              color: var(--dp-text);
               font-weight: bold;
             }
             a:hover {
-              color: rgb(151, 149, 149);
+              color: var(--dp-gold-ink);
             }
             a.active {
-              color: rgb(151, 149, 149);
+              color: var(--dp-gold-ink);
             }
           }
         }
       }
       .legal-content {
-        flex: 80%;
-        padding-left: 1em;
+        flex: 1;
+        min-width: 0;
+        padding-left: 0;
       }
     }
 
@@ -69,7 +75,15 @@ import { RouterModule } from '@angular/router';
     .legal {
       display: flex;
       flex-direction: column;
-      padding: 0 1em;
+      padding: 1em;
+      gap: 1em;
+      .legal-menu {
+        flex: none;
+        padding-right: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--dp-line);
+        padding-bottom: 1em;
+      }
     }
   }
   `]

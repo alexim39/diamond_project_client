@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { PartnerInterface } from '../_common/interface/partner.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ReferralService } from '../_common/services/referral.service';
+import { SeoService } from '../_common/services/seo.service';
 
 /**
  * @title Partners
@@ -45,45 +47,41 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
     constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private usernameCheckService: UsernameCheckService
+      private usernameCheckService: UsernameCheckService,
+      private referral: ReferralService,
+      private seo: SeoService
     ) {}
 
     ngOnInit(): void {
-      // Username comes from the route (handles trailing slashes + SSR-safe).
       const username = (this.route.snapshot.paramMap.get('partnerUsername') ?? '').trim();
       if (!username) {
         this.failed = true;
+        this.seo.setNotFound('Partner page not found', '/');
         return;
       }
 
-      // check if username exist
       this.subscriptions.push(
         this.usernameCheckService.checkUsernameAvailability(username).subscribe({
           next: (response) => {
-            if (response.success) {
-              if (response.partner.username == username) {
-                // Store the extracted data in local storage
-                localStorage.setItem('username', username);
-                this.partner = response.partner;
+            if (response.success && response.partner?.username === username) {
+              this.referral.remember(response.partner);
+              this.partner = response.partner;
+              this.seo.setPartner(response.partner, username);
 
-                // Capture the channel from the query parameters (one-shot).
-                this.route.queryParams.pipe(take(1)).subscribe(params => {
-                  this.channel = params['utm_source'] || 'unknown';
-
-                  // You can send the captured information to your backend or analytics service here
-                  this.recordVisit(username, this.channel);
-                });
-              } else {
-                this.failed = true;
-              }
+              this.route.queryParams.pipe(take(1)).subscribe(params => {
+                this.channel = params['utm_source'] || 'unknown';
+                this.recordVisit(username, this.channel);
+              });
             } else {
               this.failed = true;
+              this.referral.clear();
+              this.seo.setNotFound('Partner page not found', `/${username}`);
             }
           },
           error: (error: HttpErrorResponse) => {
-            // Only our own key — never wipe the whole storage.
-            localStorage.removeItem('username');
             this.failed = true;
+            if (error.status === 404) this.referral.clear();
+            this.seo.setNotFound('Partner page not found', `/${username}`);
           }
         })
       )
@@ -96,12 +94,11 @@ export class PartnersContainerComponent implements OnInit, OnDestroy {
     private recordVisit(username: string | null, channel: string | null): void {
 
       this.subscriptions.push(
-        this.usernameCheckService.recordVisit(username, channel).subscribe()
+        this.usernameCheckService.recordVisit(username, channel).subscribe({ error: () => {} })
       )
     }
 
     ngOnDestroy() {
-      // unsubscribe list
       this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 }

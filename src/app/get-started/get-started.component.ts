@@ -1,14 +1,9 @@
 ﻿import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormArray } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import Swal from 'sweetalert2';
@@ -18,10 +13,12 @@ import { SurveyFormData, SurveyService, PublicPartner } from './get-started.serv
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
-import { minDigitsValidator } from '../_common/services/username-check';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ReferralPartner, ReferralService } from '../_common/services/referral.service';
+import { SeoService } from '../_common/services/seo.service';
+import { ConsentService } from '../_common/services/consent.service';
 
 /**
  * @title Survey form for getting started
@@ -29,7 +26,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
 selector: 'async-feedback',
 providers: [SurveyService],
-imports: [MatButtonModule, MatDividerModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatAutocompleteModule],
+    imports: [MatButtonModule, MatProgressBarModule, MatCheckboxModule, MatRadioModule, CommonModule, ReactiveFormsModule, RouterModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatAutocompleteModule],
 templateUrl: 'get-started.component.html',
 styles: [`
 
@@ -150,7 +147,7 @@ styles: [`
               }
             }
           }
-          .btn {
+           .btn {
             display: flex;
             justify-content: center;
             text-align: center;
@@ -160,6 +157,31 @@ styles: [`
               min-height: 48px;
               font-size: 1.05em;
               font-weight: 700;
+            }
+          }
+          .consent-block {
+            text-align: left;
+            margin: 0 0 1.25em;
+            padding: 1em 1.25em;
+            border: 1px solid var(--dp-line, #e4ddcd);
+            border-radius: 10px;
+            background: var(--dp-surface, #ffffff);
+            .consent-links {
+              margin: 0.35em 0 0;
+              font-size: 0.85em;
+              color: var(--dp-muted, #6e6e6e);
+              a {
+                color: var(--dp-gold-ink, #6e5218);
+                font-weight: 700;
+              }
+              span {
+                margin: 0 0.4em;
+              }
+            }
+            .consent-error {
+              margin: 0.35em 0 0;
+              font-size: 0.85em;
+              color: var(--dp-error, #b71c1c);
             }
           }
         }
@@ -285,6 +307,7 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   isSpinning = false;
   userDevice = '';
   username: string = 'business';
+  private referralPartner: ReferralPartner | null = null;
 
   // Referral picker — searchable partner dropdown with free-text fallback.
   filteredPartners: PublicPartner[] = [];
@@ -376,9 +399,13 @@ export class GetStartedComponent implements OnInit, OnDestroy {
 
   constructor (
     private router: Router,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private surveyService: SurveyService,
-    private platform: Platform
+    private platform: Platform,
+    private referral: ReferralService,
+    private seo: SeoService,
+    private consent: ConsentService
   ) {
     if (this.platform.ANDROID || this.platform.IOS) {
       this.userDevice = 'mobile'
@@ -386,13 +413,15 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       this.userDevice = 'desktop'
     }
 
-    const storedUsername = localStorage.getItem('username');
-    // Retrieve the data from local storage
-    if (storedUsername) {
-      this.username = storedUsername;
+    const stored = this.referral.getPartner();
+    const refFromUrl = (this.route.snapshot.queryParamMap.get('ref') ?? '').trim();
+    if (refFromUrl && refFromUrl !== 'business' && stored?.username !== refFromUrl) {
+      this.referralPartner = { username: refFromUrl };
+      this.referral.remember(this.referralPartner);
     } else {
+      this.referralPartner = stored;
     }
-    
+    this.username = this.referralPartner?.username || 'business';
   }
 
     ngOnInit(): void {
@@ -413,10 +442,13 @@ export class GetStartedComponent implements OnInit, OnDestroy {
         referralCode: ['', [Validators.required, Validators.minLength(2)]],
         userDevice: this.userDevice,
         username: this.username,
+        consent: [false, Validators.requiredTrue],
 
         country: ['Nigeria', [Validators.required]], // Default to Nigeria
         state: ['', [Validators.required]], // State is required
       });
+
+      this.prefillReferral();
   
       this.surveyForm.get('referral')?.valueChanges.subscribe(value => {
         if (value === 'Referral') {
@@ -463,6 +495,21 @@ export class GetStartedComponent implements OnInit, OnDestroy {
 
       // Initialize `isNigeria` based on the default country
       this.isNigeria = this.surveyForm.get('country')?.value === 'Nigeria';
+
+      this.seo.setPage({
+        title: 'Get Started | Diamond Project',
+        description: 'Complete the Diamond Project survey and a consultant will contact you about the mentorship, training and online business opportunity.',
+        path: '/get-started'
+      });
+    }
+
+    private prefillReferral(): void {
+      if (!this.referralPartner) return;
+      const { username, name, surname } = this.referralPartner;
+      const fullName = `${name ?? ''} ${surname ?? ''}`.trim();
+      this.surveyForm.get('referral')?.setValue('Referral', { emitEvent: false });
+      this.surveyForm.get('referralCode')?.setValue(fullName ? `${fullName} (@${username})` : `@${username}`, { emitEvent: false });
+      this.surveyForm.get('username')?.setValue(username, { emitEvent: false });
     }
 
     /** Label stored on select: verifiable + readable, backward compatible. */
@@ -478,19 +525,21 @@ export class GetStartedComponent implements OnInit, OnDestroy {
     }
 
     referralSubtitle(p: PublicPartner): string {
-      return [p.jobTitle, [p.city, p.state].filter(Boolean).join(', ')].filter(Boolean).join(' Â· ');
+      return [p.jobTitle, [p.city, p.state].filter(Boolean).join(', ')].filter(Boolean).join(' · ');
     }
 
     /** Single-line dropdown caption — avoids `@` control-flow pitfalls in the template. */
     referralOptionLine(p: PublicPartner): string {
       const sub = this.referralSubtitle(p);
-      return sub ? `@${p.username} Â· ${sub}` : `@${p.username}`;
+      return sub ? `@${p.username} · ${sub}` : `@${p.username}`;
     }
 
     onReferralSelected(event: MatAutocompleteSelectedEvent): void {
       const p = event.option.value as PublicPartner;
-      // Store verifiable label; @username inside keeps upline credit exact.
       this.surveyForm.get('referralCode')?.setValue(this.referralLabel(p), { emitEvent: false });
+      this.surveyForm.get('username')?.setValue(p.username, { emitEvent: false });
+      this.referralPartner = { username: p.username, name: p.name, surname: p.surname };
+      this.referral.remember(this.referralPartner);
       this.filteredPartners = [p];
     }
 
@@ -554,15 +603,14 @@ export class GetStartedComponent implements OnInit, OnDestroy {
         this.surveyService.submit(formData).subscribe({
           next: (response) => {
             this.isSpinning = false;
-            // Ads conversion fires on real signup only — never on page view.
-            try {
-              const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
-              gtag?.('event', 'conversion', { send_to: 'AW-307794612/pPxdCIWS4osZELSl4pIB' });
-            } catch { /* tracking must never break signup */ }
+            this.referral.clear();
+            this.consent.trackConversion('AW-307794612/pPxdCIWS4osZELSl4pIB');
             Swal.fire({
               position: "bottom",
               icon: 'success',
-              text: response.message,
+              title: 'Thank you!',
+              text: response?.message ?? 'Your details have been submitted.',
+              footer: 'Check your email for next steps. A Diamond Project consultant will contact you shortly.',
               showConfirmButton: true,
               confirmButtonColor: "#ffab40",
             }).then(() => {
