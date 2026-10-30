@@ -11,6 +11,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { LoadingSpinnerService } from '../_common/services/loader/spinner.service';
 import { FourPillarsnComponent } from './four-pillars/four-pillars.component';
 import { AboutComponent } from './about/about.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { BrandsComponent } from '../partners/brands.component';
 import { SeoService } from '../_common/services/seo.service';
 
@@ -18,12 +19,13 @@ import { SeoService } from '../_common/services/seo.service';
 @Component({
     selector: 'async-index',
     imports: [MatToolbarModule, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule, MatFormFieldModule, MatInputModule, BannerComponent,
-        TestimonialsComponent, FourPillarsnComponent, AboutComponent, BrandsComponent
+        TestimonialsComponent, FourPillarsnComponent, AboutComponent, HowItWorksComponent, BrandsComponent
     ],
     template: `
     <async-index-banner/>
     <async-about/>
     <async-four-pillars/>
+    <async-how-it-works/>
     <async-index-testimonials/>
     <async-brands-logos/>
   `,

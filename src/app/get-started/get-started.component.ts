@@ -71,6 +71,13 @@ styles: [`
         font-size: 14px;
         line-height: 1.5em;
       }
+      .quick-help {
+        margin-top: 0.5em;
+        a {
+          color: var(--dp-gold-bright);
+          font-weight: 700;
+        }
+      }
       a {
         color: white;
         text-decoration: underline;

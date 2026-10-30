@@ -2,13 +2,17 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { CookieConsentComponent } from './cookie-consent.component';
+import { SiteHeaderComponent } from './_common/components/site-header.component';
 
 @Component({
     selector: 'async-root',
-    imports: [RouterModule, FooterComponent, CookieConsentComponent],
+    imports: [RouterModule, FooterComponent, CookieConsentComponent, SiteHeaderComponent],
     template: `
     <div id="container">
       <a class="skip-link" href="#main">Skip to content</a>
+      @if (showHeader) {
+        <async-site-header/>
+      }
       <main id="main">
         <router-outlet id="outlet"/>
       </main>
@@ -65,6 +69,7 @@ import { CookieConsentComponent } from './cookie-consent.component';
 })
 export class AppComponent {
   showFooter = true;
+  showHeader = false;
 
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
@@ -81,6 +86,8 @@ export class AppComponent {
       if (typeof value === 'string') layout = value;
       route = route.firstChild;
     }
+    const path = this.router.url.split('?')[0].split('#')[0];
     this.showFooter = layout !== 'partner';
+    this.showHeader = layout !== 'partner' && path !== '/';
   }
 }

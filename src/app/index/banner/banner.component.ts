@@ -40,6 +40,11 @@ import { RouterModule } from '@angular/router';
           </a>
         </li>
         <li>
+          <a href="#how-it-works">
+          <span class="dot"></span> HOW IT WORKS <br /><small>what to expect</small>
+          </a>
+        </li>
+        <li>
           <a  href="#four_pillars">
           <span class="dot"></span> OUR PILLARS <br /><small>what we do</small>
           </a>
@@ -69,27 +74,32 @@ import { RouterModule } from '@angular/router';
             </a>
         </li>
         <li>
+            <a href="#how-it-works" (click)="closeMenu()">
+                <span class="number">03.</span> How It Works
+            </a>
+        </li>
+        <li>
             <a href="#four_pillars" (click)="closeMenu()">
-                <span class="number">03.</span> Our Pillars 
+                <span class="number">04.</span> Our Pillars 
             </a>
         </li>
         <li>
             <a routerLink="/contact" (click)="closeMenu()">
-                <span class="number">04.</span> Contact Us
+                <span class="number">05.</span> Contact Us
             </a>
         </li>
         <li>
             <a routerLink="/events" (click)="closeMenu()">
-                <span class="number">05.</span> Events &amp; Stories
+                <span class="number">06.</span> Events &amp; Stories
             </a>
         </li>
         <li>
             <a routerLink="/faq" (click)="closeMenu()">
-                <span class="number">06.</span> FAQ
+                <span class="number">07.</span> FAQ
             </a>
         </li>
         <li>
-          <a (click)="closeMenu()" href="https://c21fg.online" target="_blank" rel="noopener"><span class="number">07.</span> Partners Platform</a>
+          <a (click)="closeMenu()" href="https://c21fg.online" target="_blank" rel="noopener"><span class="number">08.</span> Partners Platform</a>
         </li>
       </ul>
 
