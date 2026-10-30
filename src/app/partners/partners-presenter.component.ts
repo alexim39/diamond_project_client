@@ -46,8 +46,8 @@ import { environment } from '../../environments/environment';
         <p class="sub">{{ partner.subHeadline || 'I help everyday people start a flexible online business — mentorship, training, community and health products people reorder.' }}</p>
         <div class="cta-row">
           <a mat-flat-button class="cta-gold" routerLink="../get-started" [queryParams]="{ ref: partner.username }" queryParamsHandling="merge" (click)="scrollToTop()">Join with {{ partner.name }} <mat-icon>arrow_forward</mat-icon></a>
-          @if (whatsappLink()) {
-            <a mat-stroked-button class="cta-wa" [href]="whatsappLink()" target="_blank" rel="noopener"><span class="fa fa-whatsapp"></span> {{ partner.whatsappCtaText || 'Chat on WhatsApp' }}</a>
+          @if (chatLink()) {
+            <a mat-stroked-button class="cta-wa" [href]="chatLink()" target="_blank" rel="noopener"><span class="fa fa-whatsapp"></span> {{ partner.whatsappCtaText || 'Chat on WhatsApp' }}</a>
           }
           <a mat-stroked-button class="cta-contact" routerLink="/contact" (click)="scrollToTop()"><mat-icon>mail_outline</mat-icon> Ask a question</a>
         </div>
@@ -212,6 +212,15 @@ import { environment } from '../../environments/environment';
           <button mat-stroked-button type="button" (click)="shareX()">X</button>
           <button mat-stroked-button type="button" (click)="copyLink()">{{ copied ? 'Link copied' : 'Copy link' }}</button>
         </div>
+        <div class="qr-block">
+          @if (!qrFailed) {
+            <img [src]="qrCodeUrl()" alt="QR code to open this partner page" loading="lazy" (error)="qrFailed = true" />
+          }
+          <div>
+            <strong>Scan to open this page</strong>
+            <small>Point a phone camera at the code, or use “Copy link” above.</small>
+          </div>
+        </div>
         <p class="fine">By joining you agree to be contacted by {{ fullName() }} about Diamond Project. No spam, no pressure — unsubscribe anytime.</p>
       </div>
     </section>
@@ -262,6 +271,10 @@ import { environment } from '../../environments/environment';
     .avatar.lg { width: 84px; height: 84px; font-size: 1.6rem; }
     .share-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5em; margin-top: 1.2em; color: #d9d2c2; font-size: 0.9rem; }
     .share-row button { border-color: var(--dp-gold) !important; color: var(--dp-gold-bright) !important; min-height: 44px; }
+    .qr-block { display: flex; align-items: center; justify-content: center; gap: 0.9em; margin-top: 1em; color: #d9d2c2; }
+    .qr-block img { width: 92px; height: 92px; border-radius: 8px; background: #fff; padding: 4px; }
+    .qr-block strong { display: block; color: #fff; font-size: 0.9rem; }
+    .qr-block small { display: block; margin-top: 0.25em; color: #a8a094; font-size: 0.78rem; max-width: 18em; }
     .points { display: flex; gap: 1em; flex-wrap: wrap; color: #e8e2d6; font-size: 0.92rem; }
     .points mat-icon { color: #25d366; vertical-align: middle; }
     .strip { background: #fff; border-bottom: 1px solid #e4ddcd; padding: 1em 1.5em; text-align: center; }
@@ -319,6 +332,7 @@ export class PartnersPresenterComponent {
   protected readonly year = new Date().getFullYear();
   protected readonly publicSiteUrl = environment.publicSiteUrl;
   protected copied = false;
+  protected qrFailed = false;
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -353,6 +367,14 @@ export class PartnersPresenterComponent {
 
   protected whatsappLink(): string | null {
     return this.partner?.whatsappGroupLink || this.partner?.whatsappChatLink || null;
+  }
+
+  protected chatLink(): string | null {
+    return this.partner?.whatsappChatLink || this.partner?.whatsappGroupLink || null;
+  }
+
+  protected qrCodeUrl(): string {
+    return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=${encodeURIComponent(this.shareUrl())}`;
   }
 
   protected shareUrl(): string {

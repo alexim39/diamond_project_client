@@ -107,6 +107,60 @@ styles: [`
           display: flex;
           flex-direction: column;
           padding: 0 1em;
+          scroll-margin-top: 90px;
+          .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+            margin-bottom: 1.25em;
+            .step-dot {
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              background: #e7e2d7;
+              color: var(--dp-muted, #6e6e6e);
+              font-weight: 800;
+              font-size: 0.85em;
+            }
+            .step-dot.active {
+              background: var(--dp-gold, #d4a941);
+              color: #111;
+            }
+            .step-dot.current {
+              box-shadow: 0 0 0 3px rgba(212, 169, 65, 0.28);
+            }
+            .step-line {
+              width: 48px;
+              height: 2px;
+              background: #e7e2d7;
+            }
+            .step-line.active {
+              background: var(--dp-gold, #d4a941);
+            }
+            .step-label {
+              margin-left: auto;
+              color: var(--dp-muted, #6e6e6e);
+              font-size: 0.82em;
+              font-weight: 700;
+            }
+          }
+          .step-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1em;
+            margin-top: 1em;
+            button {
+              min-width: 130px;
+              min-height: 48px;
+              font-weight: 700;
+            }
+            button:only-child {
+              margin-left: auto;
+            }
+          }
           .q-section {
             background: var(--dp-surface, #ffffff);
             border: 1px solid var(--dp-line, #e4ddcd);
@@ -152,18 +206,6 @@ styles: [`
                   margin-right: 10px;
                 }
               }
-            }
-          }
-           .btn {
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            button {
-              width: 40%;
-              min-width: 220px;
-              min-height: 48px;
-              font-size: 1.05em;
-              font-weight: 700;
             }
           }
           .consent-block {
@@ -312,9 +354,15 @@ export class GetStartedComponent implements OnInit, OnDestroy {
   surveyForm: FormGroup = new FormGroup({}); // Assigning a default value
   subscriptions: Subscription[] = [];
   isSpinning = false;
+  currentStep = 1;
   userDevice = '';
   username: string = 'business';
   private referralPartner: ReferralPartner | null = null;
+  private readonly stepControls: string[][] = [
+    ['name', 'surname', 'phoneNumber', 'email', 'country', 'state', 'ageRange', 'employedStatus'],
+    ['importanceOfPassiveIncome', 'onlinePurchaseSchedule', 'primaryOnlineBusinessMotivation', 'comfortWithTech', 'onlineBusinessTimeDedication', 'socialMedia'],
+    ['referral', 'referralCode', 'consent'],
+  ];
 
   // Referral picker — searchable partner dropdown with free-text fallback.
   filteredPartners: PublicPartner[] = [];
@@ -643,20 +691,61 @@ export class GetStartedComponent implements OnInit, OnDestroy {
       )
     } else {
      this.isSpinning = false;
-     this.surveyForm.markAllAsTouched(); // Highlight invalid fields
-     this.scrollToFirstError();
+     this.surveyForm.markAllAsTouched();
+     const invalidStep = this.stepControls.findIndex((controls) =>
+       controls.some((name) => this.surveyForm.get(name)?.invalid)
+     ) + 1;
+     if (invalidStep > 0) {
+       this.currentStep = invalidStep;
+       this.markStepTouched(invalidStep);
+     }
+     setTimeout(() => this.scrollToFirstError());
     }
     
   }
 
-  /** Focus the first invalid field so users see what to fix. */
+  nextStep(): void {
+    if (this.currentStep >= 3) return;
+    if (!this.isStepValid(this.currentStep)) {
+      this.markStepTouched(this.currentStep);
+      this.scrollToFirstError();
+      return;
+    }
+    this.currentStep += 1;
+    setTimeout(() => this.scrollToFormTop());
+  }
+
+  previousStep(): void {
+    if (this.currentStep <= 1) return;
+    this.currentStep -= 1;
+    setTimeout(() => this.scrollToFormTop());
+  }
+
+  private isStepValid(step: number): boolean {
+    return this.stepControls[step - 1].every((name) => this.surveyForm.get(name)?.valid);
+  }
+
+  private markStepTouched(step: number): void {
+    this.stepControls[step - 1].forEach((name) => {
+      const control = this.surveyForm.get(name);
+      control?.markAsTouched();
+      if (control instanceof FormArray) control.markAllAsTouched();
+    });
+  }
+
+  private scrollToFormTop(): void {
+    document.querySelector('form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   private scrollToFirstError(): void {
     const invalid = Object.keys(this.surveyForm.controls).find((k) => this.surveyForm.get(k)?.invalid);
-    if (!invalid) return;
-    const el = document.querySelector(`[formControlName="${invalid}"]`);
+    const selector = invalid === 'socialMedia' ? '#socialMedia' : invalid ? `[formControlName="${invalid}"]` : '';
+    const el = selector ? document.querySelector(selector) : null;
     if (el instanceof HTMLElement) {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       el.focus({ preventScroll: true });
+    } else {
+      this.scrollToFormTop();
     }
   }
 

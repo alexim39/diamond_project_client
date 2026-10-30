@@ -25,6 +25,16 @@
         
         <form [formGroup]="surveyForm" (submit)="onSubmit()">
 
+        <div class="step-indicator" aria-label="Form progress">
+          <span class="step-dot" [class.active]="currentStep >= 1" [class.current]="currentStep === 1">1</span>
+          <span class="step-line" [class.active]="currentStep > 1"></span>
+          <span class="step-dot" [class.active]="currentStep >= 2" [class.current]="currentStep === 2">2</span>
+          <span class="step-line" [class.active]="currentStep > 2"></span>
+          <span class="step-dot" [class.active]="currentStep >= 3" [class.current]="currentStep === 3">3</span>
+          <span class="step-label">Step {{ currentStep }} of 3</span>
+        </div>
+
+        @if (currentStep === 1) {
         <section class="q-section" aria-label="Getting to know you">
           <p class="q-eyebrow">01 - Getting to know you</p>
 
@@ -135,7 +145,9 @@
               </mat-error>
           </mat-form-field>
         </section>
+        }
 
+        @if (currentStep === 2) {
         <section class="q-section" aria-label="Your online habits">
           <p class="q-eyebrow">02 - Your online habits</p>
 
@@ -224,7 +236,7 @@
           <div class="form-wrapper">
             <div class="range">
               <h4>Which social media platforms do you use most frequently?</h4>
-              <section role="group" aria-label="Social media platforms" [ngClass]="{'invalid-field': surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched}">
+              <section id="socialMedia" role="group" aria-label="Social media platforms" [ngClass]="{'invalid-field': surveyForm.get('socialMedia')?.invalid && surveyForm.get('socialMedia')?.touched}">
                 <mat-checkbox (change)="onCheckboxChange($event)" value="Facebook">Facebook</mat-checkbox>
                 <mat-checkbox (change)="onCheckboxChange($event)" value="Instagram">Instagram</mat-checkbox>
                 <mat-checkbox (change)="onCheckboxChange($event)" value="LinkedIn">LinkedIn</mat-checkbox>
@@ -242,7 +254,9 @@
             </div>
           </div>
         </section>
+        }
 
+        @if (currentStep === 3) {
         <section class="q-section" aria-label="How you found us">
           <p class="q-eyebrow">03 - How you found us</p>
 
@@ -307,11 +321,25 @@
             Please agree before submitting.
           </p>
         </section>
+        }
 
           <mat-progress-bar mode="indeterminate" *ngIf="isSpinning"></mat-progress-bar><br>
-  
-          <div class="btn">
-            <button mat-raised-button color="primary" [disabled]="isSpinning">Submit <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+
+          <div class="step-nav">
+            @if (currentStep > 1) {
+              <button type="button" mat-stroked-button (click)="previousStep()" [disabled]="isSpinning">
+                <i class="fa fa-angle-left" aria-hidden="true"></i> Back
+              </button>
+            }
+            @if (currentStep < 3) {
+              <button type="button" mat-raised-button color="primary" (click)="nextStep()">
+                Continue <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </button>
+            } @else {
+              <button mat-raised-button color="primary" [disabled]="isSpinning">
+                Submit <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+              </button>
+            }
           </div>
   
         </form>
