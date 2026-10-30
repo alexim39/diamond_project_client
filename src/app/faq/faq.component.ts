@@ -41,9 +41,6 @@ interface FaqItem {
         </aside>
       </div>
 
-      <p class="disclaimer">
-        Diamond Project does not guarantee income. Results vary with individual effort, consistency and market conditions.
-      </p>
     </section>
   `,
   styles: [`
@@ -138,12 +135,6 @@ interface FaqItem {
     .cta-outline {
       border-color: var(--dp-gold) !important;
       color: var(--dp-gold-bright) !important;
-    }
-    .disclaimer {
-      max-width: 1080px;
-      margin: 2em auto 0;
-      color: var(--dp-muted);
-      font-size: 0.85rem;
     }
     @media (max-width: 860px) {
       .faq-layout {
