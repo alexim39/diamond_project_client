@@ -49,6 +49,7 @@ import { environment } from '../../environments/environment';
           @if (whatsappLink()) {
             <a mat-stroked-button class="cta-wa" [href]="whatsappLink()" target="_blank" rel="noopener"><span class="fa fa-whatsapp"></span> {{ partner.whatsappCtaText || 'Chat on WhatsApp' }}</a>
           }
+          <a mat-stroked-button class="cta-contact" routerLink="/contact" (click)="scrollToTop()"><mat-icon>mail_outline</mat-icon> Ask a question</a>
         </div>
         @if (partner.inviteNote) {
           <p class="invite"><mat-icon>markunread_mailbox</mat-icon> {{ partner.inviteNote }}</p>
@@ -76,7 +77,7 @@ import { environment } from '../../environments/environment';
 
     <!-- Logos -->
     <section class="strip">
-      <p class="label">BACKED BY ESTABLISHED BRANDS &amp; PRODUCTS</p>
+      <p class="label">BRANDS &amp; PRODUCTS IN THE DIAMOND PROJECT ECOSYSTEM</p>
       <async-brands-logos></async-brands-logos>
     </section>
 
@@ -161,7 +162,7 @@ import { environment } from '../../environments/environment';
     <!-- Proof -->
     <section class="section proof" id="proof">
       <p class="eyebrow">/ RESULTS &amp; PROOF</p>
-      <h2>Real people, real progress</h2>
+      <h2>Real people, real community</h2>
       <div class="proof-grid">
         @if (partner.testimonial) {
           <figure class="quote">
@@ -172,14 +173,11 @@ import { environment } from '../../environments/environment';
             }
           </figure>
         }
-        <figure class="quote">
-          <blockquote>"The job market after graduation was brutal. Now I have flexibility for my family while building an income stream."</blockquote>
-          <figcaption><strong>Adeyemi Temitope</strong><small>Entrepreneur &amp; Mentor</small></figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>"I was tired of the corporate grind. Diamond Project let me be my own boss and build something meaningful."</blockquote>
-          <figcaption><strong>Imenwo Alex</strong><small>Chief Technology Officer</small></figcaption>
-        </figure>
+        <article class="quote community">
+          <h3>See the community in action</h3>
+          <p>Highlights and stories from the Diamond Project 10th Anniversary — “The Invincibles.”</p>
+          <a class="vid" routerLink="/events"><mat-icon>play_circle</mat-icon> Watch event highlights</a>
+        </article>
       </div>
     </section>
 
@@ -255,6 +253,7 @@ import { environment } from '../../environments/environment';
     .cta-row { display: flex; gap: 0.8em; flex-wrap: wrap; margin: 1.4em 0; }
     .cta-gold { background: var(--dp-gold-bright) !important; color: #111 !important; font-weight: 800; min-height: 48px; }
     .cta-wa { border-color: #25d366 !important; color: #fff !important; min-height: 48px; }
+    .cta-contact { border-color: var(--dp-gold) !important; color: var(--dp-gold-bright) !important; min-height: 48px; }
     .cta-wa-light { border-color: #fff !important; color: #fff !important; }
     .invite { display: flex; gap: 0.5em; align-items: flex-start; background: rgba(255,193,7,0.12); border: 1px solid #d4a941; border-radius: 10px; padding: 0.8em 1em; max-width: 42em; }
     .trust { display: flex; gap: 1.5em; flex-wrap: wrap; align-items: center; margin-top: 1.5em; }
@@ -296,6 +295,8 @@ import { environment } from '../../environments/environment';
     .quote { background: #faf8f3; border: 1px solid #e4ddcd; border-left: 4px solid #a97f2c; border-radius: 10px; padding: 1.2em; margin: 0; }
     .quote blockquote { font-style: italic; color: #333; margin: 0 0 1em; }
     .quote figcaption { display: flex; flex-direction: column; }
+    .quote.community h3 { margin: 0 0 0.5em; font-size: 1.1rem; }
+    .quote.community p { color: #444; line-height: 1.55; margin: 0 0 0.8em; }
     .vid { display: inline-flex; gap: 0.3em; align-items: center; margin-top: 0.7em; color: #6e5218; font-weight: 700; text-decoration: none; }
     .faq { display: grid; gap: 0.7em; max-width: 720px; }
     .faq details { background: #fff; border: 1px solid #e4ddcd; border-radius: 10px; padding: 1em 1.2em; }
