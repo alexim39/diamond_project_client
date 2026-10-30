@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
 
 export const routes: Routes = [
   //{ path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: '', component: IndexComponent, title: 'Diamond Project | Network Marketing in Nigeria — Financial Freedom' },
+  { path: '', component: IndexComponent, title: 'Diamond Project | Online Business in Nigeria — Financial Freedom' },
   { path: 'get-started', loadChildren: () => import('./get-started/get-started-routes').then(r => r.getStartedRoutes) },
   { path: 'legal', loadChildren: () => import('./legal/legal-routes').then(r => r.legalRoutes) },
   { path: 'faq', loadComponent: () => import('./faq/faq.component').then(c => c.FaqComponent), title: 'Frequently Asked Questions | Diamond Project' },

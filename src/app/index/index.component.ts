@@ -41,7 +41,7 @@ export class IndexComponent {
   ngOnInit(): void {
     this.loadingSpinnerService.hide();
     this.seo.setPage({
-      title: 'Diamond Project | Network Marketing in Nigeria — Financial Freedom',
+      title: 'Diamond Project | Online Business in Nigeria — Financial Freedom',
       description: 'Diamond Project is a transformative platform that empowers you to elevate your financial success through mentorship, training and a leverage-based online business.',
       path: '/'
     });
