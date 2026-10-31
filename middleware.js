@@ -87,7 +87,7 @@ const escapeAttr = (value) => String(value ?? '')
   .replace(/'/g, '&#39;');
 
 const setMeta = (html, attribute, key, content) => {
-  const pattern = new RegExp(`<meta ${attribute}="${key}" content="[^"]*"\\s*/?>`, 'i');
+  const pattern = new RegExp(`<meta ${attribute}="${key}" content="[^"]*"\\s*/?>`, 'gi');
   const tag = `<meta ${attribute}="${key}" content="${escapeAttr(content)}">`;
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace('</head>', `${tag}\n</head>`);
 };
