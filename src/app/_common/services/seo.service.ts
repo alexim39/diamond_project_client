@@ -9,6 +9,8 @@ export interface SeoPage {
   description: string;
   path: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   type?: string;
   noindex?: boolean;
 }
@@ -17,7 +19,9 @@ export interface SeoPage {
   providedIn: 'root'
 })
 export class SeoService {
-  private readonly defaultImage = `${environment.publicSiteUrl}/assets/images/black-diamond.png`;
+  private readonly defaultImage = `${environment.publicSiteUrl}/assets/images/hero-bg2.jpg`;
+  private readonly defaultImageWidth = 2560;
+  private readonly defaultImageHeight = 1436;
 
   constructor(
     private title: Title,
@@ -28,6 +32,8 @@ export class SeoService {
   setPage(page: SeoPage): void {
     const url = this.absoluteUrl(page.path);
     const image = this.absoluteUrl(page.image) || this.defaultImage;
+    const imageWidth = page.imageWidth ?? (page.image ? undefined : this.defaultImageWidth);
+    const imageHeight = page.imageHeight ?? (page.image ? undefined : this.defaultImageHeight);
 
     this.title.setTitle(page.title);
     this.setTag('name', 'description', page.description);
@@ -37,10 +43,18 @@ export class SeoService {
     this.setTag('property', 'og:type', page.type ?? 'website');
     this.setTag('property', 'og:image', image);
     this.setTag('property', 'og:image:alt', page.title);
+    if (imageWidth && imageHeight) {
+      this.setTag('property', 'og:image:width', String(imageWidth));
+      this.setTag('property', 'og:image:height', String(imageHeight));
+    } else {
+      this.removeTag('property', 'og:image:width');
+      this.removeTag('property', 'og:image:height');
+    }
     this.setTag('name', 'twitter:card', 'summary_large_image');
     this.setTag('name', 'twitter:title', page.title);
     this.setTag('name', 'twitter:description', page.description);
     this.setTag('name', 'twitter:image', image);
+    this.setTag('name', 'twitter:image:alt', page.title);
     this.setTag('name', 'robots', page.noindex ? 'noindex, nofollow' : 'index, follow');
     this.setCanonical(url);
   }
@@ -89,6 +103,11 @@ export class SeoService {
     } else {
       this.meta.addTag({ [attribute]: key, content });
     }
+  }
+
+  private removeTag(attribute: 'name' | 'property', key: string): void {
+    const selector = `${attribute}="${key}"`;
+    if (this.meta.getTag(selector)) this.meta.removeTag(selector);
   }
 
   private setCanonical(url: string): void {

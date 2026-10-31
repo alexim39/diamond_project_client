@@ -367,7 +367,9 @@ export class EventsComponent implements OnInit, OnDestroy {
       title: 'Events & Stories | Diamond Project',
       description: 'Watch highlights from Diamond Project events, including the 10th Anniversary “The Invincibles” celebrations in Abuja.',
       path: '/events',
-      image: 'assets/events/kUQ-n9mrXkI.jpg'
+      image: 'assets/events/kUQ-n9mrXkI.jpg',
+      imageWidth: 1280,
+      imageHeight: 720
     });
     this.seo.setJsonLd('dp-events-schema', {
       '@context': 'https://schema.org',
